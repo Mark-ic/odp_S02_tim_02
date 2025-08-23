@@ -10,4 +10,5 @@ order processing, and delivery coordination, ensuring a smooth end-to
 end food ordering experience.
 
 Frontend – React, TypeScript
+
 Backend – MySQL, TypeScript
