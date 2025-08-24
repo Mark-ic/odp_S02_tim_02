@@ -1,182 +1,106 @@
--- MySQL Script generated and fixed
--- Sat Aug 23 11:31:38 2025
--- Model: New Model    Version: 1.0
+-- Schema
+DROP SCHEMA IF EXISTS `FoodieExpress`;
+CREATE SCHEMA IF NOT EXISTS `FoodieExpress` DEFAULT CHARACTER SET utf8;
+USE `FoodieExpress`;
 
-SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
-SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
-
--- -----------------------------------------------------
--- Schema mydb
--- -----------------------------------------------------
-DROP SCHEMA IF EXISTS `mydb` ;
-
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
-USE `mydb` ;
-
--- -----------------------------------------------------
--- Table `mydb`.`Jelo`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`Jelo` ;
-
-CREATE TABLE IF NOT EXISTS `mydb`.`Jelo` (
+-- Jelo
+CREATE TABLE IF NOT EXISTS `Jelo` (
   `idJelo` INT NOT NULL AUTO_INCREMENT,
   `nazivJela` VARCHAR(45) NOT NULL,
-  `cena` INT NOT NULL,
+  `cena` INT NOT NULL CHECK (`cena` > 0),
   `slika` VARCHAR(100) NOT NULL,
   `vremePripreme` INT NOT NULL,
-  `brojPorudzbina` INT NOT NULL,
+  `brojPorudzbina` INT NOT NULL DEFAULT 0,
   PRIMARY KEY (`idJelo`),
-  UNIQUE INDEX `naziv_UNIQUE` (`nazivJela` ASC),
-  CONSTRAINT `chk_cena_pozitivna` CHECK (`cena` > 0)
-) ENGINE = InnoDB;
+  UNIQUE INDEX `naziv_UNIQUE` (`nazivJela` ASC)
+) ENGINE=InnoDB;
 
-
--- -----------------------------------------------------
--- Table `mydb`.`Sastojak`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`Sastojak` ;
-
-CREATE TABLE IF NOT EXISTS `mydb`.`Sastojak` (
+-- Sastojak
+CREATE TABLE IF NOT EXISTS `Sastojak` (
   `idSastojak` INT NOT NULL AUTO_INCREMENT,
   `nazivSastojka` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`idSastojak`))
-ENGINE = InnoDB;
+  `alergen` VARCHAR(3) NULL,
+  PRIMARY KEY (`idSastojak`)
+) ENGINE=InnoDB;
 
-
--- -----------------------------------------------------
--- Table `mydb`.`Jelo_Sastojak`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`Jelo_Sastojak` ;
-
-CREATE TABLE IF NOT EXISTS `mydb`.`Jelo_Sastojak` (
+-- Jelo_Sastojak
+CREATE TABLE IF NOT EXISTS `Jelo_Sastojak` (
   `idJelo` INT NOT NULL,
   `idSastojak` INT NOT NULL,
   PRIMARY KEY (`idJelo`, `idSastojak`),
-  CONSTRAINT `fk_JeloSastojak_Jelo`
+  CONSTRAINT `fk_js_jelo`
     FOREIGN KEY (`idJelo`)
-    REFERENCES `mydb`.`Jelo` (`idJelo`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_JeloSastojak_Sastojak`
+    REFERENCES `Jelo` (`idJelo`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_js_sastojak`
     FOREIGN KEY (`idSastojak`)
-    REFERENCES `mydb`.`Sastojak` (`idSastojak`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION
-) ENGINE = InnoDB;
+    REFERENCES `Sastojak` (`idSastojak`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+) ENGINE=InnoDB;
 
-
--- -----------------------------------------------------
--- Table `mydb`.`Alergen`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`Alergen` ;
-
-CREATE TABLE IF NOT EXISTS `mydb`.`Alergen` (
-  `idAlergen` INT NOT NULL AUTO_INCREMENT,
-  `nazivAlergena` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`idAlergen`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `mydb`.`Jelo_Alergen`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`Jelo_Alergen` ;
-
-CREATE TABLE IF NOT EXISTS `mydb`.`Jelo_Alergen` (
-  `idJelo` INT NOT NULL,
-  `idAlergen` INT NOT NULL,
-  PRIMARY KEY (`idJelo`, `idAlergen`),
-  CONSTRAINT `fk_JeloAlergen_Jelo`
-    FOREIGN KEY (`idJelo`)
-    REFERENCES `mydb`.`Jelo` (`idJelo`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_JeloAlergen_Alergen`
-    FOREIGN KEY (`idAlergen`)
-    REFERENCES `mydb`.`Alergen` (`idAlergen`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION
-) ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `mydb`.`Meni`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`Meni` ;
-
-CREATE TABLE IF NOT EXISTS `mydb`.`Meni` (
+-- Meni
+CREATE TABLE IF NOT EXISTS `Meni` (
   `idMeni` INT NOT NULL AUTO_INCREMENT,
   `dnevniMeni` TINYINT NOT NULL,
-  PRIMARY KEY (`idMeni`))
-ENGINE = InnoDB;
+  PRIMARY KEY (`idMeni`)
+) ENGINE=InnoDB;
 
-
--- -----------------------------------------------------
--- Table `mydb`.`Jelo_Meni`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`Jelo_Meni` ;
-
-CREATE TABLE IF NOT EXISTS `mydb`.`Jelo_Meni` (
+-- Jelo_Meni
+CREATE TABLE IF NOT EXISTS `Jelo_Meni` (
   `idJelo` INT NOT NULL,
   `idMeni` INT NOT NULL,
   PRIMARY KEY (`idMeni`, `idJelo`),
-  CONSTRAINT `fk_JeloMeni_Jelo`
+  CONSTRAINT `fk_jm_jelo`
     FOREIGN KEY (`idJelo`)
-    REFERENCES `mydb`.`Jelo` (`idJelo`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_JeloMeni_Meni`
+    REFERENCES `Jelo` (`idJelo`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_jm_meni`
     FOREIGN KEY (`idMeni`)
-    REFERENCES `mydb`.`Meni` (`idMeni`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION
-) ENGINE = InnoDB;
+    REFERENCES `Meni` (`idMeni`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+) ENGINE=InnoDB;
 
-
--- -----------------------------------------------------
--- Table `mydb`.`Korisnik`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`Korisnik` ;
-
-CREATE TABLE IF NOT EXISTS `mydb`.`Korisnik` (
+-- Korisnik
+CREATE TABLE IF NOT EXISTS `Korisnik` (
   `idKorisnik` INT NOT NULL AUTO_INCREMENT,
   `ime` VARCHAR(45) NOT NULL,
   `prezime` VARCHAR(60) NOT NULL,
   `telefon` VARCHAR(45) NOT NULL,
   `uloga` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`idKorisnik`))
-ENGINE = InnoDB;
+  PRIMARY KEY (`idKorisnik`)
+) ENGINE=InnoDB;
 
-
--- -----------------------------------------------------
--- Table `mydb`.`Porudzbina`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`Porudzbina` ;
-
-CREATE TABLE IF NOT EXISTS `mydb`.`Porudzbina` (
+-- Porudzbina
+CREATE TABLE IF NOT EXISTS `Porudzbina` (
   `idPorudzbina` INT NOT NULL AUTO_INCREMENT,
   `preostaloVreme` INT NOT NULL,
   `status` VARCHAR(45) NOT NULL,
-  `nacinIsporuke` VARCHAR(45) NOT NULL,  -- ispravljen tipfeler
+  `nacinIsporuke` VARCHAR(45) NOT NULL,
   `adresa` VARCHAR(85) NULL,
   `idJelo` INT NOT NULL,
   `idMeni` INT NOT NULL,
   `idKorisnik` INT NOT NULL,
   PRIMARY KEY (`idPorudzbina`),
-  CONSTRAINT `fk_Porudzbina_JeloMeni`
-    FOREIGN KEY (`idMeni`, `idJelo`)
-    REFERENCES `mydb`.`Jelo_Meni` (`idMeni`, `idJelo`)
+  INDEX `idJelo_idx` (`idJelo` ASC),
+  INDEX `idMeni_idx` (`idMeni` ASC),
+  INDEX `idKorisnik_idx` (`idKorisnik` ASC),
+  CONSTRAINT `fk_p_jelo`
+    FOREIGN KEY (`idJelo`)
+    REFERENCES `Jelo` (`idJelo`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Porudzbina_Korisnik`
+  CONSTRAINT `fk_p_meni`
+    FOREIGN KEY (`idMeni`)
+    REFERENCES `Meni` (`idMeni`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_p_korisnik`
     FOREIGN KEY (`idKorisnik`)
-    REFERENCES `mydb`.`Korisnik` (`idKorisnik`)
+    REFERENCES `Korisnik` (`idKorisnik`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
-) ENGINE = InnoDB;
-
-
-SET SQL_MODE=@OLD_SQL_MODE;
-SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+) ENGINE=InnoDB;
