@@ -7,4 +7,5 @@ export interface IuserRepository {
     getByUsername(username: string): Promise<User>;
     updateUser(user: User): Promise<User>;
     deleteUser(id: number): Promise<boolean>;
+    userExists(id: number): Promise<boolean>;
 }
