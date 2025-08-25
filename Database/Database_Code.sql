@@ -98,6 +98,7 @@ CREATE TABLE `Korisnik` (
   `prezime` VARCHAR(60) NOT NULL,
   `telefon` VARCHAR(45) NOT NULL,
   `uloga` VARCHAR(45) NOT NULL,
+  `sifra` varchar(500) NOT NULL,
   PRIMARY KEY (`idKorisnik`)
 ) ENGINE = InnoDB;
 
@@ -113,17 +114,11 @@ CREATE TABLE `Porudzbina` (
   `nacunIsporuke` VARCHAR(45) NOT NULL,
   `adresa` VARCHAR(85) NULL,
   `idJelo` INT NULL,
-  `idMeni` INT NULL,
   `idKorisnik` INT NOT NULL,
   PRIMARY KEY (`idPorudzbina`),
   CONSTRAINT `fk_porudzbina_jelo`
     FOREIGN KEY (`idJelo`)
     REFERENCES `Jelo` (`idJelo`)
-    ON DELETE SET NULL
-    ON UPDATE CASCADE,
-  CONSTRAINT `fk_porudzbina_meni`
-    FOREIGN KEY (`idMeni`)
-    REFERENCES `Meni` (`idMeni`)
     ON DELETE SET NULL
     ON UPDATE CASCADE,
   CONSTRAINT `fk_porudzbina_korisnik`
