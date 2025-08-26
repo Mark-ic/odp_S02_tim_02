@@ -6,14 +6,14 @@ import db from "../../connection/DbConnectionPool"
 export class UserRepository implements IuserRepository {
     async create(user: User): Promise<User> {
         try {
-            const query: string = 'INSERT INTO Korisnik(ime,prezime,telefon,uloga,sifra) values (?,?,?,?,?)';
+            const query: string = 'INSERT INTO Korisnik(korisnickoIme,telefon,uloga,sifra) values (?,?,?,?)';
 
             const [result] = await db.execute<ResultSetHeader>(query, [
-                user.name, user.lastName, user.phone, user.role, user.password
+                user.username, user.phone, user.role, user.password
             ]);
 
             if (result.insertId) {
-                return new User(result.insertId, user.name, user.lastName, user.phone, user.role, user.password);
+                return new User(result.insertId, user.username, user.phone, user.role, user.password);
             }
 
             return new User();
@@ -32,7 +32,7 @@ export class UserRepository implements IuserRepository {
 
             if (rows.length > 0) {
                 const row = rows[0];
-                return new User(row.idUser, row.name, row.lastName, row.phone, row.role, row.password);
+                return new User(row.idUser, row.username, row.phone, row.role, row.password);
             }
 
             return new User();
@@ -43,7 +43,7 @@ export class UserRepository implements IuserRepository {
     }
     async getByUsername(username: string): Promise<User> {
                 try {
-            const query: string = 'SELECT * FROM Korisnik WHERE ime = ?';
+            const query: string = 'SELECT * FROM Korisnik WHERE korisnickoIme = ?';
 
             const [rows] = await db.execute<RowDataPacket[]>(query, [
                 username
@@ -51,7 +51,7 @@ export class UserRepository implements IuserRepository {
 
             if (rows.length > 0) {
                 const row = rows[0];
-                return new User(row.idUser, row.name, row.lastName, row.phone, row.role, row.password);
+                return new User(row.idUser, row.username,row.phone, row.role, row.password);
             }
 
             return new User();
@@ -62,10 +62,10 @@ export class UserRepository implements IuserRepository {
     }
     async updateUser(user: User): Promise<User> {
         try{
-            const query: string = 'UPDATE Korisnik SET ime = ?,prezime = ?,telefon = ?,uloga = ? ,sifra = ? WHERE idKorisnik = ?';
+            const query: string = 'UPDATE Korisnik SET username = ?,telefon = ?,uloga = ? ,sifra = ? WHERE idKorisnik = ?';
 
             const [result] = await db.execute<ResultSetHeader>(query, [
-                user.name, user.lastName, user.phone, user.role, user.password,user.idUser
+                user.username,user.phone, user.role, user.password,user.idUser
             ]);
 
             if (result.affectedRows > 0) {

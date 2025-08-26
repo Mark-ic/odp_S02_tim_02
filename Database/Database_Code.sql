@@ -94,8 +94,7 @@ DROP TABLE IF EXISTS `Korisnik` ;
 
 CREATE TABLE `Korisnik` (
   `idKorisnik` INT NOT NULL AUTO_INCREMENT,
-  `ime` VARCHAR(45) NOT NULL,
-  `prezime` VARCHAR(60) NOT NULL,
+  `KorisnickoIme` VARCHAR(45) NOT NULL,
   `telefon` VARCHAR(45) NOT NULL,
   `uloga` VARCHAR(45) NOT NULL,
   `sifra` varchar(500) NOT NULL,
