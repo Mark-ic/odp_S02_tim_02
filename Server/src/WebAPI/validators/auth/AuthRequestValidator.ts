@@ -1,6 +1,6 @@
 import { AuthValidType } from "../../../Domain/types/auth/AuthValidyType";
 
-export function AuthRequestValidators(username?: string, password?: string): AuthValidType {
+export function AuthRequestValidators(username?: string, password?: string, phone?:string): AuthValidType {
     if (!username || !password) {
         return { succsess: false, message: 'Username and Password cannot be empty' };
     }
@@ -15,6 +15,11 @@ export function AuthRequestValidators(username?: string, password?: string): Aut
 
     if (password.length > 20) {
         return { succsess: false, message: 'Password can hold only 20 characters.' };
+    }
+
+    const phoneRegex = /^(?:\+\d{1,3}[ \-/]?)?(?:\d[ \-/]?){7,12}\d$/;
+    if(phone != null && !phoneRegex.test(phone)){
+        return { succsess: false, message: 'phone number not in right format' };
     }
 
     return { succsess: true };

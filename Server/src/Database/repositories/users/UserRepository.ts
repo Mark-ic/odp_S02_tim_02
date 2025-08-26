@@ -42,16 +42,16 @@ export class UserRepository implements IuserRepository {
         }
     }
     async getByUsername(username: string): Promise<User> {
-                try {
-            const query: string = 'SELECT * FROM Korisnik WHERE korisnickoIme = ?';
+        try {
+            const query: string = 'SELECT * FROM Korisnik WHERE KorisnickoIme = ?';
 
-            const [rows] = await db.execute<RowDataPacket[]>(query, [
+            const [Rows] = await db.execute<RowDataPacket[]>(query, [
                 username
             ]);
-
-            if (rows.length > 0) {
-                const row = rows[0];
-                return new User(row.idUser, row.username,row.phone, row.role, row.password);
+            
+            if (Rows.length > 0) {
+                const row = Rows[0];
+                return new User(row.idKorisnik, row.KorisnickoIme, row.telefon, row.uloga, row.sifra);
             }
 
             return new User();
@@ -61,40 +61,40 @@ export class UserRepository implements IuserRepository {
         }
     }
     async updateUser(user: User): Promise<User> {
-        try{
+        try {
             const query: string = 'UPDATE Korisnik SET username = ?,telefon = ?,uloga = ? ,sifra = ? WHERE idKorisnik = ?';
 
             const [result] = await db.execute<ResultSetHeader>(query, [
-                user.username,user.phone, user.role, user.password,user.idUser
+                user.username, user.phone, user.role, user.password, user.idUser
             ]);
 
             if (result.affectedRows > 0) {
                 return user;
             }
-             return new User();
+            return new User();
         }
-        catch{
-            return new User(); 
+        catch {
+            return new User();
         }
     }
     async deleteUser(id: number): Promise<boolean> {
         try {
             const query: string = 'DELETE FROM Korisnik WHERE idkorisnik = ?';
-            const [result] =await db.execute<ResultSetHeader>(query,[id]);
-            return result.affectedRows >0;
+            const [result] = await db.execute<ResultSetHeader>(query, [id]);
+            return result.affectedRows > 0;
         }
-        catch{
+        catch {
             return false;
         }
     }
 
-    async userExists(id: number): Promise<boolean>{
-         try {
+    async userExists(id: number): Promise<boolean> {
+        try {
             const query: string = 'SELECT COUT(*) as count from  Korisnik WHERE idkorisnik = ?';
-            const [result] =await db.execute<RowDataPacket[]>(query,[id]);
-            return result[0].count >0;
+            const [result] = await db.execute<RowDataPacket[]>(query, [id]);
+            return result[0].count > 0;
         }
-        catch{
+        catch {
             return false;
         }
     }

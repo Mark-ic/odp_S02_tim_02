@@ -1,0 +1,32 @@
+Primeri:
+
+Register:
+POST localhost:4000/api/v1/auth/register
+
+{
+  "username":"marko",
+  "phone":"0612345678",
+  "role":"user",
+  "password":"aca123"
+}
+
+Statusi:
+200 - sve je ok
+400 - problemi sa predatim parametrima, ima u message poruke sta je tacno u pitanju!
+409 - nalog sa tim username vec postoji
+500 - greska do servera
+
+Login: 
+POST localhost:4000/api/v1/auth/login
+
+{
+  "username":"marko",
+  "password":"aca123"
+}
+
+Statusi:
+200 - sve je ok
+401 - nalog postoji ali je losa sifra
+404 - ne postoji korisnik sa zadatim username
+418 - nepoznata greska
+500 - greska do servera
