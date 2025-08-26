@@ -49,7 +49,7 @@ export class AuthConstroller {
     private async register(req: Request, res: Response): Promise<void> {
         try {
             const { username, phone, role, password } = req.body;
-            const validationOK = AuthRequestValidators(username, password,phone);
+            const validationOK = AuthRequestValidators(username, password,phone,role);
             if (validationOK.succsess === false) {
                 res.status(400).json({ success: false, message: validationOK.message });
             }
