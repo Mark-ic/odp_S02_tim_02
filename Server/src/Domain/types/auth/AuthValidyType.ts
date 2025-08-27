@@ -1,4 +1,4 @@
 export type AuthValidType = {
-    succsess:boolean;
+    success:boolean;
     message?:string;
 }

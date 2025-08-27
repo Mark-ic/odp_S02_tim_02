@@ -1,6 +1,6 @@
 import { Router, Request, Response } from "express";
-import { IAuthService } from "../../Domain/services/auth/IAuthService";
-import { AuthRequestValidators } from "../validators/auth/AuthRequestValidator";
+import { IAuthService } from "../../../Domain/services/auth/IAuthService";
+import { AuthRequestValidators } from "../../validators/auth/AuthRequestValidator";
 import jwt from "jsonwebtoken";
 
 export class AuthConstroller {
@@ -14,15 +14,15 @@ export class AuthConstroller {
     }
 
     private initializeRouters() {
-        this.router.post("/auth/login", this.login.bind(this));
-        this.router.post("/auth/register", this.register.bind(this));
+        this.router.post("/login", this.login.bind(this));
+        this.router.post("/register", this.register.bind(this));
     }
 
     private async login(req: Request, res: Response): Promise<void> {
         try {
             const { username, password } = req.body;
             const validationOK = AuthRequestValidators(username, password);
-            if (validationOK.succsess === false) {
+            if (validationOK.success === false) {
                 res.status(400).json({ success: false, message: validationOK.message });
                 return;
             }
@@ -58,7 +58,7 @@ export class AuthConstroller {
         try {
             const { username, phone, role, password } = req.body;
             const validationOK = AuthRequestValidators(username, password, phone, role);
-            if (validationOK.succsess === false) {
+            if (validationOK.success === false) {
                 res.status(400).json({ success: false, message: validationOK.message });
                 return;
             }

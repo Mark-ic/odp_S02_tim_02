@@ -1,9 +1,12 @@
 import express from "express"
 import cors from "cors"
-import { AuthConstroller } from "./WebAPI/controllers/AuthController";
+import { AuthConstroller } from "./WebAPI/controllers/auth/AuthController";
 import { AuthService } from "./Services/auth/AuthService";
 import { IuserRepository } from "./Domain/repositories/users/IUserRepository";
 import { UserRepository } from "./Database/repositories/users/UserRepository";
+import { MealController } from "./WebAPI/controllers/meals/MealController";
+import { MealService } from "./Services/meals/MealService";
+import { MealRepository } from "./Database/repositories/meals/MealRepository";
 
 require('dotenv').config();
 const app = express();
@@ -17,6 +20,11 @@ const authService = new AuthService(userRepo);
 
 const authConstroller = new AuthConstroller(authService);
 
-app.use("/api/v1", authConstroller.getRouther());
+const mealRepo = new MealRepository();
+const mealService = new MealService(mealRepo);
+const mealController = new MealController(mealService);
+
+app.use("/api/v1/auth", authConstroller.getRouther());
+app.use("/api/v1/meals", mealController.getRouther());
 
 export default app;

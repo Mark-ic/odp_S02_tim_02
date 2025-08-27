@@ -1,32 +1,53 @@
 Primeri:
 
-Register:
-POST localhost:4000/api/v1/auth/register
+/auth/
 
-{
-  "username":"marko",
-  "phone":"0612345678",
-  "role":"user",
-  "password":"aca123"
-}
+  Register:
+  POST localhost:4000/api/v1/auth/register
 
-Statusi:
-200 - sve je ok
-400 - problemi sa predatim parametrima, ima u message poruke sta je tacno u pitanju!
-409 - nalog sa tim username vec postoji
-500 - greska do servera
+  {
+    "username":"marko",
+    "phone":"0612345678",
+    "role":"user",
+    "password":"aca123"
+  }
 
-Login: 
-POST localhost:4000/api/v1/auth/login
+  Statusi:
+  200 - sve je ok
+  400 - problemi sa predatim parametrima, ima u message poruke sta je tacno u pitanju!
+  409 - nalog sa tim username vec postoji
+  500 - greska do servera
 
-{
-  "username":"marko",
-  "password":"aca123"
-}
+  Login: 
+  POST localhost:4000/api/v1/auth/login
 
-Statusi:
-200 - sve je ok
-401 - nalog postoji ali je losa sifra
-404 - ne postoji korisnik sa zadatim username
-418 - nepoznata greska
-500 - greska do servera
+  {
+    "username":"marko",
+    "password":"aca123"
+  }
+
+  Statusi:
+  200 - sve je ok
+  401 - nalog postoji ali je losa sifra
+  404 - ne postoji korisnik sa zadatim username
+  418 - nepoznata greska
+  500 - greska do servera
+
+meals/
+
+  Add Meal: 
+  POST localhost:4000/api/v1/meals/create
+
+  {
+    "mealName":"Salamura",
+    "price":55,
+    "image":"images/Salamura.png",
+    "prepTime":15
+  }
+
+  Statusi:
+  200 - sve je ok
+  400 - Neko od unetih polja nije dobro
+  401 - Ne postoji token ili nije validan
+  403 - Samo admini imaju pristup ovoj komandi
+  500 - greska do servera
