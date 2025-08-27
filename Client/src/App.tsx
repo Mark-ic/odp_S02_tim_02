@@ -4,8 +4,10 @@ import {
   Navigate,
 } from "react-router-dom";
 import { authApi } from "./api_services/auth/AuthAPIService";
-//import { ProtectedRoute } from "./components/auth/protected_route/ProtectedRoute";
+import { ProtectedRoute } from "./components/auth/protected_route/ProtectedRoute";
 import LoginPage from "./pages/auth/LoginPage";
+import UserDashboardPage from "./pages/dashboards/UserDashboardPage";
+import AdminDashboardPage from "./pages/dashboards/AdminDashboardPage";
 import RegistrationPage from "./pages/auth/RegistrationPage";
 import NotFoundStranica from "./pages/not_found/NotFoundPage";
 
@@ -15,7 +17,25 @@ function App() {
       <Route path="/login" element={<LoginPage authApi={authApi} />} />
       <Route path="/register" element={<RegistrationPage authApi={authApi} />} />
       <Route path="/404" element={<NotFoundStranica />} />
+        {/* User Dashboard */}
+        <Route
+          path="/user-dashboard"
+          element={
+            <ProtectedRoute requiredRole="user">
+              <UserDashboardPage />
+            </ProtectedRoute>
+        }
+        />
 
+        {/* Admin Dashboard */}
+        <Route
+          path="/admin-dashboard"
+          element={
+            <ProtectedRoute requiredRole="admin">
+              <AdminDashboardPage />
+            </ProtectedRoute>
+        }
+        />
 
         {/* Preusmerava na dashboard kao default rutu */}
         <Route path="/" element={<Navigate to="/login" replace />} />
