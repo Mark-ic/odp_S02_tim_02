@@ -25,21 +25,21 @@ export class MealController {
             const validationOK = MealRequestValidator(mealName, price, image, prepTime);
 
             if (validationOK.success === false) {
-                res.status(400).json({ succsess: false, massage: validationOK.message });
+                res.status(400).json({ success: false, massage: validationOK.message });
             }
 
             const result = await this.mealService.addMeal(mealName, price, image, prepTime,ingredients);
             if (result.idMeal !== 0) {
-                res.status(200).json({ succsess: true, message: "Meal added successfully!", data: result });
+                res.status(200).json({ success: true, message: "Meal added successfully!", data: result });
                 return;
             }
             else{
-                res.status(444).json({ succsess: false, message: result.message });
+                res.status(444).json({ success: false, message: result.message });
                 return;
             }
         }
         catch {
-            res.status(500).json({ succsess: false, massage: "Server Error" });
+            res.status(500).json({ success: false, massage: "Server Error" });
         }
     }
     public getRouther() { return this.router; }

@@ -37,20 +37,20 @@ export class AuthConstroller {
                 }, process.env.JWT_SECRET ?? "", { expiresIn: '6h' });
 
             if (result.status === "OK") {
-                res.status(200).json({ succsess: true, message: "Login succsess!", data: token });
+                res.status(200).json({ success: true, message: "Login success!", data: token });
             }
             else if (result.status === "BAD_PASSWORD") {
-                res.status(401).json({ succsess: false, message: "Wrong password!"});
+                res.status(401).json({ success: false, message: "Wrong password!"});
             }
             else if (result.status === "NO_USER") {
-                res.status(404).json({ succsess: false, message: "User not found!"});
+                res.status(404).json({ success: false, message: "User not found!"});
             }
             else {
-                res.status(418).json({ succsess: false, message: "Login Failed!" });
+                res.status(418).json({ success: false, message: "Login Failed!" });
             }
         }
         catch {
-            res.status(500).json({ succsess: false, massage: "Server Error" });
+            res.status(500).json({ success: false, massage: "Server Error" });
         }
     }
 
@@ -72,14 +72,14 @@ export class AuthConstroller {
                 }, process.env.JWT_SECRET ?? "", { expiresIn: '6h' });
 
             if (result.id !== 0) {
-                res.status(200).json({ succsess: true, message: "Register succsess!", data: token });
+                res.status(200).json({ success: true, message: "Register succsess!", data: token });
             }
             else {
-                res.status(409).json({ succsess: false, message: "Profile with same username already exists!" });
+                res.status(409).json({ success: false, message: "Profile with same username already exists!" });
             }
         }
         catch {
-            res.status(500).json({ succsess: false, massage: "Server Error" });
+            res.status(500).json({ success: false, massage: "Server Error" });
         }
     }
 
