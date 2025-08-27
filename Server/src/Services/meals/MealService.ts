@@ -2,16 +2,19 @@ import { mealDTO } from "../../Domain/DTOs/meal/mealDTO";
 import { Ingredient } from "../../Domain/models/Ingredient";
 import { Meal } from "../../Domain/models/Meal";
 import { IIngredientRepository } from "../../Domain/repositories/ingredients/IIngredientRepository";
+import { IMealIngrendientsRepo } from "../../Domain/repositories/meals/IMealIngredientsRep";
 import { IMealRepository } from "../../Domain/repositories/meals/IMealRepository";
 import { IMealService } from "../../Domain/services/meals/IMealService";
 
 export class MealService implements IMealService {
     private mealRepo: IMealRepository;
     private ingredientRepo: IIngredientRepository;
+    private mealingredientRepo: IMealIngrendientsRepo;
     //Not completly SOLID, but this is the simplest solution
-    public constructor(mealRepo: IMealRepository, ingredientRepo: IIngredientRepository) {
+    public constructor(mealRepo: IMealRepository, ingredientRepo: IIngredientRepository, mealingredientRepo: IMealIngrendientsRepo) {
         this.mealRepo = mealRepo;
         this.ingredientRepo = ingredientRepo;
+        this.mealingredientRepo = mealingredientRepo;
     }
 
     async addMeal(name: string, price: number, image: string, prepTime: number, ingredients: string[]): Promise<mealDTO> {
@@ -26,7 +29,7 @@ export class MealService implements IMealService {
         for (const element of ingredients) {
             const ingred = await this.ingredientRepo.getIngredientByName(element);
             if (ingred.idIngredient !== 0) {
-                const addedOK: boolean = await this.mealRepo.addIngredientToMeal(meal.idMeal, ingred.idIngredient);
+                const addedOK: boolean = await this.mealingredientRepo.addIngredientToMeal(meal.idMeal, ingred.idIngredient);
                 if (!addedOK) {
                     return new mealDTO(
                         undefined,
