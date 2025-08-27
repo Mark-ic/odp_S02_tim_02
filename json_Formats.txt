@@ -33,10 +33,10 @@ Primeri:
   418 - nepoznata greska
   500 - greska do servera
 
-meals/
+mealIng/
 
   Add Meal: 
-  POST localhost:4000/api/v1/meals/create
+  POST localhost:4000/api/v1/mealIng/create
 
   Obavezno pre slanja proveriti da li zadati sastojci postoje u bazi!
   {
@@ -54,3 +54,11 @@ meals/
   401 - Ne postoji token ili nije validan
   403 - Samo admini imaju pristup ovoj komandi
   500 - greska do servera
+
+  Dobijanje sastojaka jela: 
+  POST localhost:4000/api/v1/mealIng/getMealIng
+   {
+    "mealName":"Lasagna"
+  }
+  200 - sve je ok
+  500 - greska do servera ( ne bi trebalo uopste jer ce uvek ako nema nista vracati prazno)

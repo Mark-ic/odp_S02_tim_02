@@ -42,7 +42,6 @@ export class MealRepository implements IMealRepository {
             const query: string = 'SELECT * FROM jelo WHERE nazivJela = ?';
 
             const [rows] = await db.execute<RowDataPacket[]>(query, [name]);
-
             if (rows.length > 0) {
                 const row = rows[0];
                 return new Meal(row.idJelo, row.nazivJela, row.cena, row.slika, row.vremePripreme, row.brojPorudzbina);

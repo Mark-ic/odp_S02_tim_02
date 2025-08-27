@@ -72,7 +72,7 @@ export class AuthConstroller {
                 }, process.env.JWT_SECRET ?? "", { expiresIn: '6h' });
 
             if (result.id !== 0) {
-                res.status(200).json({ success: true, message: "Register succsess!", data: token });
+                res.status(200).json({ success: true, message: "Register success!", data: token });
             }
             else {
                 res.status(409).json({ success: false, message: "Profile with same username already exists!" });
