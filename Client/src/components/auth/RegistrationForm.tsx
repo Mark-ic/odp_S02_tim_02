@@ -4,7 +4,7 @@ import { AuthRequestValidators } from "../../api_services/validators/auth/AuthVa
 import type { AuthFormProps } from "../../types/props/auth_form_props/AuthFormProps";
 import { useAuth } from "../../hooks/auth/useAuthHook";
 
-export function RegistracijaForma({ authApi }: AuthFormProps) {
+export function RegistrationForm({ authApi }: AuthFormProps) {
   const [username, setUsername] = useState("");
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
@@ -17,7 +17,7 @@ export function RegistracijaForma({ authApi }: AuthFormProps) {
 
     const validation = AuthRequestValidators(username, password, phone, role);
     if (!validation.succsess) {
-      setError(validation.message ?? "Neispravni podaci");
+      setError(validation.message ?? "Invalid data");
       return;
     }
 
@@ -36,26 +36,26 @@ export function RegistracijaForma({ authApi }: AuthFormProps) {
   return (
     <div className="bg-white/30 backdrop-blur-md shadow-2xl rounded-3xl p-10 w-full max-w-md border border-orange-300 flex flex-col items-center">
       <h1 className="text-3xl font-bold text-center text-orange-600 mb-4">
-        Registracija
+        Registration
       </h1>
       <form onSubmit={handleSubmit} className="w-full space-y-4">
         <input
           type="text"
-          placeholder="Korisničko ime"
+          placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           className="w-full bg-orange-50 px-4 py-2 rounded-xl border border-orange-200 focus:outline-none focus:ring-2 focus:ring-orange-400"
         />
         <input
           type="text"
-          placeholder="Telefon"
+          placeholder="Phone"
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
           className="w-full bg-orange-50 px-4 py-2 rounded-xl border border-orange-200 focus:outline-none focus:ring-2 focus:ring-orange-400"
         />
         <input
           type="password"
-          placeholder="Lozinka"
+          placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           className="w-full bg-orange-50 px-4 py-2 rounded-xl border border-orange-200 focus:outline-none focus:ring-2 focus:ring-orange-400"
@@ -66,7 +66,7 @@ export function RegistracijaForma({ authApi }: AuthFormProps) {
           className="w-full bg-orange-50 px-4 py-2 rounded-xl border border-orange-200 focus:outline-none focus:ring-2 focus:ring-orange-400"
         >
           <option value="user">User</option>
-          <option value="admin">Admin</option>
+          <option value="admin">Manager</option>
         </select>
         {error && (
           <p className="text-md text-center text-red-700/80 font-medium">{error}</p>
@@ -75,13 +75,13 @@ export function RegistracijaForma({ authApi }: AuthFormProps) {
           type="submit"
           className="w-full bg-orange-500 hover:bg-orange-600 text-white py-2 rounded-xl font-semibold transition"
         >
-          Registruj se
+          Register
         </button>
       </form>
       <p className="text-center text-sm mt-4 text-gray-600">
-        Već imate nalog?{" "}
+        Already have an account?{" "}
         <Link to="/login" className="text-orange-500 hover:underline">
-          Prijavite se
+          Log in
         </Link>
       </p>
     </div>

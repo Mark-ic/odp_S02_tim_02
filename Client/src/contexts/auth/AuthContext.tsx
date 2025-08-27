@@ -2,7 +2,7 @@ import React, { createContext, useState, useEffect, type ReactNode } from 'react
 import { jwtDecode } from 'jwt-decode';
 import type { AuthContextType } from '../../types/auth/AuthContext';
 import type { AuthUser } from '../../types/auth/AuthUser';
-import { SacuvajVrednostPoKljucu, ProcitajVrednostPoKljucu, ObrisiVrednostPoKljucu } from '../../helpers/local_storage';
+import { SaveValueByKey, ReadValueByKey, RemoveValueByKey } from '../../helpers/local_storage';
 import type { JwtTokenClaims } from '../../types/auth/JwtTokenClaims';
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -23,7 +23,7 @@ const decodeJWT = (token: string): JwtTokenClaims | null => {
 
         return null;
     } catch (error) {
-        console.error('Greška pri dekodiranju JWT tokena:', error);
+        console.error('Error decoding JWT token:', error);
         return null;
     }
 };
@@ -47,11 +47,11 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
     // Učitaj token iz localStorage pri pokretanju
     useEffect(() => {
-        const savedToken = ProcitajVrednostPoKljucu("authToken");
+        const savedToken = ReadValueByKey("authToken");
 
         if (savedToken) {
             if (isTokenExpired(savedToken)) {
-                ObrisiVrednostPoKljucu("authToken");
+                RemoveValueByKey("authToken");
                 setIsLoading(false);
                 return;
             }
@@ -65,7 +65,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
                     role: claims.role
                 });
             } else {
-                ObrisiVrednostPoKljucu("authToken");
+                RemoveValueByKey("authToken");
             }
         }
 
@@ -82,16 +82,16 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
                 username: claims.username,
                 role: claims.role
             });
-            SacuvajVrednostPoKljucu("authToken", newToken);
+            SaveValueByKey("authToken", newToken);
         } else {
-            console.error('Nevažeći ili istekao token');
+            console.error('Invalid or expired token');
         }
     };
 
     const logout = () => {
         setToken(null);
         setUser(null);
-        ObrisiVrednostPoKljucu("authToken");
+        RemoveValueByKey("authToken");
     };
 
     const isAuthenticated = !!user && !!token;

@@ -1,6 +1,6 @@
 import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
-import { ObrisiVrednostPoKljucu } from "../../../helpers/local_storage";
+import { RemoveValueByKey } from "../../../helpers/local_storage";
 import { useAuth } from "../../../hooks/auth/useAuthHook";
 
 type ProtectedRouteProps = {
@@ -18,7 +18,7 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
   const location = useLocation();
 
   const handleLogout = () => {
-    ObrisiVrednostPoKljucu("authToken");
+    RemoveValueByKey("authToken");
     logout();
   };
 
@@ -38,18 +38,18 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
       <main className="min-h-screen bg-gradient-to-tr from-slate-600/75 to-red-800/70 flex items-center justify-center">
         <div className="bg-white/30 backdrop-blur-lg shadow-lg border border-red-300 rounded-2xl p-10 w-full max-w-lg text-center">
           <h2 className="text-3xl font-bold text-red-800/70 mb-4">
-            Nemate dozvolu
+            You do not have permission
           </h2>
           <p className="text-gray-800 text-lg mb-6">
-            Potrebna je uloga{" "}
-            <span className="font-semibold">"{requiredRole}"</span> za pristup
-            ovoj stranici.
+            The role{" "}
+            <span className="font-semibold">"{requiredRole}"</span> 
+            is required to access this page.
           </p>
           <button
             onClick={handleLogout}
             className="bg-red-700/60 hover:bg-red-700/70 text-white px-6 py-2 rounded-xl transition"
           >
-            Odjava iz aplikacije
+            Log out
           </button>
         </div>
       </main>

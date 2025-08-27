@@ -1,30 +1,30 @@
-function SacuvajVrednostPoKljucu(key: string, value: string): boolean {
+function SaveValueByKey(key: string, value: string): boolean {
   try {
     localStorage.setItem(key, value);
     return true;
   } catch (error) {
-    console.error(`Greska pri cuvanju u localStorage za kljuc '${key}':`, error);
+    console.error(`Error saving to localStorage for key '${key}':`, error);
     return false;
   }
 }
 
-function ProcitajVrednostPoKljucu(key: string): string | null {
+function ReadValueByKey(key: string): string | null {
   try {
     return localStorage.getItem(key);
   } catch (error) {
-    console.error(`Greska pri citanju iz localStorage za kljuc '${key}':`, error);
+    console.error(`Error reading from localStorage for key '${key}':`, error);
     return null;
   }
 }
 
-function ObrisiVrednostPoKljucu(key: string): boolean {
+function RemoveValueByKey(key: string): boolean {
   try {
     localStorage.removeItem(key);
     return true;
   } catch (error) {
-    console.error(`Greska pri brisanju iz localStorage za kljuc '${key}':`, error);
+    console.error(`Error deleting from localStorage for key '${key}':`, error);
     return false;
   }
 }
 
-export { SacuvajVrednostPoKljucu, ProcitajVrednostPoKljucu, ObrisiVrednostPoKljucu };
+export { SaveValueByKey, ReadValueByKey, RemoveValueByKey };
