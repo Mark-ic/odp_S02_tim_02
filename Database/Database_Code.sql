@@ -29,7 +29,8 @@ DROP TABLE IF EXISTS `Sastojak` ;
 CREATE TABLE `Sastojak` (
   `idSastojak` INT NOT NULL AUTO_INCREMENT,
   `nazivSastojka` VARCHAR(45) NOT NULL,
-  `alergen` VARCHAR(3) NULL,
+  `kategorija` VARCHAR(45) NOT NULL,
+  `alergen` VARCHAR(3) NOT NULL,
   PRIMARY KEY (`idSastojak`)
 ) ENGINE = InnoDB;
 

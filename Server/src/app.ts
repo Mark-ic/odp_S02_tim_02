@@ -7,6 +7,7 @@ import { UserRepository } from "./Database/repositories/users/UserRepository";
 import { MealController } from "./WebAPI/controllers/meals/MealController";
 import { MealService } from "./Services/meals/MealService";
 import { MealRepository } from "./Database/repositories/meals/MealRepository";
+import { IngredientRepository } from "./Database/repositories/Ingredients/IngredientRepository";
 
 require('dotenv').config();
 const app = express();
@@ -21,7 +22,8 @@ const authService = new AuthService(userRepo);
 const authConstroller = new AuthConstroller(authService);
 
 const mealRepo = new MealRepository();
-const mealService = new MealService(mealRepo);
+const ingredRepo = new IngredientRepository();
+const mealService = new MealService(mealRepo,ingredRepo);
 const mealController = new MealController(mealService);
 
 app.use("/api/v1/auth", authConstroller.getRouther());

@@ -38,12 +38,15 @@ meals/
   Add Meal: 
   POST localhost:4000/api/v1/meals/create
 
+  Obavezno pre slanja proveriti da li zadati sastojci postoje u bazi!
   {
-    "mealName":"Salamura",
+    "mealName":"Djuvec",
     "price":55,
-    "image":"images/Salamura.png",
-    "prepTime":15
+    "image":"images/Djuvec.png",
+    "prepTime":15,
+    "ingredients":["Cloves","Kale", "Leek"]
   }
+
 
   Statusi:
   200 - sve je ok

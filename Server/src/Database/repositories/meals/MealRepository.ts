@@ -102,4 +102,20 @@ export class MealRepository implements IMealRepository {
             return false;
         }
     }
+
+    async addIngredientToMeal(mealID: number, ingredientID: number): Promise<boolean> {
+        try{
+            console.log(`Dobili smo ${mealID} i ${ingredientID}`);
+            const query = `INSERT INTO Jelo_Sastojak (idJelo,idSastojak) VALUES (?,?);`
+            const [result] = await db.execute<ResultSetHeader>(query,[mealID,ingredientID]);
+            console.log(`Insreted ID je: ${result.insertId}`);
+            if(result.affectedRows > 0){
+                return true;
+            }
+            return false;
+        }
+        catch{
+            return false;
+        }
+    }
 }

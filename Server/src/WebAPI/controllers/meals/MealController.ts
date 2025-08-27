@@ -20,25 +20,23 @@ export class MealController {
 
     private async create(req: Request, res: Response): Promise<void> {
         try {
-            const { mealName, price, image, prepTime } = req.body;
-            console.log("Start create meal");
+            const { mealName, price, image, prepTime,ingredients } = req.body;
 
             const validationOK = MealRequestValidator(mealName, price, image, prepTime);
-            console.log("Validation done:", validationOK);
 
             if (validationOK.success === false) {
                 res.status(400).json({ succsess: false, massage: validationOK.message });
             }
 
-            const result = await this.mealService.addMeal(mealName, price, image, prepTime);
-            console.log("MealService result:", result);
-
-            console.log("End create meal");
+            const result = await this.mealService.addMeal(mealName, price, image, prepTime,ingredients);
             if (result.idMeal !== 0) {
-                res.status(200).json({ succsess: true, message: "Register succsess!", data: result });
+                res.status(200).json({ succsess: true, message: "Meal added successfully!", data: result });
+                return;
             }
-
-            res.status(500).json({ succsess: false, massage: "Server Error" });
+            else{
+                res.status(444).json({ succsess: false, message: result.message });
+                return;
+            }
         }
         catch {
             res.status(500).json({ succsess: false, massage: "Server Error" });
