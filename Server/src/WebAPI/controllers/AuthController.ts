@@ -1,6 +1,7 @@
 import { Router, Request, Response } from "express";
 import { IAuthService } from "../../Domain/services/auth/IAuthService";
 import { AuthRequestValidators } from "../validators/auth/AuthRequestValidator";
+import jwt from "jsonwebtoken";
 
 export class AuthConstroller {
     private router: Router;
@@ -23,19 +24,26 @@ export class AuthConstroller {
             const validationOK = AuthRequestValidators(username, password);
             if (validationOK.succsess === false) {
                 res.status(400).json({ success: false, message: validationOK.message });
+                return;
             }
 
             const result = await this.authUser.login(username, password);
-            const { status, ...Data } = result;
+
+            const token = jwt.sign(
+                {
+                    id: result.id,
+                    username: result.username,
+                    role: result.role,
+                }, process.env.JWT_SECRET ?? "", { expiresIn: '6h' });
 
             if (result.status === "OK") {
-                res.status(200).json({ succsess: true, message: "Login succsess!", data: Data });
+                res.status(200).json({ succsess: true, message: "Login succsess!", data: token });
             }
             else if (result.status === "BAD_PASSWORD") {
-                res.status(401).json({ succsess: false, message: "Wrong password!", data: Data });
+                res.status(401).json({ succsess: false, message: "Wrong password!"});
             }
-            else if(result.status === "NO_USER" ){
-                res.status(404).json({succsess:false,message:"User not found!",data: Data});
+            else if (result.status === "NO_USER") {
+                res.status(404).json({ succsess: false, message: "User not found!"});
             }
             else {
                 res.status(418).json({ succsess: false, message: "Login Failed!" });
@@ -49,16 +57,22 @@ export class AuthConstroller {
     private async register(req: Request, res: Response): Promise<void> {
         try {
             const { username, phone, role, password } = req.body;
-            const validationOK = AuthRequestValidators(username, password,phone,role);
+            const validationOK = AuthRequestValidators(username, password, phone, role);
             if (validationOK.succsess === false) {
                 res.status(400).json({ success: false, message: validationOK.message });
+                return;
             }
 
             const result = await this.authUser.register(username, phone, role, password);
-            const { status, ...Data } = result;
-            
+            const token = jwt.sign(
+                {
+                    id: result.id,
+                    username: result.username,
+                    role: result.role,
+                }, process.env.JWT_SECRET ?? "", { expiresIn: '6h' });
+
             if (result.id !== 0) {
-                res.status(200).json({ succsess: true, message: "Register succsess!", data: Data });
+                res.status(200).json({ succsess: true, message: "Register succsess!", data: token });
             }
             else {
                 res.status(409).json({ succsess: false, message: "Profile with same username already exists!" });

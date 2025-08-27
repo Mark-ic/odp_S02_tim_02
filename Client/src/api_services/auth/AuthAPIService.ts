@@ -5,11 +5,11 @@ import axios from "axios";
 const API_URL: string = import.meta.env.VITE_API_URL + "auth";
 
 export const authApi: IAuthAPIService = {
-  async prijava(korisnickoIme: string, lozinka: string): Promise<AuthResponse> {
+  async login(korisnickoIme: string, lozinka: string): Promise<AuthResponse> {
     try {
       const res = await axios.post<AuthResponse>(`${API_URL}/login`, {
-        korisnickoIme,
-        lozinka,
+        username:korisnickoIme,
+        password:lozinka
       });
       return res.data;
     } catch (error) {
@@ -25,16 +25,19 @@ export const authApi: IAuthAPIService = {
     }
   },
 
-  async registracija(
-    korisnickoIme: string,
-    lozinka: string,
-    uloga: string
+  async register(
+    username: string,
+    phone: string,   
+    role: string,
+    password:string
+
   ): Promise<AuthResponse> {
     try {
       const res = await axios.post<AuthResponse>(`${API_URL}/register`, {
-        korisnickoIme,
-        lozinka,
-        uloga
+        username,
+        phone,
+        role,
+        password
       });
       return res.data;
     } catch (error) {

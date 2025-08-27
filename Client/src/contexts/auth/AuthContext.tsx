@@ -18,7 +18,6 @@ const decodeJWT = (token: string): JwtTokenClaims | null => {
                 id: decoded.id,
                 username: decoded.username,
                 role: decoded.role,
-                status: decoded.status
             };
         }
 
@@ -32,7 +31,7 @@ const decodeJWT = (token: string): JwtTokenClaims | null => {
 // Helper funkcija za proveru da li je token istekao
 const isTokenExpired = (token: string): boolean => {
     try {
-        const decoded: any = jwtDecode(token);
+        const decoded = jwtDecode(token);
         const currentTime = Date.now() / 1000;
 
         return decoded.exp ? decoded.exp < currentTime : false;
@@ -63,8 +62,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
                 setUser({
                     id: claims.id,
                     username: claims.username,
-                    role: claims.role,
-                    status: claims.status
+                    role: claims.role
                 });
             } else {
                 ObrisiVrednostPoKljucu("authToken");
@@ -82,8 +80,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
             setUser({
                 id: claims.id,
                 username: claims.username,
-                role: claims.role,
-                status: claims.status
+                role: claims.role
             });
             SacuvajVrednostPoKljucu("authToken", newToken);
         } else {
