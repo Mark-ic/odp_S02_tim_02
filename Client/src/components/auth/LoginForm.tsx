@@ -1,17 +1,14 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { AuthRequestValidators } from "../../api_services/validators/auth/AuthValidator";
 import type { AuthFormProps } from "../../types/props/auth_form_props/AuthFormProps";
 import { useAuth } from "../../hooks/auth/useAuthHook";
-import { jwtDecode } from "jwt-decode";
-import type { JwtTokenClaims } from "../../types/auth/JwtTokenClaims";
 
 export function LoginForm({ authApi }: AuthFormProps) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const { login } = useAuth();
-  const navigate = useNavigate();
 
   const submitForm = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -25,18 +22,8 @@ export function LoginForm({ authApi }: AuthFormProps) {
     }
 
     const response = await authApi.login(username, password);
-    console.log("Login response:", response);
-    console.log("success: ",response.success);
-    console.log("data:" , response.data);
     if (response.success && response.data) {
       login(response.data);
-      const claims = jwtDecode<JwtTokenClaims>(response.data);
-      console.log("Decoded claims role:", claims.role);
-      if (claims && claims.role) 
-      {
-        navigate(`/${claims.role}-dashboard`);
-        console.log("Decoded role:", claims.role);
-      }
     } else {
       setError(response.message);
       setUsername("");
