@@ -7,7 +7,7 @@ import { IMealRepository } from "../../Domain/repositories/meals/IMealRepository
 import { IMealIngredientService } from "../../Domain/services/meals/IMealngredientService";
 
 export class MealIngredientService implements IMealIngredientService {
-        private mealRepo: IMealRepository;
+    private mealRepo: IMealRepository;
     private ingredientRepo: IIngredientRepository;
     private mealingredientRepo: IMealIngrendientsRepo;
 
@@ -15,6 +15,47 @@ export class MealIngredientService implements IMealIngredientService {
         this.mealRepo = mealRepo;
         this.ingredientRepo = ingredientRepo;
         this.mealingredientRepo = mealingredientRepo;
+    }
+
+    async deleteIngredientFromMeals(ingredientName: string): Promise<Boolean> {
+        const ingred = await this.ingredientRepo.getIngredientByName(ingredientName);
+        if (ingred.idIngredient === 0) {
+            return false;
+        }
+        const result = await this.mealingredientRepo.deleteIngredientFromMeals(ingred.idIngredient);
+        return result;
+    }
+
+    async addMealIngredient(mealName: string, ingredientName: string): Promise<Boolean> {
+        const meal = await this.mealRepo.getMealByName(mealName);
+        const ingred = await this.ingredientRepo.getIngredientByName(ingredientName);
+
+        if (meal.idMeal === 0 || ingred.idIngredient === 0) {
+            return false;
+        }
+
+        const result = await this.mealingredientRepo.addIngredientToMeal(meal.idMeal, ingred.idIngredient);
+        return result;
+    }
+    async removeMealIngredient(mealName: string, ingredientName: string): Promise<Boolean> {
+        const meal = await this.mealRepo.getMealByName(mealName);
+        const ingred = await this.ingredientRepo.getIngredientByName(ingredientName);
+
+        if (meal.idMeal === 0 || ingred.idIngredient === 0) {
+            return false;
+        }
+
+        const result = await this.mealingredientRepo.removeIngredientFromMeal(meal.idMeal, ingred.idIngredient);
+        return result;
+    }
+
+    async deleteIngredientsFromMeal(mealName: string): Promise<boolean> {
+        const id = await this.mealRepo.getMealByName(mealName);
+        if (id.idMeal === 0) {
+            return false;
+        }
+        const result = await this.mealingredientRepo.deleteIngredientsFromMeal(id.idMeal);
+        return result;
     }
 
     async addMeal(name: string, price: number, image: string, prepTime: number, ingredients: string[]): Promise<mealDTO> {
@@ -47,21 +88,44 @@ export class MealIngredientService implements IMealIngredientService {
         const MealDTO: mealDTO = new mealDTO(meal.idMeal, meal.mealName, meal.price, meal.image, meal.prepTime, meal.numberOfOrders, ingredients); return MealDTO;
     }
     async getMealIngredients(mealName: string): Promise<Ingredient[]> {
-        
+
         const result = await this.mealRepo.getMealByName(mealName);
 
         if (result.idMeal === 0) {
             return [];
         }
 
-        const ingredients : Ingredient[] = await this.mealingredientRepo.getIngredientsForMeal(result.idMeal);
-        if(ingredients.length ===0){
+        const ingredients: Ingredient[] = await this.mealingredientRepo.getIngredientsForMeal(result.idMeal);
+        if (ingredients.length === 0) {
             return [];
         }
         return ingredients;
     }
-    async changeMealIngredients(meal: Meal): Promise<Meal> {
-        throw new Error("Method not implemented.");
+
+    async removeMeal(name: string): Promise<boolean> {
+        const id = await this.mealRepo.getMealByName(name);
+        if (id.idMeal === 0) {
+            return false;
+        }
+        const deletedFromIngredients = this.deleteIngredientsFromMeal(name);
+        const deletedFromMeals = this.mealRepo.deleteMeal(id.idMeal);
+        return deletedFromMeals;
     }
 
+    async removeIngredient(name: string): Promise<Boolean> {
+        const ingred = await this.ingredientRepo.getIngredientByName(name);
+
+        if (ingred.idIngredient === 0) {
+            return false;
+        }
+        const removeIngFromMeals = await this.deleteIngredientFromMeals(name);
+
+        if (removeIngFromMeals) {
+            const result = await this.ingredientRepo.deleteIngredient(ingred.idIngredient);
+            return result;
+        }
+
+
+        return false;
+    }
 }

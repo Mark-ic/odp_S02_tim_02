@@ -4,6 +4,11 @@ import { Meal } from "../../models/Meal";
 
 export interface IMealIngredientService {
     addMeal(name: string, price: number, image: string, prepTime: number, ingredients: string[]): Promise<mealDTO>;
+    deleteIngredientsFromMeal(mealName: string): Promise<boolean>;
     getMealIngredients(mealName: string): Promise<Ingredient[]>
-    changeMealIngredients(meal:Meal):Promise<Meal>;
+    addMealIngredient(mealName:string,ingredientName:string):Promise<Boolean>;
+    removeMealIngredient(mealName:string,ingredientName:string):Promise<Boolean>;
+    removeMeal(name:string):Promise<boolean>;
+    removeIngredient(name:string):Promise<Boolean>;
+    deleteIngredientFromMeals(ingredientName:string):Promise<Boolean>;
 }

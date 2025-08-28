@@ -7,16 +7,38 @@ import { Ingredient } from "../../../Domain/models/Ingredient";
 export class MealIngedientsRepo implements IMealIngrendientsRepo {
 
     async deleteIngredientsFromMeal(id: number): Promise<boolean> {
-        return false;
+        try {
+            const query: string = 'DELETE FROM Jelo_Sastojak WHERE idJelo = ?';
+            const [result] = await db.execute<ResultSetHeader>(query, [id]);
+            return result.affectedRows > 0;
+        }
+        catch {
+            return false;
+        }
     }
-    async removeIngredientFromMeal(meal: Meal, ingredient: Ingredient): Promise<boolean> {
-        throw new Error("Method not implemented.");
+    async removeIngredientFromMeal(mealID: number, ingredientID: number): Promise<boolean> {
+        try {
+            const query: string = 'DELETE FROM Jelo_Sastojak WHERE idJelo = ? AND idSastojak=?';
+            const [result] = await db.execute<ResultSetHeader>(query, [mealID, ingredientID]);
+            return result.affectedRows > 0;
+        }
+        catch {
+            return false;
+        }
     }
-    async deleteIngredientFromMeals(idIngredient: number): Promise<boolean> {
-        throw new Error("Method not implemented.");
+    
+    async deleteIngredientFromMeals(ingredientID: number): Promise<boolean> {
+        try {
+            const query: string = 'DELETE FROM Jelo_Sastojak WHERE idSastojak = ?';
+            const [result] = await db.execute<ResultSetHeader>(query, [ingredientID]);
+            return result.affectedRows > 0;
+        }
+        catch {
+            return false;
+        }
     }
 
-    async getIngredientsForMeal(mealId:number): Promise<Ingredient[]> {
+    async getIngredientsForMeal(mealId: number): Promise<Ingredient[]> {
         try {
             const query = `
             SELECT s.idSastojak, s.nazivSastojka, s.kategorija, s.alergen
@@ -35,7 +57,7 @@ export class MealIngedientsRepo implements IMealIngrendientsRepo {
                 row.idSastojak,
                 row.imeSastojka,
                 row.kategorija,
-                row.alergen?.toLowerCase() === "yes" 
+                row.alergen?.toLowerCase() === "yes"
             ));
             return ingredients;
         }

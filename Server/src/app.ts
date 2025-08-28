@@ -10,6 +10,8 @@ import { MealRepository } from "./Database/repositories/meals/MealRepository";
 import { IngredientRepository } from "./Database/repositories/Ingredients/IngredientRepository";
 import { MealIngedientsRepo } from "./Database/repositories/meals/MealIngredientsRepo";
 import { MealIngredientService } from "./Services/meals/MealIngredientService";
+import { IngredientController } from "./WebAPI/controllers/ingredients/IngredientsControler";
+import { IngredientService } from "./Services/ingredients/IngredientService";
 
 require('dotenv').config();
 const app = express();
@@ -17,21 +19,26 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+
+
 const userRepo: IuserRepository = new UserRepository();
-
-const authService = new AuthService(userRepo);
-
-const authConstroller = new AuthConstroller(authService);
-
 const mealRepo = new MealRepository();
 const ingredRepo = new IngredientRepository();
 const mealIngredRepo = new MealIngedientsRepo();
-const mealService = new MealService(mealRepo);
 
+
+const mealService = new MealService(mealRepo);
 const mealIngredientSer = new MealIngredientService(mealRepo,ingredRepo,mealIngredRepo);
+const authService = new AuthService(userRepo);
+const ingredientService = new IngredientService(ingredRepo);
+
+const authConstroller = new AuthConstroller(authService);
 const mealIngredientController = new MealIngredientController(mealIngredientSer);
+const ingredientController = new IngredientController(ingredientService);
 
 app.use("/api/v1/auth", authConstroller.getRouther());
 app.use("/api/v1/mealIng", mealIngredientController.getRouther());
+app.use("/api/v1/ingredients", ingredientController.getRouther());
+
 
 export default app;
