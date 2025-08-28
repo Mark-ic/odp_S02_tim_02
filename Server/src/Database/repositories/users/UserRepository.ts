@@ -2,6 +2,7 @@ import { ResultSetHeader, RowDataPacket } from "mysql2";
 import { User } from "../../../Domain/models/User";
 import { IuserRepository } from "../../../Domain/repositories/users/IUserRepository";
 import db from "../../connection/DbConnectionPool"
+import { UserAuthDTO } from "../../../Domain/DTOs/auth/UserAuthDTO";
 
 export class UserRepository implements IuserRepository {
     async create(user: User): Promise<User> {
@@ -60,21 +61,21 @@ export class UserRepository implements IuserRepository {
             return new User();
         }
     }
-    async updateUser(user: User): Promise<User> {
+    async updateUser(user: User): Promise<UserAuthDTO> {
         try {
-            const query: string = 'UPDATE Korisnik SET username = ?,telefon = ?,uloga = ? ,sifra = ? WHERE idKorisnik = ?';
+            const query: string = 'UPDATE Korisnik SET korisnickoIme = ?,telefon = ?,uloga = ? ,sifra = ? WHERE idKorisnik = ?';
 
             const [result] = await db.execute<ResultSetHeader>(query, [
                 user.username, user.phone, user.role, user.password, user.idUser
             ]);
 
             if (result.affectedRows > 0) {
-                return user;
+                return new UserAuthDTO(user.idUser,user.username,user.role,"OK");
             }
-            return new User();
+            return new UserAuthDTO(undefined,undefined,undefined,"OTHER");
         }
         catch {
-            return new User();
+            return new UserAuthDTO(undefined,undefined,undefined,"OTHER");;
         }
     }
     async deleteUser(id: number): Promise<boolean> {

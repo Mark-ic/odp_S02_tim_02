@@ -4,5 +4,5 @@ import { Meal } from "../../models/Meal";
 
 export interface IMealService{
     getAllMeals():Promise<Meal[]>;
-    changeMeal(meal:Meal):Promise<Meal>;
+    updateMeal(name: string, price: number, image: string, prepTime: number):Promise<Meal>;
 }

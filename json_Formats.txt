@@ -153,3 +153,32 @@ meals/
   200 - sve je ok
   401 - Ne postoji token ili nije validan
   500 - greska do servera
+
+  Menjanje polja jela
+  POST localhost:4000/api/v1/meals/updateMeal
+   {
+   "mealName":"Djuvec",
+   "price":65,
+   "image":"images/DjuVEc.png",
+   "prepTime":15
+  }
+  200 - sve je ok
+  400 - Neko od unetih polja nije dobro
+  401 - Ne postoji token ili nije validan
+  403 - Samo admini imaju pristup ovoj komandi
+  500 - greska do servera
+
+users/
+  Menjanje podataka o korisniku (username se ne menja!);
+  POST localhost:4000/api/v1/users/changeUser
+  {
+  "username":"marko",
+  "phone":"+3161234567",
+  "role":"admin",
+  "password":"Prikolica"
+  }
+  200 - sve je ok
+  400 - Neko od unetih polja nije dobro
+  401 - Ne postoji token ili nije validan
+  403 - Samo admini imaju pristup ovoj komandi
+  500 - greska do servera

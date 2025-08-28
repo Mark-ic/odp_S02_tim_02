@@ -78,7 +78,7 @@ export class MealRepository implements IMealRepository {
             const query: string = 'UPDATE Jelo SET nazivJela = ?,cena = ?,slika = ? ,vremePripreme = ?, brojPorudzbina = ? WHERE idJelo = ?';
 
             const [result] = await db.execute<ResultSetHeader>(query, [
-                meal.idMeal, meal.mealName, meal.price, meal.image, meal.prepTime, meal.numberOfOrders
+                 meal.mealName, meal.price, meal.image, meal.prepTime, meal.numberOfOrders,meal.idMeal
             ]);
 
             if (result.affectedRows > 0) {

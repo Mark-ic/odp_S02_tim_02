@@ -8,21 +8,31 @@ import { IMealService } from "../../Domain/services/meals/IMealService";
 
 export class MealService implements IMealService {
     private mealRepo: IMealRepository;
-    public constructor(mealRepo: IMealRepository){
-        this.mealRepo =  mealRepo;
+    public constructor(mealRepo: IMealRepository) {
+        this.mealRepo = mealRepo;
     }
 
     async getAllMeals(): Promise<Meal[]> {
         const result = await this.mealRepo.getAllMeals();
 
-        if (result.length === 0){
+        if (result.length === 0) {
             return [];
         }
         return result;
     }
 
-    async changeMeal(meal: Meal): Promise<Meal> {
-        throw new Error("Method not implemented.");
+    async updateMeal(name: string, price: number, image: string, prepTime: number): Promise<Meal> {
+        const meal = await this.mealRepo.getMealByName(name);
+        if (meal.idMeal === 0) {
+            return new Meal();
+        }
+        const result = await this.mealRepo.updateMeal(new Meal(meal.idMeal, name, price, image, prepTime, meal.numberOfOrders));
+        if (result.idMeal !== 0) {
+            return result;
+        }
+
+
+        return new Meal();
     }
 
 }
