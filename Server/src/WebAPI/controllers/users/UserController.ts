@@ -47,22 +47,18 @@ export class UserController {
 
     private async deleteUser(req: Request, res: Response): Promise<void> {
         try {
-            /*
-            const { mealName, price, image, prepTime } = req.body;
-            const validationOK = MealRequestValidator(mealName, price, image, prepTime);
+            
+            const { username } = req.body;
 
-            if (validationOK.success === false) {
-                res.status(400).json({ success: false, massage: validationOK.message });
-            }
+            const result = await this.userService.deleteUser(username);
 
-            const result = await this.mealService.updateMeal(mealName, prepTime, image, prepTime);
-            if (result.idMeal !== 0) {
-                res.status(200).json({ success: true, message: "Meal changed successfully!", data: result });
+            if (result === true) {
+                res.status(200).json({ success: true, message: "User removed successfully!", data: result });
             }
             else {
                 res.status(500).json({ success: false, massage: "Server unable to resolve request" });
             }
-                */
+                
         }
         catch {
             res.status(500).json({ success: false, massage: "Server Error" });

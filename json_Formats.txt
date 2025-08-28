@@ -65,7 +65,7 @@ mealIng/
   500 - greska do servera ( ne bi trebalo uopste jer ce uvek ako nema nista vracati prazno)
 
   Brisanje jela i njegovih sastojaka:
-  
+  Prvo treba da se obrise jelo iz menija pa onda ovo da bi radilo ispravno!
   POST localhost:4000/api/v1/mealIng/removeMeal
   
   {
@@ -182,3 +182,15 @@ users/
   401 - Ne postoji token ili nije validan
   403 - Samo admini imaju pristup ovoj komandi
   500 - greska do servera
+
+  Brisanje korisnika (usera)
+  POST localhost:4000/api/v1/users/deleteUser
+  {
+    "username":"marko"
+  }
+  200 - sve je ok
+  401 - Ne postoji token ili nije validan
+  403 - Samo admini imaju pristup ovoj komandi
+  500 - greska do servera
+/menu
+//Bice gotovo veceras majke mi
