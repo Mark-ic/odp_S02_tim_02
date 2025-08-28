@@ -12,6 +12,7 @@ import { MealIngedientsRepo } from "./Database/repositories/meals/MealIngredient
 import { MealIngredientService } from "./Services/meals/MealIngredientService";
 import { IngredientController } from "./WebAPI/controllers/ingredients/IngredientsControler";
 import { IngredientService } from "./Services/ingredients/IngredientService";
+import { MealController } from "./WebAPI/controllers/meals/MealController";
 
 require('dotenv').config();
 const app = express();
@@ -35,10 +36,13 @@ const ingredientService = new IngredientService(ingredRepo);
 const authConstroller = new AuthConstroller(authService);
 const mealIngredientController = new MealIngredientController(mealIngredientSer);
 const ingredientController = new IngredientController(ingredientService);
+const mealController = new MealController(mealService);
 
 app.use("/api/v1/auth", authConstroller.getRouther());
 app.use("/api/v1/mealIng", mealIngredientController.getRouther());
 app.use("/api/v1/ingredients", ingredientController.getRouther());
+app.use("/api/v1/meals", mealController.getRouther());
+
 
 
 export default app;

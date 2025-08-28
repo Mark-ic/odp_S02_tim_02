@@ -108,8 +108,8 @@ mealIng/
   500 - greska do servera ( ne bi trebalo uopste jer ce uvek ako nema nista vracati prazno)
 
 /ingredients
-dodavanje sastojka
-POST localhost:4000/api/v1/ingredients/createIngredient
+  dodavanje sastojka
+  POST localhost:4000/api/v1/ingredients/createIngredient
   {
     "ingredientName":"Bananas", 
     "category":"Fruits", 
@@ -121,8 +121,8 @@ POST localhost:4000/api/v1/ingredients/createIngredient
   403 - Samo admini imaju pristup ovoj komandi
   500 - greska do servera
 
-dobijanje grupe sastojaka
-POST localhost:4000/api/v1/ingredients/getAllIngredientsFromGroup
+  dobijanje grupe sastojaka
+  POST localhost:4000/api/v1/ingredients/getAllIngredientsFromGroup
   { 
     "category":"Fruits"
   }
@@ -130,17 +130,26 @@ POST localhost:4000/api/v1/ingredients/getAllIngredientsFromGroup
   401 - Ne postoji token ili nije validan
   500 - greska do servera
 
-Dobijanje svih kategorija
-POST localhost:4000/api/v1/ingredients/getAllIngredientGroups
+  Dobijanje svih kategorija
+  POST localhost:4000/api/v1/ingredients/getAllIngredientGroups
 
-Nema Bodi
+  Nema Bodi
   200 - sve je ok
   401 - Ne postoji token ili nije validan
   500 - greska do servera
 
-Dobijanje svih sastojaka
-POST localhost:4000/api/v1/ingredients/getAllIngredients
-NEMA BODY
+  Dobijanje svih sastojaka
+  POST localhost:4000/api/v1/ingredients/getAllIngredients
+  NEMA BODY
+  200 - sve je ok
+  401 - Ne postoji token ili nije validan
+  500 - greska do servera
+
+meals/
+  Dobijanje svih jela
+  POST localhost:4000/api/v1/meals/getAllMeals
+  NEMA BODY
+  
   200 - sve je ok
   401 - Ne postoji token ili nije validan
   500 - greska do servera

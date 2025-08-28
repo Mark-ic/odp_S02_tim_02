@@ -12,18 +12,13 @@ export class MealService implements IMealService {
         this.mealRepo =  mealRepo;
     }
 
-
-
     async getAllMeals(): Promise<Meal[]> {
-        throw new Error("Method not implemented.");
-    }
+        const result = await this.mealRepo.getAllMeals();
 
-    async getMealIngredients(meal: Meal): Promise<Ingredient[]> {
-        throw new Error("Method not implemented.");
-    }
-
-    async removeMeal(id: number): Promise<boolean> {
-        throw new Error("Method not implemented.");
+        if (result.length === 0){
+            return [];
+        }
+        return result;
     }
 
     async changeMeal(meal: Meal): Promise<Meal> {
