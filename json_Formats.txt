@@ -193,4 +193,44 @@ users/
   403 - Samo admini imaju pristup ovoj komandi
   500 - greska do servera
 /menu
-//Bice gotovo veceras majke mi
+  postavljanje menija na dnevni (Uvek moze biti samo 1 dnevni),
+  ako je postojao dnevni pre toga, bice iskljucen, nema potrebe za removeDailyMenu
+  POST localhost:4000/api/v1/menu/setDailyMenu
+    {
+    "menuName":"Sunday"
+   }
+  
+  skanjanje menija da ne bude dnevni dnevni (Uvek moze biti samo 1 dnevni)
+  POST localhost:4000/api/v1/menu/removeDailyMenu
+   {
+    "menuName":"Sunday"
+   }
+   error-e necu da ponvaljam vise, istu su svugde nadalje
+
+  Koji je daily Menu?
+  POST localhost:4000/api/v1/menu/getDailyMenu
+  Nema zaglavlja!
+  Vraca Menu
+
+  Menjanje imena Meniju 
+  POST localhost:4000/api/v1/menu/updateMenuName
+  {
+    "oldMenuName":"Vaskrsnji",
+    "newMenuName":"Easter"
+  }
+
+  Kreiranje menija
+  POST localhost:4000/api/v1/menu/create
+  {
+    "menuName":"MeatBased",
+    "dailyMenu":true
+  }
+
+  Dobijanje svih menija
+  POST localhost:4000/api/v1/menu/getAllMenus
+  NEMA BODY
+
+//Bice gotovo sutra
+menuMeals/
+orders/
+

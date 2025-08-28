@@ -4,6 +4,26 @@ import { IMenuRepository } from "../../../Domain/repositories/menus/IMenuReposit
 import db from "../../connection/DbConnectionPool";
 
 export class MenuRepository implements IMenuRepository {
+    async getAllMenus(): Promise<Menu[]> {
+        try {
+            const query = "SELECT * FROM meni";
+            const [rows] = await db.execute<RowDataPacket[]>(query, []);
+
+            if (rows.length === 0) {
+                return [];
+            }
+
+            return rows.map(row =>
+                new Menu(
+                    row.idMeni,
+                    row.dnevniMeni === "YES",
+                    row.nazivMenija
+                )
+            );
+        } catch {
+            return [];
+        }
+    }
     async getDailyMenu(): Promise<Menu> {
         try {
             const query = 'SELECT * FROM meni where dnevniMeni=?';
@@ -20,6 +40,13 @@ export class MenuRepository implements IMenuRepository {
 
     async create(menu: Menu): Promise<Menu> {
         try {
+            if (menu.dailyMenu === true) {
+                //Inace bi se ovde koristila transakcija da ali radi jednostavnosti necemo
+                await db.execute<ResultSetHeader>(
+                    'UPDATE meni SET dnevniMeni="NO" WHERE dnevniMeni="YES"'
+                );
+            }
+
             const query = 'INSERT INTO meni (dnevniMeni,nazivMenija) VALUES (?,?)';
             const [result] = await db.execute<ResultSetHeader>(query, [menu.dailyMenu === true ? "YES" : "NO", menu.menuName]);
             if (result.insertId === 0) {
@@ -77,10 +104,11 @@ export class MenuRepository implements IMenuRepository {
         try {
             const query: string = 'UPDATE meni SET nazivMenija = ? WHERE idMeni = ?';
 
-            const [result] = await db.execute<ResultSetHeader>(query, [menu.menuName,menu.idMenu]);
+            const [result] = await db.execute<ResultSetHeader>(query, [menu.menuName, menu.idMenu]);
 
-            if (result.affectedRows > 0) {
-                return new Menu(result.insertId,menu.dailyMenu ,menu.menuName);
+
+            if (result.affectedRows !== 0) {
+                return menu;
             }
             return new Menu();
         }
@@ -91,6 +119,11 @@ export class MenuRepository implements IMenuRepository {
 
     async SetDailyMenu(menu: Menu): Promise<Boolean> {
         try {
+            //Inace bi se ovde koristila transakcija da ali radi jednostavnosti necemo
+            await db.execute<ResultSetHeader>(
+                'UPDATE meni SET dnevniMeni="NO" WHERE dnevniMeni="YES"'
+            );
+
             const query: string = 'UPDATE meni SET dnevniMeni=? WHERE nazivMenija=?';
 
             const [result] = await db.execute<ResultSetHeader>(query, ["YES", menu.menuName]);

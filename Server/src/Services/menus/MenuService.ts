@@ -8,28 +8,52 @@ export class MenuService implements IMenuService{
     public constructor(menuRepo: IMenuRepository){
         this.menuRepo=menuRepo;
     }
-
+    
+    async getAllMenus(): Promise<Menu[]> {
+        return await this.menuRepo.getAllMenus();
+    }
 
     async create(dailyMenu: boolean, menuName: string): Promise<Menu> {
-        throw new Error("Method not implemented.");
-    }
-    async getMenuById(id: number): Promise<Menu> {
-        throw new Error("Method not implemented.");
-    }
-    async getMenuByName(name: string): Promise<Menu> {
-        throw new Error("Method not implemented.");
+        const exists = await this.menuRepo.getMenuByName(menuName);
+        if(exists.idMenu !== 0 ){
+            return new Menu();
+        }
+        const result = await this.menuRepo.create(new Menu (0,dailyMenu,menuName));
+        if(result.idMenu !==0){
+            return result;
+        }
+        return new Menu();
     }
     async getDailyMenu(): Promise<Menu> {
-        throw new Error("Method not implemented.");
+        return await this.menuRepo.getDailyMenu();
     }
     async updateMenuName(Oldname: string, newName: string): Promise<Menu> {
-        throw new Error("Method not implemented.");
+        const oldMenu = await this.menuRepo.getMenuByName(Oldname);
+
+        if(oldMenu.idMenu === 0){
+            return new Menu();
+        }
+        const result = await this.menuRepo.updateMenuName(new Menu(oldMenu.idMenu,oldMenu.dailyMenu,newName));
+        if(result.idMenu !== 0 ){
+            return result;
+        }
+        return new Menu();
     }
     async setDailyMenu(menuName: string): Promise<Boolean> {
-        throw new Error("Method not implemented.");
+        const menu = await this.menuRepo.getMenuByName(menuName);
+        if(menu.idMenu ===0){
+            return false;
+        }
+        const result = await this.menuRepo.SetDailyMenu(menu);
+        return result;
     }
     async removeDailyMenu(menuName: string): Promise<Boolean> {
-        throw new Error("Method not implemented.");
+        const menu = await this.menuRepo.getMenuByName(menuName);
+        if(menu.idMenu ===0){
+            return false;
+        }
+        const result = await this.menuRepo.RemoveDailyMenu(menu);
+        return result;
     }
     
 }

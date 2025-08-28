@@ -8,4 +8,5 @@ export interface IMenuRepository{
         updateMenuName(menu: Menu): Promise<Menu>;
         SetDailyMenu(menu:Menu):Promise<Boolean>;
         RemoveDailyMenu(menu:Menu):Promise<Boolean>;
+        getAllMenus():Promise<Menu[]>
 }
