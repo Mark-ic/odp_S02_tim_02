@@ -102,15 +102,6 @@ export class MealIngredientService implements IMealIngredientService {
         return ingredients;
     }
 
-    async removeMeal(name: string): Promise<boolean> {
-        const id = await this.mealRepo.getMealByName(name);
-        if (id.idMeal === 0) {
-            return false;
-        }
-        const deletedFromIngredients = this.deleteIngredientsFromMeal(name);
-        const deletedFromMeals = this.mealRepo.deleteMeal(id.idMeal);
-        return deletedFromMeals;
-    }
 
     async removeIngredient(name: string): Promise<Boolean> {
         const ingred = await this.ingredientRepo.getIngredientByName(name);

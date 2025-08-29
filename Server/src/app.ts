@@ -18,6 +18,9 @@ import { UserService } from "./Services/users/UserService";
 import { MenuControler } from "./WebAPI/controllers/menus/MenuController";
 import { MenuService } from "./Services/menus/MenuService";
 import { MenuRepository } from "./Database/repositories/menus/MenuRepository";
+import { MenuMealController } from "./WebAPI/controllers/menus/MenuMealController";
+import { MenuMealService } from "./Services/menus/MenuMealService";
+import { MenuMealRepository } from "./Database/repositories/menus/MenuMealRepository";
 
 require('dotenv').config();
 const app = express();
@@ -32,6 +35,7 @@ const mealRepo = new MealRepository();
 const ingredRepo = new IngredientRepository();
 const mealIngredRepo = new MealIngedientsRepo();
 const menuRepo = new MenuRepository();
+const menuMealRepo = new MenuMealRepository();
 
 const mealService = new MealService(mealRepo);
 const mealIngredientSer = new MealIngredientService(mealRepo,ingredRepo,mealIngredRepo);
@@ -39,6 +43,7 @@ const authService = new AuthService(userRepo);
 const ingredientService = new IngredientService(ingredRepo);
 const userService = new UserService(userRepo);
 const menuService = new MenuService(menuRepo);
+const menuMealService = new MenuMealService(menuRepo,mealRepo,menuMealRepo);
 
 const authConstroller = new AuthConstroller(authService);
 const mealIngredientController = new MealIngredientController(mealIngredientSer);
@@ -46,6 +51,7 @@ const ingredientController = new IngredientController(ingredientService);
 const mealController = new MealController(mealService);
 const userController = new UserController(userService);
 const menuController = new MenuControler(menuService);
+const menuMealController = new MenuMealController(menuMealService);
 
 app.use("/api/v1/auth", authConstroller.getRouther());
 app.use("/api/v1/mealIng", mealIngredientController.getRouther());
@@ -53,6 +59,7 @@ app.use("/api/v1/ingredients", ingredientController.getRouther());
 app.use("/api/v1/meals", mealController.getRouther());
 app.use("/api/v1/users", userController.getRouther());
 app.use("/api/v1/menu", menuController.getRouther());
+app.use("/api/v1/menuMeal", menuMealController.getRouther());
 
 
 

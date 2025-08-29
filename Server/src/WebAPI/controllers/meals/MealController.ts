@@ -17,8 +17,8 @@ export class MealController {
 
     private initializeRouters() {
         this.router.post("/getAllMeals", authenticate, this.getAllMeals.bind(this));
-        this.router.post("/updateMeal", authenticate,authorize("admin"), this.updateMeal.bind(this));
-        
+        this.router.post("/updateMeal", authenticate, authorize("admin"), this.updateMeal.bind(this));
+        this.router.post("/removeMeal", authenticate, authorize("admin"), this.removeMeal.bind(this));
     }
 
     private async getAllMeals(req: Request, res: Response): Promise<void> {
@@ -39,7 +39,7 @@ export class MealController {
             if (validationOK.success === false) {
                 res.status(400).json({ success: false, massage: validationOK.message });
             }
-           
+
             const result = await this.mealService.updateMeal(mealName, prepTime, image, prepTime);
             if (result.idMeal !== 0) {
                 res.status(200).json({ success: true, message: "Meal changed successfully!", data: result });
@@ -52,6 +52,23 @@ export class MealController {
             res.status(500).json({ success: false, massage: "Server Error" });
         }
 
+    }
+
+    private async removeMeal(req: Request, res: Response): Promise<void> {
+        try {
+            const { mealName } = req.body;
+            const result = await this.mealService.removeMeal(mealName);
+
+            if (result === true) {
+                res.status(200).json({ success: true, message: "Meal removed successfully!" });
+            }
+            else {
+                res.status(500).json({ success: false, massage: "Server Error" });
+            }
+        }
+        catch {
+            res.status(500).json({ success: false, massage: "Server Error" });
+        }
     }
 
     public getRouther() { return this.router; }

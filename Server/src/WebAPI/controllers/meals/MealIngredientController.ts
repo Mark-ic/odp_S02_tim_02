@@ -20,11 +20,11 @@ export class MealIngredientController {
 
         this.router.post("/getMealIng", authenticate, authorize("admin", "user"), this.getMealIngredients.bind(this));
 
-        this.router.post("/removeMeal", authenticate, authorize("admin"), this.removeMeal.bind(this));
+
 
         this.router.post("/addIngredientToMeal", authenticate, authorize("admin"), this.addIngredientToMeal.bind(this));
 
-        this.router.post("/removeIngredientFromMeal", authenticate, authorize("admin"), this.removeIngredientFromMeal.bind(this));
+        this.router.post("/removeIngredientsFromMeal", authenticate, authorize("admin"), this.removeIngredientFromMeal.bind(this));
 
         this.router.post("/removeIngredient", authenticate, authorize("admin"), this.removeIngredient.bind(this));
 
@@ -81,23 +81,7 @@ export class MealIngredientController {
         }
     }
 
-    private async removeMeal(req: Request, res: Response): Promise<void> {
-        try {
-            const { mealName } = req.body;
-            const result = await this.mealIngredientService.removeMeal(mealName);
-
-            if (result === true) {
-                res.status(200).json({ success: true, message: "Meal removed successfully!" });
-            }
-            else {
-                res.status(500).json({ success: false, massage: "Server Error" });
-            }
-        }
-        catch {
-            res.status(500).json({ success: false, massage: "Server Error" });
-        }
-    }
-
+    
     private async getMealIngredients(req: Request, res: Response): Promise<void> {
         try {
             const { mealName } = req.body;

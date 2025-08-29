@@ -64,16 +64,7 @@ mealIng/
   200 - sve je ok
   500 - greska do servera ( ne bi trebalo uopste jer ce uvek ako nema nista vracati prazno)
 
-  Brisanje jela i njegovih sastojaka:
-  Prvo treba da se obrise jelo iz menija pa onda ovo da bi radilo ispravno!
-  POST localhost:4000/api/v1/mealIng/removeMeal
-  
-  {
-    "mealName":"Lasagna"
-  }
-  
-  200 - sve je ok
-  500 - greska do servera ( ne bi trebalo uopste jer ce uvek ako nema nista vracati prazno)
+ 
 
   Dodavanje sastojka u odredjeno jelo
   POST localhost:4000/api/v1/mealIng/addIngredientToMeal
@@ -98,7 +89,7 @@ mealIng/
 
 
   Brisanje sastojka iz Jela
-  localhost:4000/api/v1/mealIng/removeIngredientFromMeal
+  localhost:4000/api/v1/mealIng/removeIngredientsFromMeal
 
   {
     "mealName":"Chicken Wrap",
@@ -168,6 +159,24 @@ meals/
   403 - Samo admini imaju pristup ovoj komandi
   500 - greska do servera
 
+  Brisanje jela:
+  Prvo treba da se obrise jelo iz menija, pa onda sastojci iz tog jela, pa porudzbine, pa tek onda jelo pa onda ovo da bi radilo ispravno!
+       
+       Izvrsiti sledece komande
+       removeIngredientsFromMeal
+       removeMealFromMenus
+       removeOrdersWithMeal
+  
+  Pa tek onda ovo
+  POST localhost:4000/api/v1/meals/removeMeal
+  
+  {
+    "mealName":"Lasagna"
+  }
+  
+  200 - sve je ok
+  500 - greska do servera ( ne bi trebalo uopste jer ce uvek ako nema nista vracati prazno)
+
 users/
   Menjanje podataka o korisniku (username se ne menja!);
   POST localhost:4000/api/v1/users/changeUser
@@ -231,6 +240,31 @@ users/
   NEMA BODY
 
 //Bice gotovo sutra
-menuMeals/
+menuMeal/
+  Dobijanje svih jela iz odredjenog menija
+  POST localhost:4000/api/v1/menuMeal/getAllMealsFromMenu
+  {
+    "menuName":"Sunday"
+  }
+
+  Dodavanje jela u meni: PAZI MOZE MAKSIMALNO 20 JELA DA BUDE U MENIJU
+  POST localhost:4000/api/v1/menuMeal/addMealToMenu
+  {
+    "mealName":"Fish Tacos",
+    "menuName":"Vegan"
+  }
+
+  Brisanje jela iz menija
+  POST localhost:4000/api/v1/menuMeal/removeMealFromMenu
+  {
+    "mealName":"Mushroom Risotto",
+    "menuName":"Vegan"
+  }
+
+  Brisanje jela iz SVIH MENIJA (Ovo uraditi obavezno pre brisanja JELA!)
+  POST localhost:4000/api/v1/menuMeal/removeMealFromMenus
+
 orders/
+  Bice gotovo u toku dana
+  removeOrdersWithMeal
 

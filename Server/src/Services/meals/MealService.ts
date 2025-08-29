@@ -35,4 +35,13 @@ export class MealService implements IMealService {
         return new Meal();
     }
 
+    async removeMeal(name: string): Promise<boolean> {
+        const id = await this.mealRepo.getMealByName(name);
+        if (id.idMeal === 0) {
+            return false;
+        }
+        const deletedFromMeals = this.mealRepo.deleteMeal(id.idMeal);
+        return deletedFromMeals;
+    }
+
 }

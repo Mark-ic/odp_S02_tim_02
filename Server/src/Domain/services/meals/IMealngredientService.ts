@@ -8,7 +8,6 @@ export interface IMealIngredientService {
     getMealIngredients(mealName: string): Promise<Ingredient[]>
     addMealIngredient(mealName:string,ingredientName:string):Promise<Boolean>;
     removeMealIngredient(mealName:string,ingredientName:string):Promise<Boolean>;
-    removeMeal(name:string):Promise<boolean>;
     removeIngredient(name:string):Promise<Boolean>;
     deleteIngredientFromMeals(ingredientName:string):Promise<Boolean>;
 }
