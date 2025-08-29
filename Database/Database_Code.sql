@@ -128,6 +128,9 @@ CREATE TABLE `Porudzbina` (
     ON UPDATE CASCADE
 ) ENGINE = InnoDB;
 
+
+DROP TRIGGER IF EXISTS povecaj_broj_porudzbina;
+
 DELIMITER $$
 
 CREATE TRIGGER povecaj_broj_porudzbina
@@ -141,6 +144,8 @@ END$$
 
 DELIMITER ;
 
+DROP TRIGGER IF EXISTS smanji_broj_porudzbina;
+
 DELIMITER $$
 
 CREATE TRIGGER smanji_broj_porudzbina
@@ -148,10 +153,11 @@ AFTER DELETE ON Porudzbina
 FOR EACH ROW
 BEGIN
     UPDATE Jelo
-    SET brojPorudzbina = brojPorudzbina - 1
+    SET brojPorudzbina = GREATEST(brojPorudzbina - 1, 0)
     WHERE idJelo = OLD.idJelo;
 END$$
 
 DELIMITER ;
+
 
 

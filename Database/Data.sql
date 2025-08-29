@@ -445,3 +445,6 @@ INSERT INTO Jelo_Meni (idJelo, idMeni) VALUES
 (13,10),(31,10),(43,10),(48,10),(22,10),
 (10,10),(24,10),(5,10),(42,10),(19,10),
 (50,10),(9,10),(33,10),(16,10),(41,10);
+
+-- Sifra acafaca123
+INSERT INTO Korisnik(KorisnickoIme,telefon,uloga,sifra) VALUES ("administrator","061555333","admin","$2b$10$AGHwDoWwS/ZZHtEPnOkSRuc1.yoP7JRoFbWgc2sdWvIHCWxhCGUQi"); 
