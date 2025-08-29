@@ -1,0 +1,6 @@
+export enum OrderStatus {
+    PPREPARING = "PREPARING",
+    READY_FOR_PICKUP = "READY_FOR_PICKUP",
+    IN_DELIVERY = "IN_DELIVERY",
+    DONE = "DONE"
+}

@@ -264,6 +264,12 @@ menuMeal/
   Brisanje jela iz SVIH MENIJA (Ovo uraditi obavezno pre brisanja JELA!)
   POST localhost:4000/api/v1/menuMeal/removeMealFromMenus
 
+  Dobijanje Preporuke dana (3 najprodavanija jela)
+  POST localhost:4000/api/v1/menuMeal/getBestSellingMeals
+  {
+    "menuName":"Vegan"
+  }
+
 orders/
   Bice gotovo u toku dana
   removeOrdersWithMeal

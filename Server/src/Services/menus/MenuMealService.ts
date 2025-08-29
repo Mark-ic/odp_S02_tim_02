@@ -13,6 +13,17 @@ export class MenuMealService implements IMenuMealService {
         this.mealRepo = mealRepo;
         this.menuMealRepo = menuMealRepo;
     }
+    async getBestSellingMeals(menuName: string): Promise<Meal[]> {
+        const menu = await this.menuRepo.getMenuByName(menuName);
+        if (menu.idMenu === 0) {
+            return [];
+        }
+        const result = await this.menuMealRepo.getBestSellingMeals(menu);
+        if (result.length > 0) {
+            return result;
+        }
+        return [];
+    }
 
     async getAllMealsFromMenu(menuName: string): Promise<Meal[]> {
         const menu = await this.menuRepo.getMenuByName(menuName);

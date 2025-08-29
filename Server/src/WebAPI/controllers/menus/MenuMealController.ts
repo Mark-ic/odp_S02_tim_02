@@ -17,7 +17,10 @@ export class MenuMealController {
     }
 
     private initializeRouters() {
+
         this.router.post("/getAllMealsFromMenu", authenticate, this.getAllMealsFromMenu.bind(this));
+        this.router.post("/getBestSellingMeals", authenticate, this.getBestSellingMeals.bind(this));
+
 
         this.router.post("/addMealToMenu", authenticate, authorize("admin"), this.addMealToMenu.bind(this));
 
@@ -26,6 +29,18 @@ export class MenuMealController {
         this.router.post("/removeMealFromMenus", authenticate, authorize("admin"), this.removeMealFromMenus.bind(this));
         this.router.post("/removeMealsFromMenu", authenticate, authorize("admin"), this.removeMealsFromMenu.bind(this));
     }
+
+     private async getBestSellingMeals(req: Request, res: Response): Promise<void> {
+        try {
+            const { menuName } = req.body;
+            const result = await this.menuMealService.getBestSellingMeals(menuName);
+            res.status(200).json({ success: true, message: "Best selling meals listed successfully!", data: result });
+        }
+        catch {
+            res.status(500).json({ success: false, massage: "Server Error" });
+        }
+    }
+
 
     private async getAllMealsFromMenu(req: Request, res: Response): Promise<void> {
         try {

@@ -21,6 +21,9 @@ import { MenuRepository } from "./Database/repositories/menus/MenuRepository";
 import { MenuMealController } from "./WebAPI/controllers/menus/MenuMealController";
 import { MenuMealService } from "./Services/menus/MenuMealService";
 import { MenuMealRepository } from "./Database/repositories/menus/MenuMealRepository";
+import { OrderController } from "./WebAPI/controllers/orders/OrderController";
+import { OrderService } from "./Services/orders/orderService";
+import { OrderRepository } from "./Database/repositories/orders/OrderRepository";
 
 require('dotenv').config();
 const app = express();
@@ -36,6 +39,7 @@ const ingredRepo = new IngredientRepository();
 const mealIngredRepo = new MealIngedientsRepo();
 const menuRepo = new MenuRepository();
 const menuMealRepo = new MenuMealRepository();
+const orderRepository = new OrderRepository();
 
 const mealService = new MealService(mealRepo);
 const mealIngredientSer = new MealIngredientService(mealRepo,ingredRepo,mealIngredRepo);
@@ -44,6 +48,8 @@ const ingredientService = new IngredientService(ingredRepo);
 const userService = new UserService(userRepo);
 const menuService = new MenuService(menuRepo);
 const menuMealService = new MenuMealService(menuRepo,mealRepo,menuMealRepo);
+const orderService = new OrderService(orderRepository,mealRepo,userRepo);
+
 
 const authConstroller = new AuthConstroller(authService);
 const mealIngredientController = new MealIngredientController(mealIngredientSer);
@@ -52,6 +58,7 @@ const mealController = new MealController(mealService);
 const userController = new UserController(userService);
 const menuController = new MenuControler(menuService);
 const menuMealController = new MenuMealController(menuMealService);
+const orderController = new OrderController(orderService);
 
 app.use("/api/v1/auth", authConstroller.getRouther());
 app.use("/api/v1/mealIng", mealIngredientController.getRouther());
