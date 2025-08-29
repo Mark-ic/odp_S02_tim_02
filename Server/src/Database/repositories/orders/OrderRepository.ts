@@ -6,8 +6,46 @@ import { IOrderRepository } from "../../../Domain/repositories/orders/IOrderRepo
 import db from "../../connection/DbConnectionPool";
 import { OrderStatus } from "../../../Domain/enums/orders/orderStatusEnum";
 import { DeliveryType } from "../../../Domain/enums/orders/DeliveryTypeEnum";
+import { UserAuthDTO } from "../../../Domain/DTOs/auth/UserAuthDTO";
 
 export class OrderRepository implements IOrderRepository {
+    
+    async getOrderMeal(order: Order): Promise<Meal> {
+        try {
+            const query: string = 'SELECT j.idJelo,j.nazivJela,j.cena,j.slika,j.vremePripreme,j.brojPorudzbina FROM Porudzbina p JOIN Jelo j ON p.idJelo = j.idJelo WHERE p.idPorudzbina = ?';
+
+
+            const [rows] = await db.execute<RowDataPacket[]>(query, [order.idOrder]);
+
+            if (rows.length > 0) {
+                const row = rows[0];
+                return new Meal(row.idJelo,row.nazivJela,row.cena,row.slika,row.vremePripreme,row.brojPorudzbina);
+            }
+
+            return new Meal();
+        }
+        catch {
+            return new Meal();
+        }
+    }
+
+    async getOrderUser(order:Order): Promise<UserAuthDTO> {
+        try {
+            const query: string = 'SELECT k.idKorisnik, k.korisnickoIme,k.uloga FROM Porudzbina p JOIN Korisnik k ON p.idKorisnik = k.idKorisnik WHERE p.idPorudzbina = ?';
+
+            const [rows] = await db.execute<RowDataPacket[]>(query, [order.idOrder]);
+
+            if (rows.length > 0) {
+                const row = rows[0];
+                return new UserAuthDTO(row.idKorisnik,row.korisnickoIme,row.uloga);
+            }
+
+            return new UserAuthDTO();
+        }
+        catch {
+            return new UserAuthDTO();
+        }
+    }
 
     async getAllOrders(): Promise<Order[]> {
         try {

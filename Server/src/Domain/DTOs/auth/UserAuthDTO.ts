@@ -3,6 +3,6 @@ export class UserAuthDTO{
         public id:number = 0,
         public username:string = '',
         public role:string = '',
-        public status: "OK" | "NO_USER" | "BAD_PASSWORD" | "OTHER"
+        public status?: "OK" | "NO_USER" | "BAD_PASSWORD" | "OTHER"
     ){}
 }

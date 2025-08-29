@@ -5,6 +5,9 @@ import { IuserRepository } from "../../Domain/repositories/users/IUserRepository
 import { IOrderService } from "../../Domain/services/orders/IOrderService";
 import { OrderStatus } from "../../Domain/enums/orders/orderStatusEnum";
 import { DeliveryType } from "../../Domain/enums/orders/DeliveryTypeEnum";
+import { UserAuthDTO } from "../../Domain/DTOs/auth/UserAuthDTO";
+import { Meal } from "../../Domain/models/Meal";
+import { User } from "../../Domain/models/User";
 
 export class OrderService implements IOrderService {
     private orderRepo: IOrderRepository;
@@ -14,6 +17,34 @@ export class OrderService implements IOrderService {
         this.orderRepo = orderRepo;
         this.mealRepo = mealRepo;
         this.userRepo = userRepo;
+    }
+
+    async getOrderUser(orderid: number): Promise<UserAuthDTO> {
+        const order = await this.orderRepo.getOrderById(orderid);
+        if (order.idOrder === 0) {
+            return new UserAuthDTO();
+        }
+        console.log('Pronadjen je order!');
+        const result = await this.orderRepo.getOrderUser(order);
+        console.log(result.username);
+        if (result.id !== 0) {
+            return result;
+        }
+        return new UserAuthDTO();
+    }
+
+    async getOrderMeal(orderid: number): Promise<Meal> {
+        console.log(`Prosledjen je ${orderid}`);
+        const order = await this.orderRepo.getOrderById(orderid);
+        if (order.idOrder === 0) {
+            return new Meal();
+        }
+        console.log('Pronadjen je order!');
+        const result = await this.orderRepo.getOrderMeal(order);
+        if (result.idMeal !== 0) {
+            return result;
+        }
+        return new Meal();
     }
 
     async getAllOrders(): Promise<Order[]> {
@@ -62,11 +93,12 @@ export class OrderService implements IOrderService {
         if (order.idOrder === 0) {
             return new Order();
         }
-        const result = await this.orderRepo.updateOrder(new Order(orderid, order.timeLeft, status, order.deliveryMethod, order.adress, order.idMeal, order.idOrder));
+        console.log('nadjena porudzbina');
+        const result = await this.orderRepo.updateOrderStatus(new Order(orderid, order.timeLeft, status, order.deliveryMethod, order.adress, order.idMeal, order.idOrder));
         if (result.idOrder !== 0) {
             return result;
         }
-        return new Order;
+        return new Order();
     }
 
     async deleteOrder(id: number): Promise<Boolean> {

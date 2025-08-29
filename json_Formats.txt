@@ -163,10 +163,10 @@ meals/
   Prvo treba da se obrise jelo iz menija, pa onda sastojci iz tog jela, pa porudzbine, pa tek onda jelo pa onda ovo da bi radilo ispravno!
        
        Izvrsiti sledece komande
-       removeIngredientsFromMeal
-       removeMealFromMenus
-       removeOrdersWithMeal
-  
+       localhost:4000/api/v1/orders/deleteOrdersWithMeal
+       localhost:4000/api/v1/mealIng/removeIngredientsFromMeal
+       localhost:4000/api/v1/menuMeal/removeMealFromMenus
+
   Pa tek onda ovo
   POST localhost:4000/api/v1/meals/removeMeal
   
@@ -193,6 +193,9 @@ users/
   500 - greska do servera
 
   Brisanje korisnika (usera)
+  PRVO DA SE URADI OVO
+  localhost:4000/api/v1/orders/deleteOrdersFromUser
+  PA ONDA OVO
   POST localhost:4000/api/v1/users/deleteUser
   {
     "username":"marko"
@@ -271,6 +274,80 @@ menuMeal/
   }
 
 orders/
-  Bice gotovo u toku dana
-  removeOrdersWithMeal
+  Kreiranje porudzbine 
+  POST localhost:4000/api/v1/orders/create
+    {
+    "timeLeft":45,
+    "status":"PREPARING",
+    "deliveryType":"PICKUP",
+    "adress":"Cara lazara", 
+    "idJelo":11,
+    "idKorisnik":4
+  }
+
+  Dobijanje porudzbine po iD
+  POST localhost:4000/api/v1/orders/getOrderById
+  {
+    "orderId":1
+  }
+
+  Dobijanje porudzbina od korisnika
+  POST localhost:4000/api/v1/orders/getOrdersFromUser
+  {
+    "username":"administrator"
+  }
+
+  Dobijanje svih porudzbina
+  POST localhost:4000/api/v1/orders/getAllOrders
+  NEMA BODY
+
+  Azuriranje porudzbine
+  POST localhost:4000/api/v1/orders/updateOrder
+
+   {
+    "orderId":2,
+    "timeLeft":65,
+    "status":"PREPARING",
+    "deliveryType":"PICKUP",
+    "adress":"Cara lazara 24", 
+    "idJelo":12,
+    "idKorisnik":4
+  }
+  Azuriranje statusa porudzbine
+  POST localhost:4000/api/v1/orders/updateOrderStatus
+  {
+    "orderId":2,
+    "status":"DONE"
+  }
+
+  Brisanje porudzbine
+  POST localhost:4000/api/v1/orders/deleteOrder
+  {
+    "orderId":12
+  }
+
+  Brisanje Porudzbina sa odredjenim Jelom
+  POST localhost:4000/api/v1/orders/deleteOrdersWithMeal
+
+  {
+    "mealName":"Seafood Paella"
+  }
+  
+  Brisanje svih porudzbina korisnika
+  POST localhost:4000/api/v1/orders/deleteOrdersFromUser
+  {
+    "username":"Nikolica"
+  }
+
+  Dobijanje info o Korisniku
+  POST localhost:4000/api/v1/orders/getOrderUser
+  {
+    "orderId":3
+  }
+
+  Dobijanje info o Jelu
+  POST localhost:4000/api/v1/orders/getOrderMeal
+  {
+    "orderId":3
+  }
 
