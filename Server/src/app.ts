@@ -67,6 +67,7 @@ app.use("/api/v1/meals", mealController.getRouther());
 app.use("/api/v1/users", userController.getRouther());
 app.use("/api/v1/menu", menuController.getRouther());
 app.use("/api/v1/menuMeal", menuMealController.getRouther());
+app.use("/api/v1/orders", orderController.getRouther());
 
 
 

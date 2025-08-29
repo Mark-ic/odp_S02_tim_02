@@ -111,7 +111,7 @@ CREATE TABLE `Porudzbina` (
   `idPorudzbina` INT NOT NULL AUTO_INCREMENT,
   `preostaloVreme` INT NOT NULL,
   `status` VARCHAR(45) NOT NULL,
-  `nacunIsporuke` VARCHAR(45) NOT NULL,
+  `nacinIsporuke` VARCHAR(45) NOT NULL,
   `adresa` VARCHAR(85) NULL,
   `idJelo` INT NULL,
   `idKorisnik` INT NOT NULL,
@@ -140,4 +140,18 @@ BEGIN
 END$$
 
 DELIMITER ;
+
+DELIMITER $$
+
+CREATE TRIGGER smanji_broj_porudzbina
+AFTER DELETE ON Porudzbina
+FOR EACH ROW
+BEGIN
+    UPDATE Jelo
+    SET brojPorudzbina = brojPorudzbina - 1
+    WHERE idJelo = OLD.idJelo;
+END$$
+
+DELIMITER ;
+
 
