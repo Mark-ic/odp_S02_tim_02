@@ -28,7 +28,7 @@ export function InfoAboutPage() {
 
         <button
           onClick={handleLogout}
-          className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-xl font-semibold transition"
+          className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-xl font-semibold transition cursor-pointer"
         >
           Log out
         </button>

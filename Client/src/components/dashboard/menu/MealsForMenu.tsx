@@ -8,10 +8,11 @@ interface MealsForMenuDisplayProps {
   token: string;
   menuName?: string; 
   onMealClick?: (meal: Meal) => void; 
-  locked?: boolean;
+  onOrderClick?: (meal: Meal) => void;
+  isToday?: boolean;
 }
 
-export function MealsForMenuDisplay({ token, menuName, onMealClick, locked = false }: MealsForMenuDisplayProps) {
+export function MealsForMenuDisplay({ token, menuName, onMealClick, onOrderClick, isToday }: MealsForMenuDisplayProps) {
   const [meals, setMeals] = useState<Meal[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -36,20 +37,18 @@ export function MealsForMenuDisplay({ token, menuName, onMealClick, locked = fal
   if (meals.length === 0) return <p className="text-gray-600">No meals found.</p>;
 
   return (
-    <div
-      className={
-        menuName
-          ? "flex space-x-4 overflow-x-auto pb-2" // horizontal scroll
-          : "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
-      }
-    >
+    <div className="flex space-x-4 overflow-x-auto pb-2 scrollbar-orange">
       {meals.map((meal) => (
         <div
           key={meal.idMeal}
-          className={`flex-shrink-0 w-60 ${locked ? "opacity-50 pointer-events-none" : ""}`}
-          onClick={locked ? undefined : () => onMealClick?.(meal)}
+          className="flex-shrink-0 w-60 cursor-pointer"
+          onClick={() => onMealClick?.(meal)}
         >
-          <MealCard meal={meal} />
+          <MealCard 
+            meal={meal} 
+            onOrderClick={onOrderClick} 
+            isOrderEnabled={!!isToday}
+          />
         </div>
       ))}
     </div>

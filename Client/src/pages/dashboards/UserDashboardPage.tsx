@@ -27,6 +27,8 @@ export default function UserDashboardPage() {
         backgroundImage: "url(/Images/background2.png)",
         backgroundSize: "cover",
         backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundAttachment: "fixed",
       }}
     >
       <header className="sticky top-0 z-50">

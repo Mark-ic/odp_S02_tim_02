@@ -56,7 +56,7 @@ export function LoginForm({ authApi }: AuthFormProps) {
         )}
         <button
           type="submit"
-          className="w-full bg-orange-500 hover:bg-orange-600 text-white py-2 rounded-xl font-semibold transition"
+          className="w-full bg-orange-500 hover:bg-orange-600 text-white py-2 rounded-xl font-semibold transition cursor-pointer"
         >
           Log in
         </button>

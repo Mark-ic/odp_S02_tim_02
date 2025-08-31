@@ -53,18 +53,23 @@ export function MenuDisplay({ token }: MenuDisplayProps) {
 
   if (loading) return <p className="text-center mt-10 text-gray-600">Loading menus...</p>;
 
-  const handleMealClick = (meal: Meal) => {
-    console.log("Clicked meal:", meal.mealName);
-    // to do
+  const handleOrderClick = (meal: Meal) => {
+    console.log("Ordering meal:", meal.mealName);
+    // to do: ordering
   };
+
+  const orderedMenus = [
+    ...(todayMenu ? [todayMenu] : []),
+    ...menus.filter(m => !todayMenu || m.idMenu !== todayMenu.idMenu),
+  ];
 
   return (
     <div className="w-full max-w-6xl mx-auto p-6">
       <h1 className="text-3xl font-bold text-center mb-8 text-orange-600">Weekly Menus</h1>
 
       <div className="flex flex-col space-y-6">
-        {menus.map(menu => {
-          const isToday = todayMenu && menu.idMenu === todayMenu.idMenu;
+        {orderedMenus.map(menu => {
+          const isToday = todayMenu ? menu.idMenu === todayMenu.idMenu : false;
 
           return (
             <div
@@ -80,10 +85,9 @@ export function MenuDisplay({ token }: MenuDisplayProps) {
               <MealsForMenuDisplay
                 token={token}
                 menuName={menu.menuName}
-                locked={!isToday}
-                onMealClick={isToday ? handleMealClick : undefined}
+                isToday={isToday}
+                onOrderClick={isToday ? handleOrderClick : undefined}
               />
-
               {!isToday && <p className="text-red-500 text-sm mt-2">Menu not available today</p>}
             </div>
           );
