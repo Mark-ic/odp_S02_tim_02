@@ -54,10 +54,10 @@ export function MealCard({ meal, token, onOrderClick, isOrderEnabled = true }: M
 
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-start justify-center pt-10 bg-black/50 overflow-auto">
-          <div className="bg-white rounded-2xl p-6 max-w-xl w-full relative">
+          <div className="bg-white rounded-2xl p-6 max-w-xl w-full relative border-2 border-orange-500">
             <button
               onClick={() => setIsModalOpen(false)}
-              className="absolute top-2 right-3 text-gray-500 hover:text-gray-700 font-bold cursor-pointer"
+              className="absolute top-2 right-3 text-xl text-gray-500 hover:text-gray-700 font-bold cursor-pointer"
             >
               X
             </button>

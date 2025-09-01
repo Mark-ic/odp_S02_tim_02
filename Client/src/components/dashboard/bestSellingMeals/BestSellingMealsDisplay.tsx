@@ -36,13 +36,13 @@ export function BestSellingMealsDisplay({ menuName, token }: BestSellingMealsPro
   return (
     <div className="flex justify-center space-x-4 overflow-x-auto pb-2 scrollbar-orange">
       {meals.map((meal) => (
-        <div key={meal.idMeal} className="flex-shrink-0 w-24 text-center">
+        <div key={meal.idMeal} className="flex-shrink-0 w-26 text-center">
           <img
             src={`/Images/${meal.image}`}
             alt={meal.mealName}
-            className="w-24 h-24 object-cover rounded-full mb-2 border-2 border-orange-300"
+            className="w-26 h-26 object-cover rounded-full mb-2 border-2 border-orange-300"
           />
-          <p className="text-xs font-medium">{meal.mealName}</p>
+          <p className="text-xm font-medium">{meal.mealName}</p>
         </div>
       ))}
     </div>
