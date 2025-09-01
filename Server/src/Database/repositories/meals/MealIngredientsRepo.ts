@@ -55,7 +55,7 @@ export class MealIngedientsRepo implements IMealIngrendientsRepo {
             }
             const ingredients: Ingredient[] = Rows.map(row => new Ingredient(
                 row.idSastojak,
-                row.imeSastojka,
+                row.nazivSastojka,
                 row.kategorija,
                 row.alergen?.toLowerCase() === "yes"
             ));

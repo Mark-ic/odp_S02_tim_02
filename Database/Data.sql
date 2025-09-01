@@ -387,64 +387,45 @@ insert into meni (dnevniMeni, nazivMenija) values("NO","Friday");
 insert into meni (dnevniMeni, nazivMenija) values("NO","Saturday");
 insert into meni (dnevniMeni, nazivMenija) values("NO","Sunday");
 
--- Easter (idMeni=1)
-INSERT INTO Jelo_Meni (idJelo, idMeni) VALUES
-(13,1),(31,1),(43,1),(48,1),(22,1),
-(18,1),(29,1),(14,1),(2,1),(26,1),
-(30,1),(44,1),(23,1),(20,1),(17,1);
 
--- Vegan (idMeni=2)
-INSERT INTO Jelo_Meni (idJelo, idMeni) VALUES
-(21,2),(8,2),(38,2),(39,2),(36,2),
-(28,2),(45,2),(25,2),(15,2);
-
--- Vegetarian (idMeni=3)
-INSERT INTO Jelo_Meni (idJelo, idMeni) VALUES
-(21,3),(8,3),(38,3),(39,3),(36,3),
-(28,3),(45,3),(25,3),(15,3),
-(5,3),(19,3),(3,3),(7,3),(6,3);
-
--- Monday (idMeni=4)
+-- Monday (idMeni=1)
 INSERT INTO Jelo_Meni (idJelo, idMeni) VALUES
 (13,4),(31,4),(43,4),(48,4),(22,4),
 (18,4),(29,4),(14,4),(2,4),(26,4),
 (50,4),(9,4),(33,4),(16,4),(41,4);
 
--- Tuesday (idMeni=5)
+-- Tuesday (idMeni=2)
 INSERT INTO Jelo_Meni (idJelo, idMeni) VALUES
 (27,5),(7,5),(3,5),(8,5),(38,5),
 (6,5),(4,5),(47,5),(49,5),(46,5),
 (28,5),(45,5),(25,5),(15,5);
 
--- Wednesday (idMeni=6)
+-- Wednesday (idMeni=3)
 INSERT INTO Jelo_Meni (idJelo, idMeni) VALUES
 (13,6),(31,6),(43,6),(48,6),(22,6),
 (18,6),(29,6),(14,6),(2,6),(26,6),
 (50,6),(9,6),(33,6),(16,6),(41,6);
 
--- Thursday (idMeni=7)
+-- Thursday (idMeni=4)
 INSERT INTO Jelo_Meni (idJelo, idMeni) VALUES
 (27,7),(7,7),(3,7),(8,7),(38,7),
 (36,7),(34,7),(35,7),(40,7),(37,7),
 (28,7),(45,7),(25,7),(15,7);
 
--- Friday (idMeni=8)
+-- Friday (idMeni=5)
 INSERT INTO Jelo_Meni (idJelo, idMeni) VALUES
 (13,8),(31,8),(43,8),(48,8),(22,8),
 (10,8),(24,8),(5,8),(42,8),(19,8),
 (50,8),(9,8),(33,8),(16,8),(41,8);
 
--- Saturday (idMeni=9)
+-- Saturday (idMeni=6)
 INSERT INTO Jelo_Meni (idJelo, idMeni) VALUES
 (27,9),(7,9),(3,9),(8,9),(38,9),
 (6,9),(4,9),(47,9),(49,9),(46,9),
 (28,9),(45,9),(25,9),(15,9);
 
--- Sunday (idMeni=10)
+-- Sunday (idMeni=7)
 INSERT INTO Jelo_Meni (idJelo, idMeni) VALUES
 (13,10),(31,10),(43,10),(48,10),(22,10),
 (10,10),(24,10),(5,10),(42,10),(19,10),
 (50,10),(9,10),(33,10),(16,10),(41,10);
-
--- Sifra acafaca123
-INSERT INTO Korisnik(KorisnickoIme,telefon,uloga,sifra) VALUES ("administrator","061555333","admin","$2b$10$AGHwDoWwS/ZZHtEPnOkSRuc1.yoP7JRoFbWgc2sdWvIHCWxhCGUQi"); 
