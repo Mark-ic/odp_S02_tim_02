@@ -10,6 +10,7 @@ import UserDashboardPage from "./pages/dashboards/UserDashboardPage";
 import AdminDashboardPage from "./pages/dashboards/AdminDashboardPage";
 import RegistrationPage from "./pages/auth/RegistrationPage";
 import NotFoundStranica from "./pages/not_found/NotFoundPage";
+import OrderPage from "./pages/ordering/OrderPage";
 
 function App() {
   return (
@@ -36,6 +37,17 @@ function App() {
             </ProtectedRoute>
         }
         />
+        
+        {/*Ordering Page*/}
+        <Route
+        path="/order/:mealId"
+        element={
+          <ProtectedRoute requiredRole="user">
+            <OrderPage />
+          </ProtectedRoute>
+        }
+      />
+
 
         {/* Preusmerava na dashboard kao default rutu */}
         <Route path="/" element={<Navigate to="/login" replace />} />

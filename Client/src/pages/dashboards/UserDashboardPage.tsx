@@ -10,15 +10,14 @@ export default function UserDashboardPage() {
   const { isAuthenticated, logout } = useAuth();
   const navigate = useNavigate();
 
+  const token = ReadValueByKey("authToken") || "";
+
   useEffect(() => {
-    const token = ReadValueByKey("authToken");
     if (!isAuthenticated || !token) {
       logout();
       navigate("/login");
     }
-  }, [isAuthenticated, logout, navigate]);
-
-  const token = ReadValueByKey("authToken") || "";
+  }, [isAuthenticated, logout, navigate, token]);
 
   return (
     <div

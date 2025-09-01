@@ -46,6 +46,7 @@ export function MealsForMenuDisplay({ token, menuName, onMealClick, onOrderClick
         >
           <MealCard 
             meal={meal} 
+            token={token}
             onOrderClick={onOrderClick} 
             isOrderEnabled={!!isToday}
           />
