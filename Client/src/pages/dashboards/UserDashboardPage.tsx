@@ -4,7 +4,7 @@ import { ReadValueByKey } from "../../helpers/local_storage";
 import { useAuth } from "../../hooks/auth/useAuthHook";
 import { MenuDisplay } from "../../components/dashboard/menu/MenuDisplay";
 {/* import { MealDisplay } from "../../components/dashboard/meal/MealDisplay";*/}
-import { InfoAboutPage } from "../../components/dashboard/infoOKorisniku/info";
+import { InfoAboutPage } from "../../components/dashboard/userInfo/info";
 
 export default function UserDashboardPage() {
   const { isAuthenticated, logout } = useAuth();

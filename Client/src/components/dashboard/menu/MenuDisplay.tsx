@@ -3,6 +3,7 @@ import type { Meal } from "../../../models/meal/Meal";
 import type { Menu } from "../../../models/menu/Menu";
 import { menuApi } from "../../../api_services/menu/MenuAPIService";
 import { MealsForMenuDisplay } from "./MealsForMenu";
+import { BestSellingMealsDisplay } from "../bestSellingMeals/BestSellingMealsDisplay";
 
 interface MenuDisplayProps {
   token: string;
@@ -58,40 +59,33 @@ export function MenuDisplay({ token }: MenuDisplayProps) {
     // to do: ordering
   };
 
-  const orderedMenus = [
-    ...(todayMenu ? [todayMenu] : []),
-    ...menus.filter(m => !todayMenu || m.idMenu !== todayMenu.idMenu),
-  ];
-
   return (
     <div className="w-full max-w-6xl mx-auto p-6">
       <h1 className="text-3xl font-bold text-center mb-8 text-orange-600">Weekly Menus</h1>
 
+      {todayMenu && (
+        <div className="flex flex-col space-y-4 mb-8">
+          
+          <div className="p-4 rounded-2xl shadow-md border bg-yellow-100 border-yellow-300">
+            <h2 className="text-xl font-semibold mb-4">{todayMenu.menuName} (Today)</h2>
+            <MealsForMenuDisplay token={token} menuName={todayMenu.menuName} isToday={true} onOrderClick={handleOrderClick} />
+          </div>
+
+          <h3 className="text-lg font-semibold mb-2 text-orange-700 text-center">Top 3 meals from  today's menu</h3>
+          <BestSellingMealsDisplay token={token} menuName={todayMenu.menuName} />
+        </div>
+      )}
+
       <div className="flex flex-col space-y-6">
-        {orderedMenus.map(menu => {
-          const isToday = todayMenu ? menu.idMenu === todayMenu.idMenu : false;
-
-          return (
-            <div
-              key={menu.idMenu}
-              className={`p-4 rounded-2xl shadow-md border ${
-                isToday ? "bg-yellow-100 border-yellow-300" : "bg-gray-100 border-gray-300"
-              }`}
-            >
-              <h2 className="text-xl font-semibold mb-4">
-                {menu.menuName} {isToday && "(Today)"}
-              </h2>
-
-              <MealsForMenuDisplay
-                token={token}
-                menuName={menu.menuName}
-                isToday={isToday}
-                onOrderClick={isToday ? handleOrderClick : undefined}
-              />
-              {!isToday && <p className="text-red-500 text-sm mt-2">Menu not available today</p>}
+        {menus
+          .filter(m => todayMenu ? m.idMenu !== todayMenu.idMenu : true)
+          .map(menu => (
+            <div key={menu.idMenu} className="p-4 rounded-2xl shadow-md border bg-gray-100 border-gray-300">
+              <h2 className="text-xl font-semibold mb-4">{menu.menuName}</h2>
+              <MealsForMenuDisplay token={token} menuName={menu.menuName} isToday={false} />
+              <p className="text-red-500 text-sm mt-2">Menu not available today</p>
             </div>
-          );
-        })}
+          ))}
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { Meal } from "../../../models/meal/Meal";
+import { useRole } from "../../../hooks/other/UseRole";
 
 interface MealCardProps {
   meal: Meal;
@@ -9,13 +10,14 @@ interface MealCardProps {
 
 export function MealCard({ meal, onOrderClick, isOrderEnabled = true }: MealCardProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const role = useRole();
 
   return (
-    <div> 
+    <div>
       <div
         className="cursor-pointer p-4 rounded-2xl shadow-md border bg-gray-50 border-gray-300 hover:shadow-lg transition-shadow"
-        onClick={() => setIsModalOpen(true)} >
-        
+        onClick={() => setIsModalOpen(true)}
+      >
         <img
           src={`/Images/${meal.image}`}
           alt={meal.mealName}
@@ -24,23 +26,24 @@ export function MealCard({ meal, onOrderClick, isOrderEnabled = true }: MealCard
         <h2 className="text-xl font-semibold mb-1">{meal.mealName}</h2>
         <p className="text-sm text-gray-500">Price: ${meal.price.toFixed(2)}</p>
         <p className="text-sm text-gray-500">Prep Time: {meal.prepTime} min</p>
-        <p className="text-sm text-gray-500">Orders: {meal.numberOfOrders}</p>
 
-        <div className="flex justify-center">
-          <button
-            className={`mt-2 px-4 py-2 rounded-lg text-white ${ isOrderEnabled
-                ? "bg-orange-500 hover:bg-orange-600 cursor-pointer"
-                : "bg-gray-400 cursor-default"
-            }`}
-            onClick={(e) => {
-              e.stopPropagation();
-              if (isOrderEnabled) 
-                onOrderClick?.(meal);
-            }}
-          >
-            Order
-          </button>
-        </div>
+        {role === "user" && (
+          <div className="flex justify-center">
+            <button
+              className={`mt-2 px-4 py-2 rounded-lg text-white ${
+                isOrderEnabled
+                  ? "bg-orange-500 hover:bg-orange-600 cursor-pointer"
+                  : "bg-gray-400 cursor-default"
+              }`}
+              onClick={(e) => {
+                e.stopPropagation();
+                if (isOrderEnabled) onOrderClick?.(meal);
+              }}
+            >
+              Order
+            </button>
+          </div>
+        )}
       </div>
 
       {isModalOpen && (

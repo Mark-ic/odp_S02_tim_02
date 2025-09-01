@@ -10,6 +10,7 @@ export function InfoAboutPage() {
   if (!token) return null;
 
   const { id, username, role } = jwtDecode<JwtTokenClaims>(token);
+  const displayRole = role === "admin" ? "manager" : role;
 
   const handleLogout = () => {
     RemoveValueByKey("authToken");
@@ -22,7 +23,7 @@ export function InfoAboutPage() {
         <div className="flex space-x-6 text-gray-800 font-medium">
           <span><strong>ID:</strong> {id}</span>
           <span><strong>Username:</strong> {username}</span>
-          <span><strong>Role:</strong> {role}</span>
+          <span><strong>Role:</strong> {displayRole}</span>
           <span><strong>Date:</strong> {new Date().toLocaleDateString()}</span>
         </div>
 
