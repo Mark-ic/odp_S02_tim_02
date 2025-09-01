@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import type { Ingredient } from "../../models/ingredient/Ingredient";
-import { mealIngredientApi } from "../../api_services/meal/mealIngredient/MealIngredientAPIService";
+import type { Ingredient } from "../../../models/ingredient/Ingredient";
+import { mealIngredientApi } from "../../../api_services/meal/mealIngredient/MealIngredientAPIService";
 
 interface MealIngredientsProps {
   token: string;

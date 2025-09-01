@@ -4,7 +4,7 @@ import { ReadValueByKey } from "../../helpers/local_storage";
 import { useAuth } from "../../hooks/auth/useAuthHook";
 import { MenuDisplay } from "../../components/dashboard/menu/MenuDisplay";
 {/* import { MealDisplay } from "../../components/dashboard/meal/MealDisplay";*/}
-import { InfoAboutPage } from "../../components/dashboard/userInfo/info";
+import { InfoAboutPage } from "../../components/dashboard/headerOfPage/HeaderOfPage";
 
 export default function AdminDashboardPage() {
   const { isAuthenticated, logout } = useAuth();

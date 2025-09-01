@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import type { Meal } from "../../../models/meal/Meal";
 import { useRole } from "../../../hooks/other/UseRole";
-import { MealIngredients } from "../../ingredients/IngredientsDisplay";
+import { MealIngredients } from "../ingredients/IngredientsDisplay";
 
 interface MealCardProps {
   meal: Meal;
