@@ -11,6 +11,7 @@ export interface IOrderService {
     getOrdersFromUser(userName: string): Promise<Order[]>;
     getAllOrders(): Promise<Order[]>;
 
+
     getOrderUser(orderid: number): Promise<UserAuthDTO>;
     getOrderMeal(orderid: number): Promise<Meal>;
 

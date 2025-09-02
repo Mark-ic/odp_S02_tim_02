@@ -10,6 +10,10 @@ export class UserService implements IUserService {
         this.userRepo = userRepo;
     }
 
+    async getAllUsers(): Promise<UserAuthDTO[]> {
+        return await this.userRepo.getAllUsers();
+    }
+
 
     async changeUser(username: string, phone: string, role: string, password: string): Promise<UserAuthDTO> {
         const user = await this.userRepo.getByUsername(username);

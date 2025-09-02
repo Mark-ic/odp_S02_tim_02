@@ -373,11 +373,6 @@ INSERT INTO Jelo_Sastojak (idJelo, idSastojak) VALUES
 -- 50. Grilled Chicken Breast
 (50, 21), (50, 163), (50, 144);
 
-
-insert into meni (dnevniMeni, nazivMenija) values("NO","Easter");
-insert into meni (dnevniMeni, nazivMenija) values("NO","Vegan");
-insert into meni (dnevniMeni, nazivMenija) values("NO","Vegetarian");
-
 insert into meni (dnevniMeni, nazivMenija) values("NO","Monday");
 insert into meni (dnevniMeni, nazivMenija) values("NO","Tuesday");
 insert into meni (dnevniMeni, nazivMenija) values("NO","Wednesday");

@@ -9,4 +9,5 @@ export interface IuserRepository {
     updateUser(user: User): Promise<UserAuthDTO>;
     deleteUser(id: number): Promise<boolean>;
     userExists(id: number): Promise<boolean>;
+    getAllUsers():Promise<UserAuthDTO[]>
 }
