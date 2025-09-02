@@ -23,7 +23,8 @@ export function OrderValidator(
         return { success: false, message: "Invalid delivery type" };
     }
 
-    const adressRegex = /^[A-Za-z0-9\s]+$/;
+    const adressRegex = /^[A-Za-z0-9\s\.\/]+$/
+
     if (adress.length>0 && !adressRegex.test(adress)) {
         return { success: false, message: "Address must contain only letters, numbers and spaces" };
     }

@@ -18,7 +18,7 @@ export class OrderController {
         this.router.post("/create", authenticate, this.create.bind(this));
 
         this.router.post("/getOrderById", authenticate, authorize("admin"), this.getOrderById.bind(this));
-        this.router.post("/getOrdersFromUser", authenticate, authorize("user"), this.getOrdersFromUser.bind(this));
+        this.router.post("/getOrdersFromUser", authenticate, this.getOrdersFromUser.bind(this));
         this.router.post("/getAllOrders", authenticate, authorize("admin"), this.getAllOrders.bind(this));
         this.router.post("/getOrderMeal", authenticate, authorize("admin"), this.getOrderMeal.bind(this));
         this.router.post("/getOrderUser", authenticate, authorize("admin"), this.getOrderUser.bind(this));
