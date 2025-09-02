@@ -5,6 +5,22 @@ import db from "../../connection/DbConnectionPool"
 import { UserAuthDTO } from "../../../Domain/DTOs/auth/UserAuthDTO";
 
 export class UserRepository implements IuserRepository {
+    async getAllUsers(): Promise<UserAuthDTO[]> {
+        try {
+            const query: string = 'SELECT * FROM korisnik';
+
+            const [rows] = await db.execute<RowDataPacket[]>(query, []);
+
+            if (rows.length > 0) {
+                return rows.map(row => new UserAuthDTO(row.idKorisnik, row.KorisnickoIme, row.uloga));
+            }
+
+            return [];
+        }
+        catch {
+            return [];
+        }
+    }
     async create(user: User): Promise<User> {
         try {
             const query: string = 'INSERT INTO Korisnik(korisnickoIme,telefon,uloga,sifra) values (?,?,?,?)';
@@ -31,10 +47,6 @@ export class UserRepository implements IuserRepository {
                 id
             ]);
 
-            if (rows.length > 0) {
-                const row = rows[0];
-                return new User(row.idUser, row.username, row.phone, row.role, row.password);
-            }
 
             return new User();
         }
@@ -49,7 +61,7 @@ export class UserRepository implements IuserRepository {
             const [Rows] = await db.execute<RowDataPacket[]>(query, [
                 username
             ]);
-            
+
             if (Rows.length > 0) {
                 const row = Rows[0];
                 return new User(row.idKorisnik, row.KorisnickoIme, row.telefon, row.uloga, row.sifra);
@@ -70,12 +82,12 @@ export class UserRepository implements IuserRepository {
             ]);
 
             if (result.affectedRows > 0) {
-                return new UserAuthDTO(user.idUser,user.username,user.role,"OK");
+                return new UserAuthDTO(user.idUser, user.username, user.role, "OK");
             }
-            return new UserAuthDTO(undefined,undefined,undefined,"OTHER");
+            return new UserAuthDTO(undefined, undefined, undefined, "OTHER");
         }
         catch {
-            return new UserAuthDTO(undefined,undefined,undefined,"OTHER");;
+            return new UserAuthDTO(undefined, undefined, undefined, "OTHER");;
         }
     }
     async deleteUser(id: number): Promise<boolean> {

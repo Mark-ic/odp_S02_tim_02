@@ -16,6 +16,7 @@ export class UserController {
 
     private initializeRouters() {
         this.router.post("/changeUser", authenticate, authorize("admin"), this.changeUser.bind(this));
+        this.router.post("/getAllUsers", authenticate, authorize("admin"), this.getAllUsers.bind(this));
         this.router.post("/deleteUser", authenticate, authorize("admin"), this.deleteUser.bind(this));
 
     }
@@ -44,6 +45,25 @@ export class UserController {
             res.status(500).json({ success: false, massage: "Server Error" });
         }
     }
+
+    
+    private async getAllUsers(req: Request, res: Response): Promise<void> {
+        try {
+            
+            const result = await this.userService.getAllUsers();
+
+            if (result.length > 0 ) {
+                res.status(200).json({ success: true, message: "Users got successfully!", data: result });
+            }
+            else {
+                res.status(500).json({ success: false, massage: "Server unable to resolve request" });
+            }
+                
+        }
+        catch {
+            res.status(500).json({ success: false, massage: "Server Error" });
+        }
+    } 
 
     private async deleteUser(req: Request, res: Response): Promise<void> {
         try {

@@ -192,6 +192,10 @@ users/
   403 - Samo admini imaju pristup ovoj komandi
   500 - greska do servera
 
+  Dobijanje podataka o svim userima
+  localhost:4000/api/v1/users/getAllUsers
+  NEMA BODY
+
   Brisanje korisnika (usera)
   PRVO DA SE URADI OVO
   localhost:4000/api/v1/orders/deleteOrdersFromUser
