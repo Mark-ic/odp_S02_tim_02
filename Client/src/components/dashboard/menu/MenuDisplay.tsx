@@ -20,10 +20,10 @@ export function MenuDisplay({ token }: MenuDisplayProps) {
       setLoading(true);
       try {
         const menusList = await menuApi.getAllMenus(token);
-        const filteredMenus = menusList.filter(menu =>
-          dayNames.some(day => menu.menuName.toLowerCase().includes(day.toLowerCase()))
-        );
-        setMenus(filteredMenus);
+        //const filteredMenus = menusList.filter(menu =>
+          //dayNames.some(day => menu.menuName.toLowerCase().includes(day.toLowerCase()))
+        //);
+        setMenus(menusList);
 
         const todayIndex = new Date().getDay();
         const todayName = dayNames[todayIndex];
@@ -36,7 +36,7 @@ export function MenuDisplay({ token }: MenuDisplayProps) {
           if (dbDailyMenu.idMenu !== 0) {
             await menuApi.removeDailyMenu(token, dbDailyMenu.menuName);
           }
-          const todaysMenu = filteredMenus.find(m => m.menuName.toLowerCase().includes(todayName.toLowerCase()));
+          const todaysMenu = menusList.find(m => m.menuName.toLowerCase().includes(todayName.toLowerCase()));
           if (todaysMenu) {
             await menuApi.setDailyMenu(token, todaysMenu.menuName);
             currentMenu = todaysMenu;
@@ -56,7 +56,6 @@ export function MenuDisplay({ token }: MenuDisplayProps) {
 
   const handleOrderClick = (meal: Meal) => {
     console.log("Ordering meal:", meal.mealName);
-    // to do: ordering
   };
 
   return (

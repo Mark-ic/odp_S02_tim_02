@@ -1,4 +1,5 @@
 import { InfoAboutPage } from "../../components/dashboard/headerOfPage/HeaderOfPage";
+import { UserOrdersList } from "../../components/profile/UserOrdersDisplay";
 import { UserProfileCard } from "../../components/profile/UserProfileCard";
 
 export default function ProfilePage() {
@@ -19,6 +20,7 @@ export default function ProfilePage() {
     
       <main className="flex-1 p-6 flex flex-col items-center justify-start">
         <UserProfileCard/>
+        <UserOrdersList/>
       </main>
     </div>
   );

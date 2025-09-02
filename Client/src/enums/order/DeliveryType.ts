@@ -1,0 +1,1 @@
+export type DeliveryType = "DELIVERY" | "PICKUP";

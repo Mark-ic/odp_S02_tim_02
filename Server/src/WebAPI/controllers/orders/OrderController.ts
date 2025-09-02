@@ -18,7 +18,7 @@ export class OrderController {
         this.router.post("/create", authenticate, this.create.bind(this));
 
         this.router.post("/getOrderById", authenticate, authorize("admin"), this.getOrderById.bind(this));
-        this.router.post("/getOrdersFromUser", authenticate, authorize("admin"), this.getOrdersFromUser.bind(this));
+        this.router.post("/getOrdersFromUser", authenticate, authorize("user"), this.getOrdersFromUser.bind(this));
         this.router.post("/getAllOrders", authenticate, authorize("admin"), this.getAllOrders.bind(this));
         this.router.post("/getOrderMeal", authenticate, authorize("admin"), this.getOrderMeal.bind(this));
         this.router.post("/getOrderUser", authenticate, authorize("admin"), this.getOrderUser.bind(this));
@@ -44,7 +44,7 @@ export class OrderController {
 
             const result = await this.orderService.create(timeLeft, status, deliveryType, adress, idJelo, idKorisnik);
             if (result.idOrder !== 0) {
-                res.status(200).json({ success: true, message: "Order added  successfully!", });
+                res.status(200).json({ success: true, message: "Order added  successfully!", data:result});
                 return;
             }
             else {
