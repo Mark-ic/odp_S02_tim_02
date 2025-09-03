@@ -13,44 +13,45 @@ export function MenuDisplay({ token }: MenuDisplayProps) {
   const [menus, setMenus] = useState<Menu[]>([]);
   const [loading, setLoading] = useState(true);
   const [todayMenu, setTodayMenu] = useState<Menu | null>(null);
-  const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  //const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
-  useEffect(() => {
-    const fetchMenus = async () => {
-      setLoading(true);
-      try {
-        const menusList = await menuApi.getAllMenus(token);
-        //const filteredMenus = menusList.filter(menu =>
-          //dayNames.some(day => menu.menuName.toLowerCase().includes(day.toLowerCase()))
-        //);
-        setMenus(menusList);
+useEffect(() => {
+  const fetchMenus = async () => {
+    setLoading(true);
+    try {
+      const menusList = await menuApi.getAllMenus(token);
+      setMenus(menusList);
 
-        const todayIndex = new Date().getDay();
-        const todayName = dayNames[todayIndex];
-        const dbDailyMenu = await menuApi.getDailyMenu(token);
+      // 
+      // const todayIndex = new Date().getDay();
+      // const todayName = dayNames[todayIndex];
+      // let currentMenu: Menu | null = null;
+      // if (dbDailyMenu.idMenu !== 0 && dbDailyMenu.menuName.toLowerCase().includes(todayName.toLowerCase())) {
+      //   currentMenu = dbDailyMenu;
+      // } else {
+      //   if (dbDailyMenu.idMenu !== 0) {
+      //     await menuApi.removeDailyMenu(token, dbDailyMenu.menuName);
+      //   }
+      //   const todaysMenu = menusList.find(m => m.menuName.toLowerCase().includes(todayName.toLowerCase()));
+      //   if (todaysMenu) {
+      //     await menuApi.setDailyMenu(token, todaysMenu.menuName);
+      //     currentMenu = todaysMenu;
+      //   }
+      // }
+      //
 
-        let currentMenu: Menu | null = null;
-        if (dbDailyMenu.idMenu !== 0 && dbDailyMenu.menuName.toLowerCase().includes(todayName.toLowerCase())) {
-          currentMenu = dbDailyMenu;
-        } else {
-          if (dbDailyMenu.idMenu !== 0) {
-            await menuApi.removeDailyMenu(token, dbDailyMenu.menuName);
-          }
-          const todaysMenu = menusList.find(m => m.menuName.toLowerCase().includes(todayName.toLowerCase()));
-          if (todaysMenu) {
-            await menuApi.setDailyMenu(token, todaysMenu.menuName);
-            currentMenu = todaysMenu;
-          }
-        }
-        setTodayMenu(currentMenu);
-      } catch (err) {
-        console.error(err);
-      }
-      setLoading(false);
-    };
+      const dbDailyMenu = await menuApi.getDailyMenu(token);
+      setTodayMenu(dbDailyMenu.idMenu !== 0 ? dbDailyMenu : null);
 
-    fetchMenus();
-  }, [token]);
+    } catch (err) {
+      console.error(err);
+    }
+    setLoading(false);
+  };
+
+  fetchMenus();
+}, [token]);
+
 
   if (loading) return <p className="text-center mt-10 text-gray-600">Loading menus...</p>;
 

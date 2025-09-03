@@ -1,16 +1,16 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ReadValueByKey } from "../../helpers/local_storage";
 import { useAuth } from "../../hooks/auth/useAuthHook";
-import { MenuDisplay } from "../../components/dashboard/menu/MenuDisplay";
-{/* import { MealDisplay } from "../../components/dashboard/meal/MealDisplay";*/}
 import { InfoAboutPage } from "../../components/dashboard/headerOfPage/HeaderOfPage";
+import { MenuTab } from "../../components/dashboard/adminTabs/menuTab/MenuTab";
 
 export default function AdminDashboardPage() {
   const { isAuthenticated, logout } = useAuth();
   const navigate = useNavigate();
-
   const token = ReadValueByKey("authToken") || "";
+
+  const [activeTab, setActiveTab] = useState<"menus" | "orders">("menus");
 
   useEffect(() => {
     if (!isAuthenticated || !token) {
@@ -34,9 +34,26 @@ export default function AdminDashboardPage() {
         <InfoAboutPage />
       </header>
 
-      <main id="dashboard-main" className="flex-1 p-6 flex flex-col items-center justify-start">
-        <MenuDisplay token={token} />
-        {/* <MealDisplay token={token} /> */}
+      <main className="flex-1 p-6 flex flex-col items-center justify-start gap-6 w-full max-w-7xl mx-auto">
+       
+        <div className="flex gap-2 mb-6">
+          <button
+            onClick={() => setActiveTab("menus")}
+            className={`px-4 py-2 rounded-xl font-semibold transition cursor-pointer ${
+              activeTab === "menus"
+                ? "bg-white shadow text-gray-800"
+                : "bg-gray-200 text-gray-600 hover:bg-gray-300"
+            }`}
+          > Menus
+          </button>
+          
+
+        </div>
+
+        <div className="w-full">
+          {activeTab === "menus" && <MenuTab token={token} />}
+          
+        </div>
       </main>
     </div>
   );
