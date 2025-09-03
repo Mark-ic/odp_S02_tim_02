@@ -12,6 +12,7 @@ export function MenuTab({ token }: MenuTabProps) {
   const [loading, setLoading] = useState(true);
   const [newMenuName, setNewMenuName] = useState("");
   const [editingMenu, setEditingMenu] = useState<Menu | null>(null);
+  const [message, setMessage] = useState<{ text: string; type: "success" | "error" } | null>(null);
 
   const fetchMenus = async () => {
     setLoading(true);
@@ -24,9 +25,22 @@ export function MenuTab({ token }: MenuTabProps) {
     fetchMenus();
   }, [token]);
 
+  useEffect(() => {
+    if (message) {
+      const timer = setTimeout(() => setMessage(null), 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [message]);
+
   const handleAddMenu = async () => {
-    if (!newMenuName) return;
+    if (!newMenuName) 
+    {
+      alert("Fill in menu name.");
+      return;
+    }
+    
     await menuApi.createMenu(token, false, newMenuName);
+    setMessage({ text: "New menu is added!", type: "success" });    
     setNewMenuName("");
     fetchMenus();
   };
@@ -34,6 +48,7 @@ export function MenuTab({ token }: MenuTabProps) {
   const handleEditMenu = async (menu: Menu) => {
     if (!editingMenu) return;
     await menuApi.updateMenuName(token, menu.menuName, editingMenu.menuName);
+    setMessage({ text: "Menu is updated!", type: "success" });    
     setEditingMenu(null);
     fetchMenus();
   };
@@ -44,6 +59,7 @@ export function MenuTab({ token }: MenuTabProps) {
     );
     if (!confirmed) return;
     //await menuApi.deleteMenu?.(token, menu.idMenu);
+    setMessage({ text: "Menu is deleted!", type: "success" });    
     fetchMenus();
   };
 
@@ -62,6 +78,15 @@ export function MenuTab({ token }: MenuTabProps) {
 
   return (
     <div className="bg-white shadow-2xl rounded-2xl p-6 max-w-5xl w-full mx-auto mt-10">
+      {message && (
+        <div
+          className={`px-4 py-2 rounded-lg text-white font-semibold mb-4 ${
+            message.type === "success" ? "bg-green-500" : "bg-red-500"
+          }`}
+        >
+          {message.text}
+        </div>
+      )}
       <h2 className="text-2xl font-bold mb-6 text-center text-gray-800"> Menus </h2>
 
       <div className="flex gap-2 mb-6">

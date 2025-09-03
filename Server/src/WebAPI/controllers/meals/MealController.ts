@@ -40,7 +40,7 @@ export class MealController {
                 res.status(400).json({ success: false, massage: validationOK.message });
             }
 
-            const result = await this.mealService.updateMeal(mealName, prepTime, image, prepTime);
+            const result = await this.mealService.updateMeal(mealName, price, image, prepTime);
             if (result.idMeal !== 0) {
                 res.status(200).json({ success: true, message: "Meal changed successfully!", data: result });
             }
