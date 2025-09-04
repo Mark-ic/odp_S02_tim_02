@@ -16,15 +16,37 @@ export class MenuControler {
 
     private initializeRouters() {
         this.router.post("/create", authenticate, authorize("admin"), this.create.bind(this));
+
         this.router.post("/getDailyMenu", authenticate, this.getDailyMenu.bind(this));
+        this.router.post("/getAllMenus", authenticate, this.getAllMenus.bind(this));
+
+
         this.router.post("/updateMenuName", authenticate, authorize("admin"), this.updateMenuName.bind(this));
         this.router.post("/setDailyMenu", authenticate, authorize("admin"), this.setDailyMenu.bind(this));
+
         this.router.post("/removeDailyMenu", authenticate, authorize("admin"), this.removeDailyMenu.bind(this));
-        this.router.post("/getAllMenus", authenticate, this.getAllMenus.bind(this));
+        this.router.post("/deleteMenu", authenticate, authorize("admin"), this.deleteMenu.bind(this));
+
 
     }
 
-       private async getAllMenus(req: Request, res: Response): Promise<void> {
+
+    private async deleteMenu(req: Request, res: Response): Promise<void> {
+        try {
+            const { menuName } = req.body;
+            const result = await this.menuService.deleteMenu(menuName);
+            if (result === true) {
+                res.status(200).json({ success: true, message: "Menu removed  successfully!", });
+            }
+            else {
+                res.status(500).json({ success: false, massage: "Server unable to execude command" });
+            }
+        }
+        catch {
+            res.status(500).json({ success: false, massage: "Server Error" });
+        }
+    }
+    private async getAllMenus(req: Request, res: Response): Promise<void> {
         try {
             const result = await this.menuService.getAllMenus();
             if (result.length > 0) {

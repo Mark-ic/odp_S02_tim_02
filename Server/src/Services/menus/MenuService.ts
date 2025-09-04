@@ -8,6 +8,17 @@ export class MenuService implements IMenuService{
     public constructor(menuRepo: IMenuRepository){
         this.menuRepo=menuRepo;
     }
+
+    async deleteMenu(menuName: string): Promise<Boolean> {
+        console.log('Usao je u funkciju!');
+        const exists = await this.menuRepo.getMenuByName(menuName);
+        if(exists.idMenu === 0 ){
+            return false;
+        }
+        console.log('Postoji meni sa datim imenom!');
+        const result = await this.menuRepo.removeMenu(exists);
+        return result;
+    }
     
     async getAllMenus(): Promise<Menu[]> {
         return await this.menuRepo.getAllMenus();

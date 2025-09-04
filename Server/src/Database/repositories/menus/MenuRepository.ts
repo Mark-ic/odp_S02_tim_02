@@ -4,6 +4,20 @@ import { IMenuRepository } from "../../../Domain/repositories/menus/IMenuReposit
 import db from "../../connection/DbConnectionPool";
 
 export class MenuRepository implements IMenuRepository {
+    
+    async removeMenu(menu: Menu): Promise<Boolean> {
+        try {
+            const query: string = 'DELETE FROM meni WHERE idMeni = ?';
+
+            const [result] = await db.execute<ResultSetHeader>(query, [menu.idMenu]);
+
+            return result.affectedRows > 0;
+        }
+        catch {
+            return false;
+        }
+    }
+
     async getAllMenus(): Promise<Menu[]> {
         try {
             const query = "SELECT * FROM meni";

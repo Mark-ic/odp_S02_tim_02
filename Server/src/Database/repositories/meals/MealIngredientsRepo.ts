@@ -31,7 +31,7 @@ export class MealIngedientsRepo implements IMealIngrendientsRepo {
         try {
             const query: string = 'DELETE FROM Jelo_Sastojak WHERE idSastojak = ?';
             const [result] = await db.execute<ResultSetHeader>(query, [ingredientID]);
-            return result.affectedRows > 0;
+            return true;
         }
         catch {
             return false;

@@ -246,7 +246,12 @@ users/
   POST localhost:4000/api/v1/menu/getAllMenus
   NEMA BODY
 
-//Bice gotovo sutra
+  Brisanje menija
+  localhost:4000/api/v1/menu/deleteMenu
+  {
+    "menuName":"Monday"
+  }
+
 menuMeal/
   Dobijanje svih jela iz odredjenog menija
   POST localhost:4000/api/v1/menuMeal/getAllMealsFromMenu
@@ -275,6 +280,12 @@ menuMeal/
   POST localhost:4000/api/v1/menuMeal/getBestSellingMeals
   {
     "menuName":"Vegan"
+  }
+
+  Brisanje svih jela iz jednog menija
+  localhost:4000/api/v1/menuMeal/removeMealsFromMenu
+  {
+    "menuName":"Monday"
   }
 
 orders/

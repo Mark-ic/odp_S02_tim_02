@@ -110,7 +110,7 @@ export class MealIngredientService implements IMealIngredientService {
             return false;
         }
         const removeIngFromMeals = await this.deleteIngredientFromMeals(name);
-
+        
         if (removeIngFromMeals) {
             const result = await this.ingredientRepo.deleteIngredient(ingred.idIngredient);
             return result;
