@@ -6,13 +6,14 @@ import { InfoAboutPage } from "../../components/dashboard/headerOfPage/HeaderOfP
 import { MenuTab } from "../../components/dashboard/adminTabs/menuTab/MenuTab";
 import { MealTab } from "../../components/dashboard/adminTabs/mealsTab/MealsTab";
 import { MenuMealsTab } from "../../components/dashboard/adminTabs/menuMealsTab/MenuMealsTab";
+import { IngredientsTab } from "../../components/dashboard/adminTabs/ingredientsTab/IngredientsTab";
 
 export default function AdminDashboardPage() {
   const { isAuthenticated, logout } = useAuth();
   const navigate = useNavigate();
   const token = ReadValueByKey("authToken") || "";
 
-  const [activeTab, setActiveTab] = useState<"menus" | "meals" | "menuMeals">("menus");
+  const [activeTab, setActiveTab] = useState<"menus" | "meals" | "menuMeals" | "ingredients">("menus");
 
   useEffect(() => {
     if (!isAuthenticated || !token) {
@@ -65,12 +66,22 @@ export default function AdminDashboardPage() {
                 : "bg-gray-200 text-gray-600 hover:bg-gray-300"
             }`}
           > Meals on Menus </button>
+
+          <button
+            onClick={() => setActiveTab("ingredients")}
+            className={`px-4 py-2 rounded-xl font-semibold transition cursor-pointer ${
+              activeTab === "ingredients"
+                ? "bg-white shadow text-gray-800"
+                : "bg-gray-200 text-gray-600 hover:bg-gray-300"
+            }`}
+          > Ingredients </button>
         </div>
 
         <div className="w-full">
           {activeTab === "menus" && <MenuTab token={token} />}
           {activeTab === "meals" && <MealTab token={token} />}
           {activeTab === "menuMeals" && <MenuMealsTab token={token} />}
+          {activeTab === "ingredients" && <IngredientsTab token={token} />}
         </div>
       </main>
     </div>

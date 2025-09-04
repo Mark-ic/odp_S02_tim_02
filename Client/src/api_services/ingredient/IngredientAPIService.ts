@@ -8,8 +8,8 @@ export const ingredientApi: IIngredientAPIService = {
   async createIngredient(token: string, name: string, category: string, alergen: boolean): Promise<Ingredient> {
     try {
       const res = await axios.post<{ success: boolean; message: string; data?: Ingredient }>(
-        `${API_URL}/create`,
-        { name, category, alergen },
+        `${API_URL}/createIngredient`,
+        { ingredientName: name, category, alergen },
         { headers: { Authorization: `Bearer ${token}` } }
       );
       return res.data.data || { idIngredient: 0, ingredientName: name, category, alergen };
