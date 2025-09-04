@@ -50,7 +50,7 @@ export function OrderForm({ meal, onCancel }: OrderFormProps) {
 
       if (created) {
         setMessage({ text: "Order has been successfully created!", type: "success" });
-        setTimeout(onCancel, 1500);
+        setTimeout(onCancel, 1000);
       } else {
         alert("There was an error while creating the order.");
       }
