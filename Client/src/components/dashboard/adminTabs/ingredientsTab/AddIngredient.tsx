@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ingredientApi } from "../../../../api_services/ingredient/IngredientAPIService";
+import { validateIngredient } from "../../../../api_services/validators/addIngredient/AddIngredientValidator";
 
 interface IngredientAddProps {
   token: string;
@@ -13,8 +14,9 @@ export function IngredientAdd({ token, groups, onAdded }: IngredientAddProps) {
   const [isAllergen, setIsAllergen] = useState(false);
 
   const handleAddIngredient = async () => {
-    if (!newName || !newGroup) {
-      alert("Fill in all fields!");
+    const validation = validateIngredient(newName, newGroup);
+    if (!validation.succsess) {
+      alert(validation.message);
       return;
     }
     await ingredientApi.createIngredient(token, newName, newGroup, isAllergen);

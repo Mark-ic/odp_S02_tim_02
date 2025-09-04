@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import type { Ingredient } from "../../../../models/ingredient/Ingredient";
 import { mealIngredientApi } from "../../../../api_services/meal/mealIngredient/MealIngredientAPIService";
+import { validateMeal } from "../../../../api_services/validators/addMeal/AddMealValidator";
 
 interface MealAddProps {
   token: string;
@@ -24,10 +25,12 @@ export function MealAdd({ token, ingredients, onAdded }: MealAddProps) {
   }, [message]);
 
   const handleAddMeal = async () => {
-    if (!newMealName || newPrice < 1 || newPrepTime < 1 || !newImage || newMealIngredients.length === 0) {
-      alert("Fill in all fields and select at least 1 ingredient");
+    const validation = validateMeal(newMealName, newPrice, newPrepTime, newImage, newMealIngredients);
+    if (!validation.succsess) {
+      alert(validation.message);
       return;
     }
+
     await mealIngredientApi.addMeal(token, newMealName, newPrice, newImage, newPrepTime, newMealIngredients);
     setMessage({ text: "New meal is added!", type: "success" });
     setNewMealName("");

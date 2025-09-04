@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { menuApi } from "../../../../api_services/menu/MenuAPIService";
+import { validateMenuName } from "../../../../api_services/validators/addMenu/AddMenuValidator";
 
 interface MenuAddProps {
   token: string;
@@ -10,8 +11,9 @@ export function MenuAdd({ token, onAdded }: MenuAddProps) {
   const [newMenuName, setNewMenuName] = useState("");
 
   const handleAddMenu = async () => {
-    if (!newMenuName) {
-      alert("Fill in menu name.");
+    const validation = validateMenuName(newMenuName);
+    if (!validation.succsess) {
+      alert(validation.message);
       return;
     }
 

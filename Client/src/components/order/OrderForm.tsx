@@ -6,6 +6,7 @@ import type { OrderStatus } from "../../enums/order/OrderStatus";
 import { ReadValueByKey } from "../../helpers/local_storage";
 import {jwtDecode} from "jwt-decode";
 import type { JwtTokenClaims } from "../../types/auth/JwtTokenClaims";
+import { validateOrder } from "../../api_services/validators/order/OrderValidator";
 
 interface OrderFormProps {
   meal: Meal;
@@ -19,6 +20,12 @@ export function OrderForm({ meal, onCancel }: OrderFormProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    const validation = validateOrder(deliveryType, address);
+    if (!validation.succsess) {
+      setMessage({ text: validation.message || "Validation error", type: "error" });
+      return;
+    }
 
     const token = ReadValueByKey("authToken");
     if (!token) {
