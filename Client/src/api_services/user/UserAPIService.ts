@@ -1,4 +1,3 @@
-// UserAPIService.ts
 import axios from "axios";
 import type { IUserAPIService } from "./IUserAPIService";
 import type { UserDto } from "../../models/users/UserDto";

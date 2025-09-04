@@ -36,7 +36,7 @@ export function MealsInMenu({ meals, loading, onRemove }: MealsInMenuProps) {
             <td className="px-4 py-2">
               <button
                 onClick={() => onRemove(meal.mealName)}
-                className="px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700 cursor-pointer"
+                className="px-3 py-1.5 bg-red-500 hover:bg-red-700 text-white rounded-xl font-semibold transition cursor-pointer"
               > Remove </button>
             </td>
           </tr>

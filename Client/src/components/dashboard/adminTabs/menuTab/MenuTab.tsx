@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { menuApi } from "../../../../api_services/menu/MenuAPIService";
 import type { Menu } from "../../../../models/menu/Menu";
-import { MenuRow } from "./MenuRow";
+import { MenuAdd } from "./AddMenu";
+import { MenuList } from "./MenuList";
+import { menuApi } from "../../../../api_services/menu/MenuAPIService";
 
 interface MenuTabProps {
   token: string;
@@ -10,7 +11,6 @@ interface MenuTabProps {
 export function MenuTab({ token }: MenuTabProps) {
   const [menus, setMenus] = useState<Menu[]>([]);
   const [loading, setLoading] = useState(true);
-  const [newMenuName, setNewMenuName] = useState("");
   const [editingMenu, setEditingMenu] = useState<Menu | null>(null);
   const [message, setMessage] = useState<{ text: string; type: "success" | "error" } | null>(null);
 
@@ -32,23 +32,10 @@ export function MenuTab({ token }: MenuTabProps) {
     }
   }, [message]);
 
-  const handleAddMenu = async () => {
-    if (!newMenuName) 
-    {
-      alert("Fill in menu name.");
-      return;
-    }
-    
-    await menuApi.createMenu(token, false, newMenuName);
-    setMessage({ text: "New menu is added!", type: "success" });    
-    setNewMenuName("");
-    fetchMenus();
-  };
-
   const handleEditMenu = async (menu: Menu) => {
     if (!editingMenu) return;
     await menuApi.updateMenuName(token, menu.menuName, editingMenu.menuName);
-    setMessage({ text: "Menu is updated!", type: "success" });    
+    setMessage({ text: "Menu is updated!", type: "success" });
     setEditingMenu(null);
     fetchMenus();
   };
@@ -58,8 +45,7 @@ export function MenuTab({ token }: MenuTabProps) {
       `Are you sure you want to delete "${menu.menuName}"?`
     );
     if (!confirmed) return;
-    //await menuApi.deleteMenu?.(token, menu.idMenu);
-    setMessage({ text: "Menu is deleted!", type: "success" });    
+    setMessage({ text: "Menu is deleted!", type: "success" });
     fetchMenus();
   };
 
@@ -73,61 +59,30 @@ export function MenuTab({ token }: MenuTabProps) {
     fetchMenus();
   };
 
-  if (loading)
-    return <p className="text-center mt-10 text-gray-600">Loading menus...</p>;
+  if (loading) return <p className="text-center mt-10 text-gray-600">Loading menus...</p>;
 
   return (
-    <div className="bg-white shadow-2xl rounded-2xl p-6 max-w-5xl w-full mx-auto mt-10">
+    <div className="flex flex-col gap-6 w-full">
       {message && (
         <div
-          className={`px-4 py-2 rounded-lg text-white font-semibold mb-4 ${
+          className={`px-4 py-2 rounded-lg text-white font-semibold mb-4 text-center ${
             message.type === "success" ? "bg-green-500" : "bg-red-500"
           }`}
         >
           {message.text}
         </div>
       )}
-      <h2 className="text-2xl font-bold mb-6 text-center text-gray-800"> Menus </h2>
 
-      <div className="flex gap-2 mb-6">
-        <input
-          type="text"
-          placeholder="New menu name"
-          value={newMenuName}
-          onChange={(e) => setNewMenuName(e.target.value)}
-          className="flex-1 p-2 border rounded"
-        />
-        <button
-          onClick={handleAddMenu}
-          className="px-3 py-1.5 bg-green-600 hover:bg-orange-700 text-white rounded-xl font-semibold transition cursor-pointer"
-        > Add </button>
-      </div>
-
-      <div className="overflow-x-auto">
-        <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-orange-100">
-            <tr>
-              <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700"> Menu name </th>
-              <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700"> Daily menu </th>
-              <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700"> Actions </th>
-            </tr>
-          </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
-            {menus.map((menu) => (
-              <MenuRow
-                key={menu.idMenu}
-                menu={menu}
-                editingMenu={editingMenu}
-                setEditingMenu={setEditingMenu}
-                handleEditMenu={handleEditMenu}
-                handleDeleteMenu={handleDeleteMenu}
-                handleSetDailyMenu={handleSetDailyMenu}
-                handleRemoveDailyMenu={handleRemoveDailyMenu}
-              />
-            ))}
-          </tbody>
-        </table>
-      </div>
+      <MenuAdd token={token} onAdded={fetchMenus} />
+      <MenuList
+        menus={menus}
+        editingMenu={editingMenu}
+        setEditingMenu={setEditingMenu}
+        handleEditMenu={handleEditMenu}
+        handleDeleteMenu={handleDeleteMenu}
+        handleSetDailyMenu={handleSetDailyMenu}
+        handleRemoveDailyMenu={handleRemoveDailyMenu}
+      />
     </div>
   );
 }
