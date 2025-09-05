@@ -81,7 +81,6 @@ export function MenuMealsTab({ token }: MenuMealsTabProps) {
           {message.text}
         </div>
       )}
-      <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Menu Meals</h2>
 
       <div className="mb-6 flex gap-2 items-center">
         <label className="font-semibold">Select Menu:</label>

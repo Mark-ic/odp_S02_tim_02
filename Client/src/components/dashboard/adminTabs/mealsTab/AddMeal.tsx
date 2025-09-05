@@ -50,6 +50,7 @@ export function MealAdd({ token, ingredients, onAdded }: MealAddProps) {
           {message.text}
         </div>
       )}
+      <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Add Meal</h2>
       <div className="flex flex-wrap gap-2 items-center">
         <input type="text" placeholder="Meal name" value={newMealName} 
           onChange={e => setNewMealName(e.target.value)} className="flex-1 p-2 border rounded" />
