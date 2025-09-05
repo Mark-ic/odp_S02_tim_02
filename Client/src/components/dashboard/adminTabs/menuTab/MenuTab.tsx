@@ -44,7 +44,9 @@ export function MenuTab({ token }: MenuTabProps) {
     const confirmed = window.confirm(
       `Are you sure you want to delete "${menu.menuName}"?`
     );
-    if (!confirmed) return;
+    if (!confirmed)  
+      return;
+    await menuApi.deleteMenu(token, menu.menuName);
     setMessage({ text: "Menu is deleted!", type: "success" });
     fetchMenus();
   };

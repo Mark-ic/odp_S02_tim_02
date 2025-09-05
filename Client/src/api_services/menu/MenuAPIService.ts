@@ -18,6 +18,20 @@ export const menuApi: IMenuAPIService = {
       return [];
     }
   },
+  
+  async deleteMenu(token:string, menuName:string):Promise<Boolean>{
+    try {
+      const res = await axios.post<{ success: boolean; message: string }>(
+        `${API_URL}/deleteMenu`,
+        { menuName },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      return res.data.success;
+    } catch (error) {
+      console.error("Error deleting menu:", error);
+      return false;
+    }
+  },
 
   async createMenu(token: string, dailyMenu: boolean, menuName: string): Promise<Menu> {
     try {

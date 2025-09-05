@@ -2,6 +2,7 @@ import type { Menu } from "../../models/menu/Menu";
 
 export interface IMenuAPIService {
   getAllMenus(token: string): Promise<Menu[]>;
+  deleteMenu(token:string, menuName:string):Promise<Boolean>
   createMenu(token: string, dailyMenu: boolean, menuName: string): Promise<Menu>;
   getDailyMenu(token: string): Promise<Menu>;
   updateMenuName(token: string, oldMenuName: string, newMenuName: string): Promise<Menu>;
