@@ -59,12 +59,12 @@ export function UserOrdersList() {
         <table className="min-w-full table-auto border-collapse">
           <thead>
             <tr className="bg-orange-100 text-gray-700 uppercase text-sm font-semibold">
-              <th className="px-4 py-2 border-b">Order ID</th>
-              <th className="px-4 py-2 border-b">Meal ID</th>
-              <th className="px-4 py-2 border-b">Status</th>
-              <th className="px-4 py-2 border-b">Delivery Type</th>
-              <th className="px-4 py-2 border-b">Address</th>
-              <th className="px-4 py-2 border-b">Time Left</th>
+              <th className="px-4 py-2 border-b text-left">Order ID</th>
+              <th className="px-4 py-2 border-b text-left">Meal ID</th>
+              <th className="px-4 py-2 border-b text-left">Status</th>
+              <th className="px-4 py-2 border-b text-left">Delivery Type</th>
+              <th className="px-4 py-2 border-b text-left">Address</th>
+              <th className="px-4 py-2 border-b text-left">Time Left</th>
             </tr>
           </thead>
           <tbody>

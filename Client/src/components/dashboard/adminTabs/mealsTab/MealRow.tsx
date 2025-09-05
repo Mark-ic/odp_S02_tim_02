@@ -3,6 +3,7 @@ import type { Meal } from "../../../../models/meal/Meal";
 import type { Ingredient } from "../../../../models/ingredient/Ingredient";
 import { ingredientApi } from "../../../../api_services/ingredient/IngredientAPIService";
 import { mealIngredientApi } from "../../../../api_services/meal/mealIngredient/MealIngredientAPIService";
+import { validateMeal } from "../../../../api_services/validators/add&editMeal/EditMealValidator";
 
 interface MealRowProps {
   meal: Meal;
@@ -55,6 +56,24 @@ export function MealRow({
   const handlePrepTimeChange = (value: string) => {
     if (!editingMeal) return;
     setEditingMeal({ ...editingMeal, prepTime: Number(value) });
+  };
+
+  const handleSave = () => {
+    if (!editingMeal) return;
+
+    const validation = validateMeal(
+      editingMeal.mealName,
+      editingMeal.price,
+      editingMeal.prepTime
+    );
+
+    if (!validation.succsess) {
+      alert(validation.message);
+      return;
+    }
+
+    handleEditMeal({ ...editingMeal });
+    setEditingMeal(null);
   };
 
   return (
@@ -141,7 +160,7 @@ export function MealRow({
       <td className="px-6 py-4 flex gap-3 flex-wrap">
         {isEditing ? (
           <button
-            onClick={() => editingMeal && handleEditMeal({ ...editingMeal })}
+            onClick={handleSave}
             className="px-4 py-2 bg-blue-400 text-white rounded-lg cursor-pointer"
           > Save </button>
         ) : (

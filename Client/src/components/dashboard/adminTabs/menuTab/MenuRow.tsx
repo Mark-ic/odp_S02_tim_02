@@ -1,4 +1,5 @@
 import type { Menu } from "../../../../models/menu/Menu";
+import { validateMenuName } from "../../../../api_services/validators/add&editMenu/MenuValidator";
 
 interface MenuRowProps { menu: Menu; editingMenu: Menu | null; setEditingMenu: (menu: Menu | null) => void; handleEditMenu: (menu: Menu) => void;
   handleDeleteMenu: (menu: Menu) => void;  handleSetDailyMenu: (menu: Menu) => void;  handleRemoveDailyMenu: (menu: Menu) => void;
@@ -8,6 +9,14 @@ export function MenuRow({ menu, editingMenu, setEditingMenu, handleEditMenu, han
     handleSetDailyMenu, handleRemoveDailyMenu,}: MenuRowProps) 
 {
   const isEditing = editingMenu?.idMenu === menu.idMenu;
+  const onSave = () => {
+    const validation = validateMenuName(editingMenu?.menuName);
+    if (!validation.succsess) {
+      alert(validation.message); // prikazuje alert ako ime nije validno
+      return;
+    }
+    handleEditMenu(editingMenu!); // ako je validno, poziva funkciju za čuvanje
+  };
 
   return (
     <tr className="hover:bg-gray-50 transition-colors">
@@ -27,7 +36,7 @@ export function MenuRow({ menu, editingMenu, setEditingMenu, handleEditMenu, han
       <td className="px-4 py-3 flex gap-2 flex-wrap">
         {isEditing ? (
           <button
-            onClick={() => handleEditMenu(menu)}
+            onClick={onSave}
             className="px-3 py-1.5 bg-blue-400 hover:bg-blue-700 text-white rounded-xl font-semibold transition cursor-pointer"
           > Save
           </button>

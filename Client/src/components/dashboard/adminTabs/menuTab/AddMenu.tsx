@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { menuApi } from "../../../../api_services/menu/MenuAPIService";
-import { validateMenuName } from "../../../../api_services/validators/addMenu/AddMenuValidator";
+import { validateMenuName } from "../../../../api_services/validators/add&editMenu/MenuValidator";
 
 interface MenuAddProps {
   token: string;
