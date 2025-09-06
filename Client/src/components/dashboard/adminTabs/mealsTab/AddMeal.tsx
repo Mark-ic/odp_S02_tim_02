@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import type { Ingredient } from "../../../../models/ingredient/Ingredient";
 import { mealIngredientApi } from "../../../../api_services/meal/mealIngredient/MealIngredientAPIService";
-import { validateMeal } from "../../../../api_services/validators/addMeal/AddMealValidator";
+import { validateMeal } from "../../../../api_services/validators/add&editMeal/AddMealValidator";
 
 interface MealAddProps {
   token: string;
