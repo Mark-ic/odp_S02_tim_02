@@ -4,7 +4,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import { authApi } from "./api_services/auth/AuthAPIService";
-import { ProtectedRoute } from "./components/auth/protected_route/ProtectedRoute";
+import { ProtectedRoute } from "./components/protected_route/ProtectedRoute";
 import LoginPage from "./pages/auth/LoginPage";
 import UserDashboardPage from "./pages/dashboards/UserDashboardPage";
 import AdminDashboardPage from "./pages/dashboards/AdminDashboardPage";

@@ -1,7 +1,7 @@
 import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
-import { RemoveValueByKey } from "../../../helpers/local_storage";
-import { useAuth } from "../../../hooks/auth/useAuthHook";
+import { RemoveValueByKey } from "../../helpers/local_storage";
+import { useAuth } from "../../hooks/auth/useAuthHook";
 
 type ProtectedRouteProps = {
   children: React.ReactNode;

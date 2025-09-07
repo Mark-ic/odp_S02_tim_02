@@ -19,7 +19,7 @@ export const userApi: IUserAPIService = {
         }
     },
 
-    /*async changeUser(token: string, user: { username: string; phone: string; role: string; password: string }): Promise<UserDto | null> {
+    async changeUser(token: string, user: { username: string; phone: string; role: string; password: string }): Promise<UserDto | null> {
         try {
             const res = await axios.post<{ success: boolean; data: UserDto }>(
                 `${API_URL}/changeUser`,
@@ -45,5 +45,5 @@ export const userApi: IUserAPIService = {
             console.error("Error deleting user:", error);
             return false;
         }
-    }*/
+    }
 };

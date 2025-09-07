@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { ReadValueByKey } from "../../helpers/local_storage";
 import { useAuth } from "../../hooks/auth/useAuthHook";
 import { MenuDisplay } from "../../components/dashboard/menu/MenuDisplay";
-{/* import { MealDisplay } from "../../components/dashboard/meal/MealDisplay";*/}
 import { InfoAboutPage } from "../../components/dashboard/headerOfPage/HeaderOfPage";
 
 export default function UserDashboardPage() {
@@ -36,7 +35,6 @@ export default function UserDashboardPage() {
 
       <main className="flex-1 p-6 flex flex-col items-center justify-start">
         <MenuDisplay token={token} />
-        {/* <MealDisplay token={token} /> */}
       </main>
     </div>
   );
