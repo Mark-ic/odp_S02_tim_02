@@ -7,6 +7,7 @@ import { ReadValueByKey } from "../../helpers/local_storage";
 import {jwtDecode} from "jwt-decode";
 import type { JwtTokenClaims } from "../../types/auth/JwtTokenClaims";
 import { validateOrder } from "../../api_services/validators/order/OrderValidator";
+import toast from "react-hot-toast";
 
 interface OrderFormProps {
   meal: Meal;
@@ -16,20 +17,19 @@ interface OrderFormProps {
 export function OrderForm({ meal, onCancel }: OrderFormProps) {
   const [deliveryType, setDeliveryType] = useState<DeliveryType>("DELIVERY");
   const [address, setAddress] = useState("");
-  const [message, setMessage] = useState<{ text: string; type: "success" | "error" } | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     const validation = validateOrder(deliveryType, address);
     if (!validation.succsess) {
-      setMessage({ text: validation.message || "Validation error", type: "error" });
+      toast.error(validation.message || "Validation error");
       return;
     }
 
     const token = ReadValueByKey("authToken");
     if (!token) {
-      alert("User not logged in!");
+      toast.error("User not logged in!");
       return;
     }
 
@@ -39,7 +39,6 @@ export function OrderForm({ meal, onCancel }: OrderFormProps) {
       idUser = decoded.id;
     } catch (error) {
       console.error("Invalid token:", error);
-      alert("Invalid user token.");
       return;
     }
 
@@ -56,28 +55,19 @@ export function OrderForm({ meal, onCancel }: OrderFormProps) {
       const created = await orderApi.createOrder(token, newOrder);
 
       if (created) {
-        setMessage({ text: "Order has been successfully created!", type: "success" });
+        toast.success("Order has been successfully created!");
         setTimeout(onCancel, 1000);
       } else {
-        alert("There was an error while creating the order.");
+        toast.error("An error occurred while creating the order.");
       }
     } catch (error) {
       console.error("Error creating order:", error);
-      alert("An error occurred!");
+      toast.error("An error occurred while creating the order.");
     }
   };
 
   return (
     <div className="bg-white p-6 rounded-2xl shadow-md w-full max-w-md">
-      {message && (
-        <div
-          className={`absolute top-4 left-1/2 -translate-x-1/2 px-4 py-2 rounded-lg text-white font-semibold ${
-            message.type === "success" ? "bg-green-500" : "bg-red-500"
-          }`}
-        >
-          {message.text}
-        </div>
-      )}
       <img
         src={`/Images/${meal.image}`}
         alt={meal.mealName}

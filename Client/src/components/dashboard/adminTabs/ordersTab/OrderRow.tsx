@@ -1,4 +1,3 @@
-// OrderRow.tsx
 import type { Order } from "../../../../models/order/Order";
 import type { OrderStatus } from "../../../../enums/order/OrderStatus";
 

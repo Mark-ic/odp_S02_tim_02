@@ -3,6 +3,7 @@ import type { Menu } from "../../../../models/menu/Menu";
 import { MenuAdd } from "./AddMenu";
 import { MenuList } from "./MenuList";
 import { menuApi } from "../../../../api_services/menu/MenuAPIService";
+import toast from "react-hot-toast";
 
 interface MenuTabProps {
   token: string;
@@ -12,7 +13,6 @@ export function MenuTab({ token }: MenuTabProps) {
   const [menus, setMenus] = useState<Menu[]>([]);
   const [loading, setLoading] = useState(true);
   const [editingMenu, setEditingMenu] = useState<Menu | null>(null);
-  const [message, setMessage] = useState<{ text: string; type: "success" | "error" } | null>(null);
 
   const fetchMenus = async () => {
     setLoading(true);
@@ -25,13 +25,6 @@ export function MenuTab({ token }: MenuTabProps) {
     fetchMenus();
   }, [token]);
 
-  useEffect(() => {
-    if (message) {
-      const timer = setTimeout(() => setMessage(null), 2000);
-      return () => clearTimeout(timer);
-    }
-  }, [message]);
-
   const handleEditMenu = async (menu: Menu) => {
     const oldMenu = menus.find((m) => m.idMenu === menu.idMenu);
     if (!oldMenu) return;
@@ -39,16 +32,12 @@ export function MenuTab({ token }: MenuTabProps) {
     const updated = await menuApi.updateMenuName(token, oldMenu.menuName, menu.menuName);
 
     if (updated.idMenu !== 0) {
-      setMessage({ text: "Menu is updated!", type: "success" });
       setMenus((prev) =>
         prev.map((m) =>
           m.idMenu === updated.idMenu ? { ...m, menuName: updated.menuName } : m
         )
       );
-    } else {
-      alert("Failed to update menu");
     }
-
     setEditingMenu(null);
   };
 
@@ -60,7 +49,7 @@ export function MenuTab({ token }: MenuTabProps) {
     if (!confirmed)  
       return;
     await menuApi.deleteMenu(token, menu.menuName);
-    setMessage({ text: "Menu is deleted!", type: "success" });
+    toast.success("Menu is deleted!");
     fetchMenus();
   };
 
@@ -78,16 +67,6 @@ export function MenuTab({ token }: MenuTabProps) {
 
   return (
     <div className="flex flex-col gap-6 w-full">
-      {message && (
-        <div
-          className={`px-4 py-2 rounded-lg text-white font-semibold mb-4 text-center ${
-            message.type === "success" ? "bg-green-500" : "bg-red-500"
-          }`}
-        >
-          {message.text}
-        </div>
-      )}
-
       <MenuAdd token={token} onAdded={fetchMenus} />
       <MenuList
         menus={menus}

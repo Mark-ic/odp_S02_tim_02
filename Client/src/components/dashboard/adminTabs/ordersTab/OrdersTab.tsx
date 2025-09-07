@@ -3,6 +3,7 @@ import { orderApi } from "../../../../api_services/order/OrderAPIService";
 import type { Order } from "../../../../models/order/Order";
 import type { OrderStatus } from "../../../../enums/order/OrderStatus";
 import { OrderRow } from "./OrderRow";
+import toast from "react-hot-toast";
 
 interface OrdersTabProps {
   token: string;
@@ -13,7 +14,6 @@ export function OrdersTab({ token }: OrdersTabProps) {
   const [usersMap, setUsersMap] = useState<Record<number, string>>({});
   const [mealsMap, setMealsMap] = useState<Record<number, string>>({});
   const [loading, setLoading] = useState(true);
-  const [message, setMessage] = useState<{ text: string; type: "success" | "error" } | null>(null);
 
   const orderStatuses: OrderStatus[] = ["PREPARING", "READY", "DELIVERING", "DELIVERED"];
 
@@ -47,20 +47,13 @@ export function OrdersTab({ token }: OrdersTabProps) {
     fetchData();
   }, [token]);
 
-  useEffect(() => {
-    if (message) {
-      const timer = setTimeout(() => setMessage(null), 2000);
-      return () => clearTimeout(timer);
-    }
-  }, [message]);
-
   const handleStatusChange = async (orderId: number, status: OrderStatus) => {
     const updated = await orderApi.updateOrderStatus(token, orderId, status);
     if (updated) {
-      setMessage({ text: "Order status updated!", type: "success" });
+      toast.success("Order status updated!");
       fetchData();
     } else {
-      setMessage({ text: "Failed to update order status.", type: "error" });
+      toast.error("Failed to update order status.");
     }
   };
 
@@ -69,10 +62,10 @@ export function OrdersTab({ token }: OrdersTabProps) {
     if (!confirmed) return;
     const deleted = await orderApi.deleteOrder(token, orderId);
     if (deleted) {
-      setMessage({ text: "Order deleted!", type: "success" });
+      toast.success("Order deleted!");
       fetchData();
     } else {
-      setMessage({ text: "Failed to delete order.", type: "error" });
+      toast.error("Failed to delete order.");
     }
   };
 
@@ -80,16 +73,7 @@ export function OrdersTab({ token }: OrdersTabProps) {
 
   return (
     <div className="bg-white shadow-2xl rounded-2xl p-6 max-w-5xl w-full mx-auto mt-10">
-      {message && (
-        <div
-          className={`px-4 py-2 rounded-lg text-white font-semibold mb-4 ${
-            message.type === "success" ? "bg-green-500" : "bg-red-500"
-          }`}
-        >
-          {message.text}
-        </div>
-      )}
-
+      
       <h2 className="text-2xl font-bold mb-6 text-center text-gray-800"> All Orders </h2>
 
       <div className="overflow-x-auto">

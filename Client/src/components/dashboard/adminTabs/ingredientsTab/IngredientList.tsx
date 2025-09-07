@@ -1,5 +1,6 @@
 import type { Ingredient } from "../../../../models/ingredient/Ingredient";
 import { mealIngredientApi } from "../../../../api_services/meal/mealIngredient/MealIngredientAPIService";
+import toast from "react-hot-toast";
 
 interface IngredientListProps {
   token: string;
@@ -11,6 +12,7 @@ export function IngredientList({ token, ingredients, onDeleted }: IngredientList
   const handleDeleteIngredient = async (name: string) => {
     if (!window.confirm(`Delete ingredient "${name}"?`)) return;
     await mealIngredientApi.removeIngredient(token, name);
+    toast.success(`Ingredient "${name}" deleted successfully!`);
     onDeleted();
   };
 

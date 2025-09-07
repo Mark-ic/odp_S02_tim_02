@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ingredientApi } from "../../../../api_services/ingredient/IngredientAPIService";
 import { validateIngredient } from "../../../../api_services/validators/addIngredient/AddIngredientValidator";
+import toast from "react-hot-toast";
 
 interface IngredientAddProps {
   token: string;
@@ -16,10 +17,11 @@ export function IngredientAdd({ token, groups, onAdded }: IngredientAddProps) {
   const handleAddIngredient = async () => {
     const validation = validateIngredient(newName, newGroup);
     if (!validation.succsess) {
-      alert(validation.message);
+      toast.error(validation.message ?? "Invalid ingredient data");
       return;
     }
     await ingredientApi.createIngredient(token, newName, newGroup, isAllergen);
+    toast.success(`Ingredient "${newName}" added successfully!`);
     setNewName("");
     setNewGroup("");
     setIsAllergen(false);

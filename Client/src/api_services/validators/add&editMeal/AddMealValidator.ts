@@ -23,6 +23,15 @@ export function validateMeal(
     return { succsess: false, message: "Prep time must be greater than 0" };
   }
 
+  if (!image || image.trim().length < 1) {
+    return { succsess: false, message: "Image name cannot be empty" };
+  }
+
+  const lowerImage = image.toLowerCase();
+  if (!lowerImage.endsWith(".png") && !lowerImage.endsWith(".jpg")) {
+    return { succsess: false, message: "Image must be a .png or .jpg file" };
+  }
+
   if (!image || image.trim() === "") {
     return { succsess: false, message: "Image name cannot be empty" };
   }
@@ -30,6 +39,7 @@ export function validateMeal(
   if (!ingredients || ingredients.length === 0) {
     return { succsess: false, message: "Select at least one ingredient" };
   }
+
 
   return { succsess: true };
 }

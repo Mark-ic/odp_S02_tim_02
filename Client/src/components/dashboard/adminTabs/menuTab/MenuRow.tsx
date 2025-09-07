@@ -1,5 +1,6 @@
 import type { Menu } from "../../../../models/menu/Menu";
 import { validateMenuName } from "../../../../api_services/validators/add&editMenu/MenuValidator";
+import toast from "react-hot-toast"
 
 interface MenuRowProps { menu: Menu; editingMenu: Menu | null; setEditingMenu: (menu: Menu | null) => void; handleEditMenu: (menu: Menu) => void;
   handleDeleteMenu: (menu: Menu) => void;  handleSetDailyMenu: (menu: Menu) => void;  handleRemoveDailyMenu: (menu: Menu) => void;
@@ -12,10 +13,11 @@ export function MenuRow({ menu, editingMenu, setEditingMenu, handleEditMenu, han
   const onSave = () => {
     const validation = validateMenuName(editingMenu?.menuName);
     if (!validation.succsess) {
-      alert(validation.message); // prikazuje alert ako ime nije validno
+      toast.error(validation.message ?? "Menu name is invalid"); 
       return;
     }
-    handleEditMenu(editingMenu!); // ako je validno, poziva funkciju za čuvanje
+    handleEditMenu(editingMenu!);
+    toast.success("Menu updated successfully!"); 
   };
 
   return (

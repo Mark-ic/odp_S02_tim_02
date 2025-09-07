@@ -6,6 +6,7 @@ import { ingredientApi } from "../../../../api_services/ingredient/IngredientAPI
 import { mealIngredientApi } from "../../../../api_services/meal/mealIngredient/MealIngredientAPIService";
 import { MealAdd } from "./AddMeal";
 import { MealList } from "./MealList";
+import toast from "react-hot-toast";
 
 interface MealTabProps {
   token: string;
@@ -40,6 +41,7 @@ export function MealTab({ token }: MealTabProps) {
     if (!window.confirm(`Are you sure you want to delete "${meal.mealName}"?`)) return;
     await mealIngredientApi.deleteIngredientsFromMeal(token, meal.mealName); 
     await mealApi.removeMeal(token, meal.mealName);
+    toast.success("Meal deleted successfully!");
     fetchData();
   };
 

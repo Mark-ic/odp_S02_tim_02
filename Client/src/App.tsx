@@ -12,9 +12,34 @@ import RegistrationPage from "./pages/auth/RegistrationPage";
 import NotFoundStranica from "./pages/not_found/NotFoundPage";
 import OrderPage from "./pages/ordering/OrderPage";
 import ProfilePage from "./pages/profile/ProfilePage";
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   return (
+    <>
+    <Toaster
+      position="top-center"
+      reverseOrder={false}
+      toastOptions={{
+        duration: 3000,
+        style: {
+          padding: '16px',
+          color: '#fff',
+          borderRadius: '8px',
+          fontWeight: '600',
+        },
+        success: {
+          style: {
+            background: 'green', 
+          },
+        },
+        error: {
+          style: {
+            background: 'red', 
+          },
+        },
+      }}
+    />
     <Routes>
       <Route path="/login" element={<LoginPage authApi={authApi} />} />
       <Route path="/register" element={<RegistrationPage authApi={authApi} />} />
@@ -65,6 +90,7 @@ function App() {
         {/* Catch-all ruta za nepostojeće stranice */}
         <Route path="*" element={<Navigate to="/404" replace />} />
     </Routes>
+    </>
   );
 }
 

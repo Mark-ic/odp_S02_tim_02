@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState} from "react";
 import type { Ingredient } from "../../../../models/ingredient/Ingredient";
 import { mealIngredientApi } from "../../../../api_services/meal/mealIngredient/MealIngredientAPIService";
 import { validateMeal } from "../../../../api_services/validators/add&editMeal/AddMealValidator";
+import toast from "react-hot-toast";
 
 interface MealAddProps {
   token: string;
@@ -15,24 +16,16 @@ export function MealAdd({ token, ingredients, onAdded }: MealAddProps) {
   const [newPrepTime, setNewPrepTime] = useState(0);
   const [newImage, setNewImage] = useState("");
   const [newMealIngredients, setNewMealIngredients] = useState<string[]>([]);
-  const [message, setMessage] = useState<{ text: string; type: "success" | "error" } | null>(null);
-
-  useEffect(() => {
-    if (message) {
-      const timer = setTimeout(() => setMessage(null), 2000);
-      return () => clearTimeout(timer);
-    }
-  }, [message]);
 
   const handleAddMeal = async () => {
     const validation = validateMeal(newMealName, newPrice, newPrepTime, newImage, newMealIngredients);
     if (!validation.succsess) {
-      alert(validation.message);
+      toast.error(validation.message ?? "Invalid meal data");
       return;
     }
 
     await mealIngredientApi.addMeal(token, newMealName, newPrice, newImage, newPrepTime, newMealIngredients);
-    setMessage({ text: "New meal is added!", type: "success" });
+    toast.success("New meal is added!");
     setNewMealName("");
     setNewPrice(0);
     setNewPrepTime(0);
@@ -43,13 +36,7 @@ export function MealAdd({ token, ingredients, onAdded }: MealAddProps) {
 
   return (
     <div className="bg-white shadow-2xl rounded-2xl p-6 max-w-7xl w-full mx-auto mt-10">
-      {message && (
-        <div className={`px-4 py-2 rounded-lg text-white font-semibold mb-4 text-center ${
-          message.type === "success" ? "bg-green-500" : "bg-red-500"
-        }`}>
-          {message.text}
-        </div>
-      )}
+      
       <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Add Meal</h2>
       <div className="flex flex-wrap gap-2 items-center">
         <input type="text" placeholder="Meal name" value={newMealName} 

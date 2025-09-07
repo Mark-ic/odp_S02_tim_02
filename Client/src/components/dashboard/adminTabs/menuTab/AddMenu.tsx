@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { menuApi } from "../../../../api_services/menu/MenuAPIService";
 import { validateMenuName } from "../../../../api_services/validators/add&editMenu/MenuValidator";
+import toast from "react-hot-toast"
 
 interface MenuAddProps {
   token: string;
@@ -13,11 +14,12 @@ export function MenuAdd({ token, onAdded }: MenuAddProps) {
   const handleAddMenu = async () => {
     const validation = validateMenuName(newMenuName);
     if (!validation.succsess) {
-      alert(validation.message);
+      toast.error(validation.message ?? "Validation failed");
       return;
     }
 
     await menuApi.createMenu(token, false, newMenuName);
+    toast.success("New menu added!");
     setNewMenuName("");
     onAdded();
   };

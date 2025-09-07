@@ -4,6 +4,7 @@ import type { Ingredient } from "../../../../models/ingredient/Ingredient";
 import { ingredientApi } from "../../../../api_services/ingredient/IngredientAPIService";
 import { mealIngredientApi } from "../../../../api_services/meal/mealIngredient/MealIngredientAPIService";
 import { validateMeal } from "../../../../api_services/validators/add&editMeal/EditMealValidator";
+import toast from "react-hot-toast";
 
 interface MealRowProps {
   meal: Meal;
@@ -68,11 +69,12 @@ export function MealRow({
     );
 
     if (!validation.succsess) {
-      alert(validation.message);
+      toast.error(validation.message ?? "Invalid meal data");
       return;
     }
 
     handleEditMeal({ ...editingMeal });
+    toast.success("Meal updated successfully!");
     setEditingMeal(null);
   };
 
