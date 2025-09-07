@@ -62,9 +62,9 @@ export function MealRow({
     if (!editingMeal) return;
 
     const validation = validateMeal(
-      editingMeal.mealName,
       editingMeal.price,
-      editingMeal.prepTime
+      editingMeal.prepTime,
+      editingMeal.image
     );
 
     if (!validation.succsess) {
@@ -78,25 +78,25 @@ export function MealRow({
 
   return (
     <tr className="hover:bg-gray-50">
-
-      <td className="">
-        <img
-          src={`/Images/${meal.image}`}
-          alt={meal.mealName}
-          className="w-25 h-25 object-contain rounded-lg"
-        />
-      </td>
-
-      <td className="px-6 py-4 min-w-[120px]">
+      <td className="px-6 py-4 w-32">
         {isEditing ? (
           <input
             type="text"
-            value={editingMeal.mealName}
-            onChange={e => setEditingMeal({ ...editingMeal, mealName: e.target.value })}
+            value={editingMeal.image}
+            onChange={e => setEditingMeal({ ...editingMeal, image: e.target.value })}
+            placeholder="Image file name"
             className="border p-2 rounded w-full"
           />
-        ) : (meal.mealName)}
+        ) : (
+          <img
+            src={`/Images/${meal.image}`}
+            alt={meal.mealName}
+            className="w-25 h-25 object-contain rounded-lg"
+          />
+        )}
       </td>
+
+      <td className="px-6 py-4 min-w-[120px]">{meal.mealName}</td>
 
       <td className="px-6 py-4 w-32">
         {isEditing ? (
@@ -107,7 +107,9 @@ export function MealRow({
             onChange={e => handlePriceChange(e.target.value)}
             className="border p-2 rounded w-full"
           />
-        ) : (meal.price.toFixed(2))}
+        ) : (
+          meal.price.toFixed(2)
+        )}
       </td>
 
       <td className="px-6 py-4 w-32">
@@ -119,7 +121,9 @@ export function MealRow({
             onChange={e => handlePrepTimeChange(e.target.value)}
             className="border p-2 rounded w-full"
           />
-        ) : (meal.prepTime)}
+        ) : (
+          meal.prepTime
+        )}
       </td>
 
       <td className="px-6 py-4 min-w-[200px]">
@@ -162,17 +166,23 @@ export function MealRow({
           <button
             onClick={handleSave}
             className="px-4 py-2 bg-blue-400 text-white rounded-lg cursor-pointer"
-          > Save </button>
+          >
+            Save
+          </button>
         ) : (
           <button
             onClick={() => setEditingMeal({ ...meal })}
             className="px-4 py-2 bg-orange-400 text-white rounded-lg cursor-pointer"
-          > Edit </button>
+          >
+            Edit
+          </button>
         )}
         <button
           onClick={() => handleDeleteMeal(meal)}
           className="px-4 py-2 bg-red-500 text-white rounded-lg cursor-pointer"
-        > Delete </button>
+        >
+          Delete
+        </button>
       </td>
     </tr>
   );

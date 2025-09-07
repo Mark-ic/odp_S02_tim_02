@@ -33,12 +33,25 @@ export function MenuTab({ token }: MenuTabProps) {
   }, [message]);
 
   const handleEditMenu = async (menu: Menu) => {
-    if (!editingMenu) return;
-    await menuApi.updateMenuName(token, menu.menuName, editingMenu.menuName);
-    setMessage({ text: "Menu is updated!", type: "success" });
+    const oldMenu = menus.find((m) => m.idMenu === menu.idMenu);
+    if (!oldMenu) return;
+
+    const updated = await menuApi.updateMenuName(token, oldMenu.menuName, menu.menuName);
+
+    if (updated.idMenu !== 0) {
+      setMessage({ text: "Menu is updated!", type: "success" });
+      setMenus((prev) =>
+        prev.map((m) =>
+          m.idMenu === updated.idMenu ? { ...m, menuName: updated.menuName } : m
+        )
+      );
+    } else {
+      alert("Failed to update menu");
+    }
+
     setEditingMenu(null);
-    fetchMenus();
   };
+
 
   const handleDeleteMenu = async (menu: Menu) => {
     const confirmed = window.confirm(
