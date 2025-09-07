@@ -424,3 +424,760 @@ INSERT INTO Jelo_Meni (idJelo, idMeni) VALUES
 (13,7),(31,7),(43,7),(48,7),(22,7),
 (10,7),(24,7),(5,7),(42,7),(19,7),
 (50,7),(9,7),(33,7),(16,7),(41,7);
+
+-- Sifra user123
+INSERT INTO korisnik(KorisnickoIme,telefon,uloga,sifra) VALUES ('user1','+3816158051','user','$2b$10$tfRUPk.92XBW.Tg4Wdcf.eII3VHLYC7bDxGOQaROcb5ztNXxDOlsy');
+
+-- Sifra user123
+INSERT INTO korisnik(KorisnickoIme,telefon,uloga,sifra) VALUES ('user2','+3816158051','user','$2b$10$xaYdxRnIe9xWlCOOzEXsHuxmuWOV94nwOFVBxDdRxcTZGLWSJwUey');
+
+-- Sifra user123
+INSERT INTO korisnik(KorisnickoIme,telefon,uloga,sifra) VALUES ('user3','+3816155533','user','$2b$10$83ngt4ewnB57G63Di5kVruuzZFELW.96wEjtuz5It5ynKBm1osp4e');
+
+-- Sifra user123
+INSERT INTO korisnik(KorisnickoIme,telefon,uloga,sifra) VALUES ('user4','+381611234567','user','$2b$10$PchjqXzaILs24bPdLchizOa3EUfkd0wnUvZe2EtPLflXzFIqrnWx.');
+
+-- Sifra user123
+INSERT INTO korisnik(KorisnickoIme,telefon,uloga,sifra) VALUES ('user5','+381621334567','user','$2b$10$YZN9CH4gR684toMiVZ.8VuXvlKbf2/dIOCjgqryKbvLUKAwOVxI3K');
+
+-- Sifra admin123
+INSERT INTO korisnik(KorisnickoIme,telefon,uloga,sifra) VALUES ('admin','+38161256604','admin','$2b$10$LnHGFEXIlJUQB1OyJsH9NOa6FmSqJIYOUWlfZCxKwKnkxI409OaY6');
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (20, 'PREPARING', 'DELIVERY', 'Brace Radic 7', 9, 1);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (31, 'READY_FOR_PICKUP', 'PICKUP', '', 45, 1);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (11, 'IN_DELIVERY', 'DELIVERY', 'Brace Radic 7', 45, 1);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (27, 'DONE', 'PICKUP', '', 41, 1);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (20, 'PREPARING', 'DELIVERY', 'Zmaj Jovina 3', 14, 1);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (50, 'READY_FOR_PICKUP', 'PICKUP', '', 11, 1);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (39, 'IN_DELIVERY', 'DELIVERY', 'Bulevar 12/3', 4, 1);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (43, 'DONE', 'PICKUP', '', 2, 1);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (12, 'PREPARING', 'DELIVERY', 'Cara Dusana 45', 14, 1);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (21, 'READY_FOR_PICKUP', 'PICKUP', '', 16, 1);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (12, 'IN_DELIVERY', 'DELIVERY', 'Nikole Tesle 9A', 18, 1);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (39, 'DONE', 'PICKUP', '', 40, 1);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (35, 'PREPARING', 'DELIVERY', 'Gunduliceva 14', 7, 1);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (22, 'READY_FOR_PICKUP', 'PICKUP', '', 4, 1);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (59, 'IN_DELIVERY', 'DELIVERY', 'Cara Dusana 45', 35, 1);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (38, 'DONE', 'PICKUP', '', 23, 1);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (48, 'PREPARING', 'DELIVERY', 'Brace Radic 7', 22, 1);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (39, 'READY_FOR_PICKUP', 'PICKUP', '', 6, 1);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (13, 'IN_DELIVERY', 'DELIVERY', 'Nikole Tesle 9A', 42, 1);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (54, 'DONE', 'PICKUP', '', 18, 1);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (44, 'PREPARING', 'DELIVERY', 'Bulevar 12/3', 45, 1);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (45, 'READY_FOR_PICKUP', 'PICKUP', '', 23, 1);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (28, 'IN_DELIVERY', 'DELIVERY', 'Gunduliceva 14', 45, 1);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (38, 'DONE', 'PICKUP', '', 40, 1);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (16, 'PREPARING', 'DELIVERY', 'Nemanjina 11', 46, 1);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (52, 'READY_FOR_PICKUP', 'PICKUP', '', 50, 1);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (15, 'IN_DELIVERY', 'DELIVERY', 'Jovana Cvijica 88', 31, 1);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (17, 'DONE', 'PICKUP', '', 44, 1);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (49, 'PREPARING', 'DELIVERY', 'Brace Radic 7', 11, 1);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (53, 'READY_FOR_PICKUP', 'PICKUP', '', 35, 1);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (20, 'DONE', 'PICKUP', '', 40, 1);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (31, 'PREPARING', 'DELIVERY', 'Jovana Cvijica 88', 25, 1);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (45, 'READY_FOR_PICKUP', 'PICKUP', '', 8, 1);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (27, 'IN_DELIVERY', 'DELIVERY', 'Brace Radic 7', 39, 1);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (23, 'DONE', 'PICKUP', '', 42, 1);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (32, 'PREPARING', 'DELIVERY', 'Zmaj Jovina 3', 34, 1);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (28, 'READY_FOR_PICKUP', 'PICKUP', '', 2, 1);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (19, 'IN_DELIVERY', 'DELIVERY', 'Brace Radic 7', 33, 1);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (29, 'DONE', 'PICKUP', '', 4, 1);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (15, 'PREPARING', 'DELIVERY', 'Gunduliceva 14', 8, 1);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (57, 'READY_FOR_PICKUP', 'PICKUP', '', 35, 1);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (26, 'IN_DELIVERY', 'DELIVERY', 'Jovana Cvijica 88', 11, 1);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (60, 'DONE', 'PICKUP', '', 33, 1);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (57, 'PREPARING', 'DELIVERY', 'Cara Dusana 45', 16, 1);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (42, 'READY_FOR_PICKUP', 'PICKUP', '', 16, 1);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (29, 'IN_DELIVERY', 'DELIVERY', 'Nemanjina 11', 28, 1);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (29, 'DONE', 'PICKUP', '', 17, 1);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (43, 'PREPARING', 'DELIVERY', 'Gunduliceva 14', 6, 1);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (48, 'READY_FOR_PICKUP', 'PICKUP', '', 2, 1);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (24, 'PREPARING', 'DELIVERY', 'Bulevar 12/3', 32, 2);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (35, 'READY_FOR_PICKUP', 'PICKUP', '', 48, 2);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (22, 'IN_DELIVERY', 'DELIVERY', 'Jovana Cvijica 88', 12, 2);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (29, 'DONE', 'PICKUP', '', 45, 2);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (34, 'PREPARING', 'DELIVERY', 'Kralja Petra 21', 32, 2);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (22, 'READY_FOR_PICKUP', 'PICKUP', '', 39, 2);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (33, 'IN_DELIVERY', 'DELIVERY', 'Bulevar 12/3', 15, 2);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (42, 'DONE', 'PICKUP', '', 45, 2);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (48, 'PREPARING', 'DELIVERY', 'Cara Dusana 45', 45, 2);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (31, 'READY_FOR_PICKUP', 'PICKUP', '', 15, 2);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (14, 'IN_DELIVERY', 'DELIVERY', 'Bulevar 12/3', 45, 2);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (42, 'DONE', 'PICKUP', '', 7, 2);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (29, 'PREPARING', 'DELIVERY', 'Jovana Cvijica 88', 45, 2);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (56, 'READY_FOR_PICKUP', 'PICKUP', '', 12, 2);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (41, 'IN_DELIVERY', 'DELIVERY', 'Dositejeva 5', 14, 2);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (24, 'DONE', 'PICKUP', '', 11, 2);
+
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (12, 'READY_FOR_PICKUP', 'PICKUP', '', 23, 2);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (60, 'IN_DELIVERY', 'DELIVERY', 'Nemanjina 11', 40, 2);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (45, 'DONE', 'PICKUP', '', 23, 2);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (21, 'PREPARING', 'DELIVERY', 'Brace Radic 7', 32, 2);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (19, 'READY_FOR_PICKUP', 'PICKUP', '', 27, 2);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (18, 'IN_DELIVERY', 'DELIVERY', 'Gunduliceva 14', 6, 2);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (37, 'DONE', 'PICKUP', '', 24, 2);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (23, 'PREPARING', 'DELIVERY', 'Brace Radic 7', 44, 2);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (35, 'READY_FOR_PICKUP', 'PICKUP', '', 27, 2);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (18, 'IN_DELIVERY', 'DELIVERY', 'Zmaj Jovina 3', 39, 2);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (24, 'DONE', 'PICKUP', '', 21, 2);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (43, 'PREPARING', 'DELIVERY', 'Cara Dusana 45', 2, 2);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (50, 'READY_FOR_PICKUP', 'PICKUP', '', 34, 2);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (24, 'IN_DELIVERY', 'DELIVERY', 'Gunduliceva 14', 39, 2);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (39, 'DONE', 'PICKUP', '', 15, 2);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (46, 'PREPARING', 'DELIVERY', 'Gunduliceva 14', 48, 2);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (27, 'READY_FOR_PICKUP', 'PICKUP', '', 37, 2);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (12, 'IN_DELIVERY', 'DELIVERY', 'Gunduliceva 14', 22, 2);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (59, 'PREPARING', 'DELIVERY', 'Brace Radic 7', 38, 2);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (43, 'READY_FOR_PICKUP', 'PICKUP', '', 3, 2);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (31, 'IN_DELIVERY', 'DELIVERY', 'Zmaj Jovina 3', 44, 2);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (59, 'DONE', 'PICKUP', '', 16, 2);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (44, 'PREPARING', 'DELIVERY', 'Dositejeva 5', 29, 2);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (32, 'READY_FOR_PICKUP', 'PICKUP', '', 10, 2);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (59, 'IN_DELIVERY', 'DELIVERY', 'Kralja Petra 21', 4, 2);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (21, 'DONE', 'PICKUP', '', 27, 2);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (39, 'PREPARING', 'DELIVERY', 'Bulevar 12/3', 43, 2);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (10, 'READY_FOR_PICKUP', 'PICKUP', '', 17, 2);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (53, 'IN_DELIVERY', 'DELIVERY', 'Nemanjina 11', 50, 2);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (25, 'DONE', 'PICKUP', '', 6, 2);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (29, 'PREPARING', 'DELIVERY', 'Brace Radic 7', 48, 2);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (45, 'READY_FOR_PICKUP', 'PICKUP', '', 3, 2);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (57, 'PREPARING', 'DELIVERY', 'Gunduliceva 14', 8, 3);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (10, 'READY_FOR_PICKUP', 'PICKUP', '', 7, 3);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (52, 'IN_DELIVERY', 'DELIVERY', 'Nemanjina 11', 15, 3);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (22, 'DONE', 'PICKUP', '', 42, 3);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (38, 'PREPARING', 'DELIVERY', 'Gunduliceva 14', 46, 3);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (49, 'READY_FOR_PICKUP', 'PICKUP', '', 22, 3);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (52, 'IN_DELIVERY', 'DELIVERY', 'Dositejeva 5', 15, 3);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (16, 'DONE', 'PICKUP', '', 48, 3);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (51, 'PREPARING', 'DELIVERY', 'Cara Dusana 45', 17, 3);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (14, 'READY_FOR_PICKUP', 'PICKUP', '', 28, 3);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (51, 'IN_DELIVERY', 'DELIVERY', 'Kralja Petra 21', 14, 3);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (41, 'DONE', 'PICKUP', '', 9, 3);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (11, 'PREPARING', 'DELIVERY', 'Cara Dusana 45', 10, 3);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (39, 'READY_FOR_PICKUP', 'PICKUP', '', 39, 3);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (39, 'IN_DELIVERY', 'DELIVERY', 'Brace Radic 7', 19, 3);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (44, 'DONE', 'PICKUP', '', 29, 3);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (47, 'PREPARING', 'DELIVERY', 'Zmaj Jovina 3', 45, 3);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (35, 'READY_FOR_PICKUP', 'PICKUP', '', 13, 3);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (10, 'IN_DELIVERY', 'DELIVERY', 'Dositejeva 5', 26, 3);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (50, 'DONE', 'PICKUP', '', 9, 3);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (50, 'PREPARING', 'DELIVERY', 'Jovana Cvijica 88', 20, 3);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (20, 'READY_FOR_PICKUP', 'PICKUP', '', 16, 3);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (30, 'IN_DELIVERY', 'DELIVERY', 'Bulevar 12/3', 17, 3);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (36, 'DONE', 'PICKUP', '', 19, 3);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (55, 'PREPARING', 'DELIVERY', 'Nikole Tesle 9A', 21, 3);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (50, 'READY_FOR_PICKUP', 'PICKUP', '', 24, 3);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (47, 'IN_DELIVERY', 'DELIVERY', 'Zmaj Jovina 3', 1, 3);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (35, 'DONE', 'PICKUP', '', 35, 3);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (25, 'PREPARING', 'DELIVERY', 'Bulevar 12/3', 4, 3);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (50, 'READY_FOR_PICKUP', 'PICKUP', '', 45, 3);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (21, 'IN_DELIVERY', 'DELIVERY', 'Zmaj Jovina 3', 17, 3);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (56, 'DONE', 'PICKUP', '', 25, 3);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (15, 'PREPARING', 'DELIVERY', 'Gunduliceva 14', 12, 3);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (26, 'READY_FOR_PICKUP', 'PICKUP', '', 3, 3);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (13, 'IN_DELIVERY', 'DELIVERY', 'Dositejeva 5', 24, 3);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (58, 'DONE', 'PICKUP', '', 5, 3);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (19, 'PREPARING', 'DELIVERY', 'Gunduliceva 14', 9, 3);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (37, 'READY_FOR_PICKUP', 'PICKUP', '', 27, 3);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (23, 'IN_DELIVERY', 'DELIVERY', 'Zmaj Jovina 3', 27, 3);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (40, 'DONE', 'PICKUP', '', 14, 3);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (52, 'PREPARING', 'DELIVERY', 'Gunduliceva 14', 16, 3);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (40, 'READY_FOR_PICKUP', 'PICKUP', '', 13, 3);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (13, 'IN_DELIVERY', 'DELIVERY', 'Dositejeva 5', 27, 3);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (15, 'DONE', 'PICKUP', '', 31, 3);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (21, 'READY_FOR_PICKUP', 'PICKUP', '', 9, 3);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (59, 'IN_DELIVERY', 'DELIVERY', 'Dositejeva 5', 5, 3);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (45, 'DONE', 'PICKUP', '', 18, 3);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (43, 'PREPARING', 'DELIVERY', 'Cara Dusana 45', 36, 3);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (27, 'READY_FOR_PICKUP', 'PICKUP', '', 32, 3);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (55, 'PREPARING', 'DELIVERY', 'Gunduliceva 14', 49, 4);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (36, 'READY_FOR_PICKUP', 'PICKUP', '', 48, 4);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (43, 'IN_DELIVERY', 'DELIVERY', 'Nikole Tesle 9A', 23, 4);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (60, 'DONE', 'PICKUP', '', 50, 4);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (34, 'PREPARING', 'DELIVERY', 'Nemanjina 11', 10, 4);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (54, 'READY_FOR_PICKUP', 'PICKUP', '', 27, 4);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (32, 'IN_DELIVERY', 'DELIVERY', 'Kralja Petra 21', 24, 4);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (25, 'DONE', 'PICKUP', '', 28, 4);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (23, 'PREPARING', 'DELIVERY', 'Nikole Tesle 9A', 4, 4);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (49, 'READY_FOR_PICKUP', 'PICKUP', '', 49, 4);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (38, 'IN_DELIVERY', 'DELIVERY', 'Cara Dusana 45', 26, 4);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (50, 'DONE', 'PICKUP', '', 46, 4);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (23, 'PREPARING', 'DELIVERY', 'Brace Radic 7', 36, 4);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (22, 'READY_FOR_PICKUP', 'PICKUP', '', 41, 4);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (28, 'IN_DELIVERY', 'DELIVERY', 'Nemanjina 11', 34, 4);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (50, 'DONE', 'PICKUP', '', 25, 4);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (59, 'PREPARING', 'DELIVERY', 'Brace Radic 7', 1, 4);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (16, 'READY_FOR_PICKUP', 'PICKUP', '', 21, 4);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (52, 'IN_DELIVERY', 'DELIVERY', 'Nikole Tesle 9A', 37, 4);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (15, 'DONE', 'PICKUP', '', 31, 4);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (30, 'PREPARING', 'DELIVERY', 'Gunduliceva 14', 35, 4);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (27, 'READY_FOR_PICKUP', 'PICKUP', '', 16, 4);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (28, 'IN_DELIVERY', 'DELIVERY', 'Brace Radic 7', 13, 4);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (34, 'DONE', 'PICKUP', '', 46, 4);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (29, 'PREPARING', 'DELIVERY', 'Bulevar 12/3', 43, 4);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (33, 'READY_FOR_PICKUP', 'PICKUP', '', 2, 4);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (53, 'IN_DELIVERY', 'DELIVERY', 'Zmaj Jovina 3', 17, 4);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (40, 'DONE', 'PICKUP', '', 36, 4);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (56, 'PREPARING', 'DELIVERY', 'Brace Radic 7', 26, 4);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (15, 'READY_FOR_PICKUP', 'PICKUP', '', 1, 4);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (60, 'IN_DELIVERY', 'DELIVERY', 'Zmaj Jovina 3', 7, 4);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (33, 'DONE', 'PICKUP', '', 50, 4);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (50, 'PREPARING', 'DELIVERY', 'Jovana Cvijica 88', 6, 4);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (23, 'READY_FOR_PICKUP', 'PICKUP', '', 39, 4);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (33, 'IN_DELIVERY', 'DELIVERY', 'Zmaj Jovina 3', 6, 4);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (42, 'DONE', 'PICKUP', '', 4, 4);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (50, 'PREPARING', 'DELIVERY', 'Bulevar 12/3', 13, 4);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (13, 'READY_FOR_PICKUP', 'PICKUP', '', 36, 4);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (55, 'IN_DELIVERY', 'DELIVERY', 'Cara Dusana 45', 10, 4);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (24, 'DONE', 'PICKUP', '', 46, 4);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (39, 'PREPARING', 'DELIVERY', 'Zmaj Jovina 3', 20, 4);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (11, 'READY_FOR_PICKUP', 'PICKUP', '', 32, 4);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (28, 'IN_DELIVERY', 'DELIVERY', 'Jovana Cvijica 88', 36, 4);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (19, 'DONE', 'PICKUP', '', 48, 4);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (27, 'PREPARING', 'DELIVERY', 'Gunduliceva 14', 42, 4);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (16, 'READY_FOR_PICKUP', 'PICKUP', '', 40, 4);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (36, 'IN_DELIVERY', 'DELIVERY', 'Jovana Cvijica 88', 8, 4);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (13, 'DONE', 'PICKUP', '', 1, 4);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (25, 'PREPARING', 'DELIVERY', 'Bulevar 12/3', 42, 4);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (19, 'READY_FOR_PICKUP', 'PICKUP', '', 39, 4);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (12, 'PREPARING', 'DELIVERY', 'Nemanjina 11', 15, 5);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (32, 'READY_FOR_PICKUP', 'PICKUP', '', 13, 5);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (10, 'IN_DELIVERY', 'DELIVERY', 'Dositejeva 5', 47, 5);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (11, 'DONE', 'PICKUP', '', 28, 5);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (28, 'PREPARING', 'DELIVERY', 'Jovana Cvijica 88', 3, 5);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (25, 'READY_FOR_PICKUP', 'PICKUP', '', 47, 5);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (24, 'IN_DELIVERY', 'DELIVERY', 'Jovana Cvijica 88', 13, 5);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (15, 'DONE', 'PICKUP', '', 26, 5);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (17, 'PREPARING', 'DELIVERY', 'Nemanjina 11', 45, 5);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (16, 'READY_FOR_PICKUP', 'PICKUP', '', 5, 5);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (41, 'IN_DELIVERY', 'DELIVERY', 'Cara Dusana 45', 49, 5);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (17, 'DONE', 'PICKUP', '', 3, 5);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (26, 'PREPARING', 'DELIVERY', 'Dositejeva 5', 37, 5);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (30, 'READY_FOR_PICKUP', 'PICKUP', '', 18, 5);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (42, 'IN_DELIVERY', 'DELIVERY', 'Nikole Tesle 9A', 4, 5);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (31, 'DONE', 'PICKUP', '', 21, 5);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (33, 'PREPARING', 'DELIVERY', 'Nikole Tesle 9A', 21, 5);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (28, 'READY_FOR_PICKUP', 'PICKUP', '', 30, 5);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (59, 'IN_DELIVERY', 'DELIVERY', 'Dositejeva 5', 23, 5);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (18, 'DONE', 'PICKUP', '', 11, 5);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (50, 'PREPARING', 'DELIVERY', 'Nemanjina 11', 41, 5);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (28, 'READY_FOR_PICKUP', 'PICKUP', '', 50, 5);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (43, 'IN_DELIVERY', 'DELIVERY', 'Nemanjina 11', 21, 5);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (19, 'DONE', 'PICKUP', '', 47, 5);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (13, 'PREPARING', 'DELIVERY', 'Kralja Petra 21', 39, 5);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (40, 'READY_FOR_PICKUP', 'PICKUP', '', 33, 5);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (41, 'IN_DELIVERY', 'DELIVERY', 'Gunduliceva 14', 36, 5);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (57, 'DONE', 'PICKUP', '', 28, 5);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (24, 'PREPARING', 'DELIVERY', 'Cara Dusana 45', 3, 5);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (59, 'READY_FOR_PICKUP', 'PICKUP', '', 13, 5);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (60, 'IN_DELIVERY', 'DELIVERY', 'Bulevar 12/3', 35, 5);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (33, 'DONE', 'PICKUP', '', 38, 5);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (36, 'PREPARING', 'DELIVERY', 'Dositejeva 5', 13, 5);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (22, 'READY_FOR_PICKUP', 'PICKUP', '', 29, 5);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (21, 'IN_DELIVERY', 'DELIVERY', 'Gunduliceva 14', 39, 5);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (47, 'DONE', 'PICKUP', '', 33, 5);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (56, 'PREPARING', 'DELIVERY', 'Brace Radic 7', 44, 5);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (60, 'READY_FOR_PICKUP', 'PICKUP', '', 3, 5);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (42, 'IN_DELIVERY', 'DELIVERY', 'Kralja Petra 21', 33, 5);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (23, 'DONE', 'PICKUP', '', 47, 5);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (52, 'PREPARING', 'DELIVERY', 'Nemanjina 11', 48, 5);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (48, 'READY_FOR_PICKUP', 'PICKUP', '', 27, 5);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (57, 'IN_DELIVERY', 'DELIVERY', 'Bulevar 12/3', 15, 5);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (14, 'DONE', 'PICKUP', '', 35, 5);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (42, 'PREPARING', 'DELIVERY', 'Nemanjina 11', 17, 5);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (55, 'READY_FOR_PICKUP', 'PICKUP', '', 32, 5);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (22, 'IN_DELIVERY', 'DELIVERY', 'Brace Radic 7', 26, 5);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (39, 'DONE', 'PICKUP', '', 26, 5);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (27, 'PREPARING', 'DELIVERY', 'Gunduliceva 14', 2, 5);
+
+INSERT INTO porudzbina (preostaloVreme, status, nacinIsporuke, adresa, idJelo, idKorisnik)
+VALUES (20, 'READY_FOR_PICKUP', 'PICKUP', '', 22, 5);
