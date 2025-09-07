@@ -19,19 +19,25 @@ export function OrderRow({
   onDelete
 }: OrderRowProps) 
 {
+  const availableStatuses =
+    order.deliveryMethod === "PICKUP"
+      ? orderStatuses.filter(s => s !== "IN_DELIVERY")
+      : orderStatuses;
   return (
     <tr className="hover:bg-gray-50 transition-colors">
       <td className="px-4 py-3">{order.idOrder}</td>
       <td className="px-4 py-3">{username}</td>
       <td className="px-4 py-3">{mealName}</td>
       <td className="px-4 py-3">
-        <select
+         <select
           value={order.status}
           onChange={(e) => onStatusChange(order.idOrder, e.target.value as OrderStatus)}
           className="border p-1 rounded w-full"
         >
-          {orderStatuses.map(status => (
-            <option key={status} value={status}>{status}</option>
+          {availableStatuses.map(status => (
+            <option key={status} value={status}>
+              {status}
+            </option>
           ))}
         </select>
       </td>

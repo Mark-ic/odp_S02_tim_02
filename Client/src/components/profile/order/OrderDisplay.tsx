@@ -11,13 +11,13 @@ export function UserOrder({ order }: UserOrderProps) {
     case "PREPARING":
       statusColor = "orange";
       break;
-    case "READY":
+    case "READY_FOR_PICKUP":
       statusColor = "green";
       break;
-    case "DELIVERING":
+    case "IN_DELIVERY":
       statusColor = "blue";
       break;
-    case "DELIVERED":
+    case "DONE":
       statusColor = "red";
       break;
     default:

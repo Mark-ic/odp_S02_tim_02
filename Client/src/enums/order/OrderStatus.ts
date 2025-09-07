@@ -1,2 +1,2 @@
 export type OrderStatus = 
-"PREPARING" | "READY" | "DELIVERING" | "DELIVERED";
+"PREPARING" | "READY_FOR_PICKUP" | "IN_DELIVERY" | "DONE";

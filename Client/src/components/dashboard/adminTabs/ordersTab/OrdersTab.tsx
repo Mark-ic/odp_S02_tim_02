@@ -15,7 +15,7 @@ export function OrdersTab({ token }: OrdersTabProps) {
   const [mealsMap, setMealsMap] = useState<Record<number, string>>({});
   const [loading, setLoading] = useState(true);
 
-  const orderStatuses: OrderStatus[] = ["PREPARING", "READY", "DELIVERING", "DELIVERED"];
+  const orderStatuses: OrderStatus[] = ["PREPARING", "READY_FOR_PICKUP", "IN_DELIVERY", "DONE"];
 
   const fetchData = async () => {
     setLoading(true);
